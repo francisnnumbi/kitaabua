@@ -1,3 +1,5 @@
+import 'package:kitaabua/database/models/meaning.dart';
+
 import '../../core/configs/utils.dart';
 
 class Expression {
@@ -8,7 +10,7 @@ class Expression {
   late DateTime? updatedOn;
   late String? updatedBy;
   late bool? state;
-  late Map<String, dynamic>? meanings;
+  late List<Meaning>? meanings;
 
   Expression({
     required this.id,
@@ -41,4 +43,10 @@ class Expression {
         'state': state,
         'meanings': meanings,
       };
+
+  @override
+  String toString() {
+    // TODO: implement toString
+    return 'Expression{id: $id, word: $word, addedBy: $addedBy, addedOn: $addedOn, updatedOn: $updatedOn, updatedBy: $updatedBy, state: $state, meanings: $meanings}';
+  }
 }

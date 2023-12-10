@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-import 'package:kitaabua/app/ui/pages/add_edit/add_edit_page.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
 import '../../database/api/firebase_api.dart';
@@ -31,9 +30,25 @@ class DictionaryService extends GetxService {
             .toList();
   }
 
-  openExpression({Expression? expression}) {
+  openExpression({Expression? expression}) async {
     this.expression.value = expression;
-    Get.toNamed(AddEditPage.route);
+    if (this.expression.value != null) {
+      this.expression.value!.meanings =
+          await FirebaseApi.futureReadMeanings(this.expression.value!.id);
+      if (kDebugMode) print("dddd :: " + this.expression.value!.toString());
+    }
+    // Get.toNamed(AddEditPage.route);
+  }
+
+  void addExpression({
+    required String word,
+  }) {
+    FirebaseApi.createExpression(word: word).then((value) {
+      Get.back();
+      Get.snackbar('Success', 'Expression added successfully');
+    }).catchError((onError) {
+      Get.snackbar('Error', onError.toString());
+    });
   }
 
   Future<void> initializeBindings() async {

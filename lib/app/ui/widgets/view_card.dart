@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
 import '../../../core/configs/colors.dart';
@@ -20,6 +21,9 @@ class ViewCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(kBorderRadiusS),
       ),
       child: ListTile(
+        onTap: () {
+          DictionaryService.to.openExpression(expression: expression);
+        },
         title: RichText(
           text: TextSpan(
             text: expression.word,
