@@ -29,7 +29,7 @@ class BottomNavBar extends StatelessWidget {
     }
     ;
     return BottomNavigationBar(
-      backgroundColor: kBackgroundColor,
+      backgroundColor: kDarkBackgroundColor,
       selectedItemColor: kOnSecondaryColor,
       unselectedItemColor: kGreyColor,
       currentIndex: cIndex,

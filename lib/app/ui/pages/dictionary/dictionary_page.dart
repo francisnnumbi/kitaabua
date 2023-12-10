@@ -5,6 +5,7 @@ import 'package:kitaabua/app/ui/widgets/searched_views.dart';
 import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
+import '../../../services/auth_service.dart';
 import '../../widgets/botto_nav_bar.dart';
 import '../../widgets/simple_app_bar_header.dart';
 
@@ -33,21 +34,23 @@ class DictionaryPage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: kDarkBackgroundColor,
-        foregroundColor: kOnBackgroundColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kBorderRadius),
-        ),
-        elevation: 10,
-        onPressed: () {
-          DictionaryService.to.openExpression();
-        },
-        child: const Icon(
-          Icons.add,
-          size: kSizeBoxXL,
-        ),
-      ),
+      floatingActionButton: !AuthService.to.isLoggedIn.value
+          ? null
+          : FloatingActionButton(
+              backgroundColor: kDarkBackgroundColor,
+              foregroundColor: kOnBackgroundColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(kBorderRadius),
+              ),
+              elevation: 10,
+              onPressed: () {
+                DictionaryService.to.openExpression();
+              },
+              child: const Icon(
+                Icons.add,
+                size: kSizeBoxXL,
+              ),
+            ),
       bottomNavigationBar: const BottomNavBar(),
     );
   }

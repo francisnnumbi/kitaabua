@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kitaabua/app/services/auth_service.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/widgets/expression_search_view.dart';
 import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
@@ -37,21 +38,23 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: kDarkBackgroundColor,
-        foregroundColor: kOnBackgroundColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kBorderRadius),
-        ),
-        elevation: 10,
-        onPressed: () {
-          DictionaryService.to.openExpression();
-        },
-        child: const Icon(
-          Icons.add,
-          size: kSizeBoxXL,
-        ),
-      ),
+      floatingActionButton: !AuthService.to.isLoggedIn.value
+          ? null
+          : FloatingActionButton(
+              backgroundColor: kDarkBackgroundColor,
+              foregroundColor: kOnBackgroundColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(kBorderRadius),
+              ),
+              elevation: 10,
+              onPressed: () {
+                DictionaryService.to.openExpression();
+              },
+              child: const Icon(
+                Icons.add,
+                size: kSizeBoxXL,
+              ),
+            ),
       bottomNavigationBar: const BottomNavBar(),
     );
   }
