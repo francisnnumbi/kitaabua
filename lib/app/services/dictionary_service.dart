@@ -16,11 +16,10 @@ class DictionaryService extends GetxService {
 
 // ------- ./static methods ------- //
 
+  final Rxn<Expression> expression = Rxn<Expression>();
   final RxList<Expression> expressions = <Expression>[].obs;
   final RxList<Expression> recentExpressions = <Expression>[].obs;
-  final RxList<Expression> favoriteExpressions = <Expression>[].obs;
 
-  final Rxn<Expression> expression = Rxn<Expression>();
   final RxString searchQuery = ''.obs;
 
   bool canManageDictionary() {
@@ -51,8 +50,6 @@ class DictionaryService extends GetxService {
   }
 
   void refreshExpressions() {
-    //expressions.refresh();
-    //clearBindings();
     initializeBindings();
   }
 
