@@ -19,7 +19,7 @@ class ExpressionSearchView extends StatelessWidget {
           : () {
               Get.toNamed(DictionaryPage.route);
             },
-      autofocus: !isFakeSearch!,
+      //autofocus: !isFakeSearch!,
       controller: searchController,
       onChanged: (value) {
         DictionaryService.to.filterExpressions(searchController.text);

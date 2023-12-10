@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/database/api/auth.dart';
 
 class AuthService extends GetxService {
@@ -25,6 +26,9 @@ class AuthService extends GetxService {
   void loginDialog() {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
+    if (MembersController.to.currentMember.value != null) {
+      emailController.text = MembersController.to.currentMember.value!.email;
+    }
     Get.defaultDialog(
       title: "Login",
       content: Column(

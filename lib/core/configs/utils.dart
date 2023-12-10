@@ -6,6 +6,18 @@ import 'package:kitaabua/database/models/expression.dart';
 import '../../database/api/firebase_api.dart';
 
 class Utils {
+  static DateTime? stringToDateTime(String value) {
+    if (value == null) return null;
+
+    return DateTime.tryParse(value);
+  }
+
+  static dynamic fromDateTimeToStringJson(DateTime date) {
+    if (date == null) return null;
+
+    return date.toIso8601String();
+  }
+
   static DateTime? toDateTime(Timestamp value) {
     if (value == null) return null;
 

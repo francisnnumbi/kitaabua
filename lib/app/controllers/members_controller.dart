@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/database/models/member.dart';
@@ -29,18 +30,20 @@ class MembersController extends GetxController {
   void addMember({
     required String name,
     required String email,
+    required String password,
     String? userId,
   }) {
     FirebaseApi.createMember(
       name: name,
       email: email,
+      password: password,
     ).then((value) async {
       Get.back();
-      Get.snackbar('Success', 'Member added successfully with id: $value');
+      Get.snackbar('Success', 'Guest added successfully with id: $name');
       currentMember.value = await FirebaseApi.getMember(value);
       InnerStorage.write(
         'currentMember',
-        currentMember.toJson(),
+        currentMember.value!.toStringJson(),
       );
     }).catchError((onError) {
       Get.snackbar('Error', onError.toString());
@@ -51,11 +54,12 @@ class MembersController extends GetxController {
   void addMemberDialog() {
     final nameController = TextEditingController();
     final emailController = TextEditingController();
+    final passwordController = TextEditingController();
     if (Auth().currentUser != null) {
       emailController.text = Auth().currentUser!.email!;
     }
     Get.defaultDialog(
-      title: 'Add Member',
+      title: 'Register Guest',
       content: Column(
         children: [
           TextField(
@@ -72,6 +76,13 @@ class MembersController extends GetxController {
               hintText: 'Enter email',
             ),
           ),
+          TextField(
+            controller: passwordController,
+            decoration: const InputDecoration(
+              labelText: 'Password',
+              hintText: 'Enter password',
+            ),
+          ),
         ],
       ),
       actions: [
@@ -86,6 +97,7 @@ class MembersController extends GetxController {
             addMember(
               name: nameController.text,
               email: emailController.text,
+              password: passwordController.text,
             );
           },
           child: const Text('Add'),
@@ -94,10 +106,66 @@ class MembersController extends GetxController {
     );
   }
 
+  void loginMemberDialog() {
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
+    Get.defaultDialog(
+      title: 'Login as guest',
+      content: Column(
+        children: [
+          TextField(
+            controller: emailController,
+            decoration: const InputDecoration(
+              labelText: 'Email',
+              hintText: 'Enter email',
+            ),
+          ),
+          TextField(
+            controller: passwordController,
+            decoration: const InputDecoration(
+              labelText: 'Password',
+              hintText: 'Enter password',
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Get.back();
+          },
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            for (final member in members) {
+              if (member.email == emailController.text &&
+                  member.password == passwordController.text &&
+                  member.state == true) {
+                currentMember.value = member;
+                InnerStorage.write(
+                  'currentMember',
+                  currentMember.value!.toStringJson(),
+                );
+                Get.back();
+                Get.snackbar('Success', 'Guest logged in successfully');
+                return;
+              }
+            }
+            if (currentMember.value == null) {
+              Get.snackbar('Error', 'Guest not found');
+            }
+          },
+          child: const Text('Login'),
+        ),
+      ],
+    );
+  }
+
   void logoutMemberDialog() {
     Get.defaultDialog(
-      title: 'Logout',
-      content: const Text('Are you sure you want to logout as member?'),
+      title: 'Logout Guest',
+      content: const Text('Are you sure you want to logout as guest ?'),
       actions: [
         TextButton(
           onPressed: () {
@@ -112,7 +180,7 @@ class MembersController extends GetxController {
               currentMember.value!,
             ).then((value) async {
               Get.back();
-              Get.snackbar('Success', 'Member logged out successfully');
+              Get.snackbar('Success', 'Guest logged out successfully');
               currentMember.value = null;
               InnerStorage.remove('currentMember');
             }).catchError((onError) {
@@ -135,18 +203,26 @@ class MembersController extends GetxController {
   @override
   void onReady() {
     if (InnerStorage.hasData('currentMember')) {
-      currentMember.value = Member.fromJson(InnerStorage.read('currentMember'));
+      try {
+        currentMember.value =
+            Member.fromStringJson(InnerStorage.read('currentMember'));
+      } catch (e) {
+        if (kDebugMode) print(e);
+        InnerStorage.remove('currentMember');
+      }
     }
+
     super.onReady();
     initializeBindings();
     members.listen((p0) {
       if (currentMember.value == null) {
         for (final member in p0) {
+          if (kDebugMode) print(member.toString());
           if (member.email == Auth().currentUser?.email && member.state == 1) {
             currentMember.value = member;
             InnerStorage.write(
               'currentMember',
-              currentMember.toJson(),
+              currentMember.value!.toStringJson(),
             );
             break;
           }

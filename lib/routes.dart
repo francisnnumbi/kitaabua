@@ -11,7 +11,7 @@ class Routes {
   static List<GetPage> routes = [
     GetPage(
       name: HomePage.route,
-      transitionDuration: const Duration(seconds: 1),
+      // transitionDuration: const Duration(seconds: 1),
       transition: Transition.fadeIn,
       page: () => const HomePage(),
       /* middlewares: [
@@ -20,7 +20,7 @@ class Routes {
     ),
     GetPage(
       name: DictionaryPage.route,
-      transitionDuration: const Duration(seconds: 1),
+      // transitionDuration: const Duration(seconds: 1),
       transition: Transition.fadeIn,
       page: () => const DictionaryPage(),
       /* middlewares: [
@@ -29,7 +29,7 @@ class Routes {
     ),
     GetPage(
       name: AddEditPage.route,
-      transitionDuration: const Duration(seconds: 1),
+      // transitionDuration: const Duration(seconds: 1),
       transition: Transition.fadeIn,
       page: () => AddEditPage(),
       /* middlewares: [
@@ -38,7 +38,7 @@ class Routes {
     ),
     GetPage(
       name: SettingsPage.route,
-      transitionDuration: const Duration(seconds: 1),
+      //  transitionDuration: const Duration(seconds: 1),
       transition: Transition.fadeIn,
       page: () => const SettingsPage(),
       /* middlewares: [
@@ -47,7 +47,7 @@ class Routes {
     ),
     GetPage(
       name: BookmarksPage.route,
-      transitionDuration: const Duration(seconds: 1),
+      // transitionDuration: const Duration(seconds: 1),
       transition: Transition.fadeIn,
       page: () => const BookmarksPage(),
       /* middlewares: [
@@ -56,7 +56,7 @@ class Routes {
     ),
     GetPage(
       name: ProfilePage.route,
-      transitionDuration: const Duration(seconds: 1),
+      //transitionDuration: const Duration(seconds: 1),
       transition: Transition.fadeIn,
       page: () => const ProfilePage(),
       /* middlewares: [

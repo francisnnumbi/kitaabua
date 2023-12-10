@@ -114,6 +114,7 @@ class FirebaseApi {
   static Future<String> createMember({
     required String name,
     required String email,
+    required String password,
     String? userId,
   }) async {
     final docMember = memberCollection.doc();
@@ -123,6 +124,7 @@ class FirebaseApi {
       addedOn: DateTime.now(),
       name: name,
       email: email,
+      password: password,
       role: 'guest',
       userId: Auth().uid,
       state: true,

@@ -66,41 +66,74 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: kSizeBoxM),
-              if (!AuthService.to.isLoggedIn.value)
-                ElevatedButton(
-                  onPressed: () {
-                    AuthService.to.loginDialog();
-                  },
-                  child: const Text("Login"),
-                ),
-              if (!AuthService.to.isLoggedIn.value)
-                ElevatedButton(
-                  onPressed: () {
-                    AuthService.to.registerDialog();
-                  },
-                  child: const Text("Register"),
-                ),
-              if (MembersController.to.currentMember.value == null)
-                ElevatedButton(
-                  onPressed: () {
-                    MembersController.to.addMemberDialog();
-                  },
-                  child: const Text("Register as guest"),
-                ),
-              if (MembersController.to.currentMember.value != null)
-                ElevatedButton(
-                  onPressed: () {
-                    MembersController.to.logoutMemberDialog();
-                  },
-                  child: const Text("Logout as guest"),
-                ),
-              if (AuthService.to.isLoggedIn.value)
-                ElevatedButton(
-                  onPressed: () {
-                    AuthService.to.logoutDialog();
-                  },
-                  child: const Text("Sign out"),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Logged in as Principal',
+                          style: TextStyle(color: kOnBackgroundColor),
+                        ),
+                        if (!AuthService.to.isLoggedIn.value)
+                          ElevatedButton(
+                            onPressed: () {
+                              AuthService.to.loginDialog();
+                            },
+                            child: const Text("Sign in"),
+                          ),
+                        if (!AuthService.to.isLoggedIn.value)
+                          ElevatedButton(
+                            onPressed: () {
+                              AuthService.to.registerDialog();
+                            },
+                            child: const Text("Register"),
+                          ),
+                        if (AuthService.to.isLoggedIn.value)
+                          ElevatedButton(
+                            onPressed: () {
+                              AuthService.to.logoutDialog();
+                            },
+                            child: const Text("Sign out"),
+                          ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: [
+                        const Text(
+                          'Logged in as Guest',
+                          style: TextStyle(color: kOnBackgroundColor),
+                        ),
+                        if (MembersController.to.currentMember.value == null)
+                          ElevatedButton(
+                            onPressed: () {
+                              MembersController.to.loginMemberDialog();
+                            },
+                            child: const Text("Login"),
+                          ),
+                        if (MembersController.to.currentMember.value == null)
+                          ElevatedButton(
+                            onPressed: () {
+                              MembersController.to.addMemberDialog();
+                            },
+                            child: const Text("Register"),
+                          ),
+                        if (MembersController.to.currentMember.value != null)
+                          ElevatedButton(
+                            onPressed: () {
+                              MembersController.to.logoutMemberDialog();
+                            },
+                            child: const Text("Logout"),
+                          ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
               const SizedBox(height: kSizeBoxL),
             ],
           );
