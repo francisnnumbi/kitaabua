@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/widgets/word_search_view.dart';
 import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
@@ -8,6 +9,8 @@ import '../../widgets/recent_views.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
+
+  static String route = "/";
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +46,9 @@ class HomePage extends StatelessWidget {
           borderRadius: BorderRadius.circular(kBorderRadius),
         ),
         elevation: 10,
-        onPressed: () {},
+        onPressed: () {
+          DictionaryService.to.openExpression();
+        },
         child: const Icon(
           Icons.add,
           size: kSizeBoxXL,

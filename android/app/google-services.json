@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "484797341443",
+    "project_id": "kitaabua-eeb07",
+    "storage_bucket": "kitaabua-eeb07.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:484797341443:android:d21df3e03b945422605336",
+        "android_client_info": {
+          "package_name": "com.smirltech.kitaabua"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLYSdWKZgQBdfdO5q7SUzbEEg0IgGZbNs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

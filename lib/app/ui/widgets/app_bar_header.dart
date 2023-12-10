@@ -7,23 +7,30 @@ import '../../../core/configs/sizes.dart';
 class AppBarHeader extends StatelessWidget {
   const AppBarHeader({
     super.key,
+    this.title,
+    this.icon,
+    this.onPressed,
   });
+
+  final String? title;
+  final IconData? icon;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text(
-          kAppName,
-          style: TextStyle(
+        Text(
+          title ?? kAppName,
+          style: const TextStyle(
             color: kOnBackgroundColor,
             fontSize: kTitleFontSize,
             fontWeight: FontWeight.bold,
           ),
         ),
         IconButton(
-          onPressed: () {},
+          onPressed: onPressed,
           padding: const EdgeInsets.all(0),
           icon: Container(
             width: 40,
@@ -32,8 +39,8 @@ class AppBarHeader extends StatelessWidget {
               color: kDarkBackgroundColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Icon(
-              Icons.swap_horiz,
+            child: Icon(
+              icon ?? Icons.swap_horiz,
               color: kOnBackgroundColor,
             ),
           ),
