@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:kitaabua/app/controllers/members_controller.dart';
+import 'package:kitaabua/app/services/auth_service.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
 import '../../database/api/firebase_api.dart';
@@ -20,6 +22,11 @@ class DictionaryService extends GetxService {
 
   final Rxn<Expression> expression = Rxn<Expression>();
   final RxString searchQuery = ''.obs;
+
+  bool canManageDictionary() {
+    return AuthService.to.isLoggedIn.value &&
+        MembersController.to.currentMember.value != null;
+  }
 
   List<Expression> get filteredExpressions {
     return searchQuery.isEmpty

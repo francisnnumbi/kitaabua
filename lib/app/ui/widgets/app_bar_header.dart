@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../../core/configs/colors.dart';
 import '../../../core/configs/constants.dart';
 import '../../../core/configs/sizes.dart';
-import '../../services/auth_service.dart';
+import '../../services/dictionary_service.dart';
 
 class AppBarHeader extends StatelessWidget {
   const AppBarHeader({
@@ -61,7 +61,7 @@ class AppBarHeader extends StatelessWidget {
             ),
           ],
         ),
-        if (onPressed != null && AuthService.to.isLoggedIn.value)
+        if (onPressed != null && DictionaryService.to.canManageDictionary())
           IconButton(
             onPressed: onPressed,
             padding: const EdgeInsets.all(0),

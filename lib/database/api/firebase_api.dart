@@ -1,12 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kitaabua/database/api/auth.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
 import '../../core/configs/utils.dart';
 import '../models/meaning.dart';
+import '../models/member.dart';
 
 class FirebaseApi {
   static CollectionReference<Map<String, dynamic>> get dbCollection =>
       FirebaseFirestore.instance.collection("kitaabua");
+
+  static CollectionReference<Map<String, dynamic>> get memberCollection =>
+      FirebaseFirestore.instance.collection("members");
 
   static Stream<List<Expression>> readExpressions() => dbCollection
       .orderBy('word', descending: false)
@@ -23,8 +28,8 @@ class FirebaseApi {
       addedOn: DateTime.now(),
       updatedOn: DateTime.now(),
       word: word,
-      addedBy: "Kipindo",
-      updatedBy: "Suruali",
+      addedBy: Auth().currentUser!.email!,
+      updatedBy: Auth().currentUser!.email!,
       state: true,
     );
 
@@ -77,8 +82,8 @@ class FirebaseApi {
       example: example,
       exampleTranslation: exampleTranslation,
       grammar: grammar,
-      addedBy: "Kipindo",
-      updatedBy: "Suruali",
+      addedBy: Auth().currentUser!.email!,
+      updatedBy: Auth().currentUser!.email!,
       state: true,
     );
 
@@ -98,5 +103,50 @@ class FirebaseApi {
         dbCollection.doc(expressionId).collection('meanings').doc(meaning.id);
 
     await docMeaning.delete();
+  }
+
+// Handling members
+  static Stream<List<Member>> readMembers() => memberCollection
+      .orderBy('name', descending: false)
+      .snapshots()
+      .transform(Utils.transformer(Member.fromJson));
+
+  static Future<String> createMember({
+    required String name,
+    required String email,
+    String? userId,
+  }) async {
+    final docMember = memberCollection.doc();
+
+    final member = Member(
+      id: docMember.id,
+      addedOn: DateTime.now(),
+      name: name,
+      email: email,
+      role: 'guest',
+      userId: Auth().uid,
+      state: true,
+    );
+
+    await docMember.set(member.toJson());
+
+    return docMember.id;
+  }
+
+  static Future<Member> getMember(String id) async {
+    final docMember = memberCollection.doc(id);
+    final member = await docMember.get();
+    return Member.fromJson(member.data()!);
+  }
+
+  static Future updateMember(Member member) async {
+    final docMember = memberCollection.doc(member.id);
+    await docMember.update(member.toJson());
+  }
+
+  static Future deleteMember(Member member) async {
+    final docMember = memberCollection.doc(member.id);
+
+    await docMember.delete();
   }
 }

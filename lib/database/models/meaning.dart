@@ -12,7 +12,7 @@ class Meaning {
   final DateTime addedOn;
   late DateTime? updatedOn;
   late String? updatedBy;
-  late bool? state;
+  late bool? state = true;
 
   Meaning({
     required this.id,

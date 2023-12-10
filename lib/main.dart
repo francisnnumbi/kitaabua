@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/pages/home/home_page.dart';
 import 'package:kitaabua/core/configs/constants.dart';
@@ -9,15 +10,18 @@ import 'package:kitaabua/routes.dart';
 
 import 'app/services/auth_service.dart';
 import 'firebase_options.dart';
+import 'package:get_storage/get_storage.dart';
+
+final GetStorage InnerStorage = GetStorage(kAppName);
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
+  await GetStorage.init(kAppName);
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await initServices();
-  runApp(const MainApp());
+  runApp(MainApp());
 }
 
 Future<void> initServices() async {
@@ -25,8 +29,14 @@ Future<void> initServices() async {
   await DictionaryService.init();
 }
 
+Future<void> _initControllers() async {
+  await MembersController.init();
+}
+
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  MainApp({super.key}) {
+    _initControllers();
+  }
 
   @override
   Widget build(BuildContext context) {

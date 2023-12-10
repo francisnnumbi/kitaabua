@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/auth_service.dart';
 import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
@@ -33,13 +34,33 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     ListTile(
                       title: Text(
-                          AuthService.to.currentUser?.email ??
+                          MembersController.to.currentMember.value?.name ??
                               "Not logged in !",
                           style: const TextStyle(color: kOnBackgroundColor)),
-                      subtitle: const Text("email",
+                      subtitle: const Text("Name",
                           style: TextStyle(color: kGreyColor)),
                       leading:
                           const Icon(Icons.account_circle, color: kGreyColor),
+                    ),
+                    ListTile(
+                      title: Text(
+                          AuthService.to.currentUser?.email ??
+                              "Not logged in !",
+                          style: const TextStyle(color: kOnBackgroundColor)),
+                      subtitle: const Text("principal email",
+                          style: TextStyle(color: kGreyColor)),
+                      leading:
+                          const Icon(Icons.mail_outline, color: kGreyColor),
+                    ),
+                    ListTile(
+                      title: Text(
+                          MembersController.to.currentMember.value?.email ??
+                              "Not logged in !",
+                          style: const TextStyle(color: kOnBackgroundColor)),
+                      subtitle: const Text("secondary email",
+                          style: TextStyle(color: kGreyColor)),
+                      leading:
+                          const Icon(Icons.mail_outline, color: kGreyColor),
                     ),
                   ],
                 ),
@@ -58,6 +79,20 @@ class ProfilePage extends StatelessWidget {
                     AuthService.to.registerDialog();
                   },
                   child: const Text("Register"),
+                ),
+              if (MembersController.to.currentMember.value == null)
+                ElevatedButton(
+                  onPressed: () {
+                    MembersController.to.addMemberDialog();
+                  },
+                  child: const Text("Register as guest"),
+                ),
+              if (MembersController.to.currentMember.value != null)
+                ElevatedButton(
+                  onPressed: () {
+                    MembersController.to.logoutMemberDialog();
+                  },
+                  child: const Text("Logout as guest"),
                 ),
               if (AuthService.to.isLoggedIn.value)
                 ElevatedButton(

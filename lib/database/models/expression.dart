@@ -11,7 +11,7 @@ class Expression {
   final DateTime addedOn;
   late DateTime? updatedOn;
   late String? updatedBy;
-  late bool? state;
+  late bool? state = true;
   late List<Meaning>? meanings;
 
   Expression({

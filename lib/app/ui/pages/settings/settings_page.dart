@@ -42,6 +42,15 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
                 ListTile(
+                  title: const Text("Settings",
+                      style: TextStyle(color: kOnBackgroundColor)),
+                  subtitle: const Text("Manage your settings",
+                      style: TextStyle(color: kGreyColor)),
+                  leading: const Icon(Icons.settings, color: kGreyColor),
+                  trailing: const Icon(Icons.arrow_forward_ios),
+                  onTap: () {},
+                ),
+                ListTile(
                   title: const Text("Notifications",
                       style: TextStyle(color: kOnBackgroundColor)),
                   subtitle: const Text("Manage your notifications",

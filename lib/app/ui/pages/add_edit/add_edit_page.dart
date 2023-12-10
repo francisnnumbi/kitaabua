@@ -5,7 +5,6 @@ import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
 import '../../../../core/configs/colors.dart';
 import '../../../../core/configs/sizes.dart';
 import '../../../../database/models/meaning.dart';
-import '../../../services/auth_service.dart';
 import '../../../services/dictionary_service.dart';
 import '../../widgets/app_bar_header.dart';
 import '../../widgets/meaning_card.dart';
@@ -57,7 +56,7 @@ class AddEditPage extends StatelessWidget {
                       }
                       return null;
                     },
-                    readOnly: !AuthService.to.isLoggedIn.value,
+                    readOnly: !DictionaryService.to.canManageDictionary(),
                     style: const TextStyle(
                       color: kOnBackgroundColor,
                       fontSize: kSearchFontSize,
@@ -123,7 +122,7 @@ class AddEditPage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: !AuthService.to.isLoggedIn.value
+      floatingActionButton: !DictionaryService.to.canManageDictionary()
           ? null
           : FloatingActionButton(
               mini: true,
