@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/database/api/auth.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
 import '../../core/configs/utils.dart';
+import '../models/bookmark.dart';
 import '../models/meaning.dart';
 import '../models/member.dart';
 
@@ -12,6 +14,9 @@ class FirebaseApi {
 
   static CollectionReference<Map<String, dynamic>> get memberCollection =>
       FirebaseFirestore.instance.collection("members");
+
+  static CollectionReference<Map<String, dynamic>> get bookmarkCollection =>
+      FirebaseFirestore.instance.collection("bookmarks");
 
   static Stream<List<Expression>> readExpressions() => dbCollection
       .orderBy('word', descending: false)
@@ -36,6 +41,11 @@ class FirebaseApi {
     await docExpression.set(expression.toJson());
 
     return docExpression.id;
+  }
+
+  static Future<Expression> getExpression(String expressionId) async {
+    final dd = await dbCollection.doc(expressionId).get();
+    return Expression.fromJson(dd.data()!);
   }
 
   static Future updateExpression(Expression expression) async {
@@ -150,5 +160,65 @@ class FirebaseApi {
     final docMember = memberCollection.doc(member.id);
 
     await docMember.delete();
+  }
+
+// Handle bookmarks
+  static Stream<List<Bookmark>> readBookmarks() => bookmarkCollection
+      .snapshots()
+      .transform(Utils.transformer(Bookmark.fromJson));
+
+  static Future<String> createBookmark({
+    required String expressionId,
+  }) async {
+    final docBookmark = bookmarkCollection.doc();
+
+    final bookmark = Bookmark(
+      id: docBookmark.id,
+      expressionId: expressionId,
+      memberId: MembersController.to.currentMember.value!.id,
+    );
+
+    await docBookmark.set(bookmark.toJson());
+
+    return docBookmark.id;
+  }
+
+  static Future updateBookmark(Bookmark bookmark) async {
+    final docBookmark = bookmarkCollection.doc(bookmark.id);
+    await docBookmark.update(bookmark.toJson());
+  }
+
+  static Future deleteBookmark(Bookmark bookmark) async {
+    final docBookmark = bookmarkCollection.doc(bookmark.id);
+
+    await docBookmark.delete();
+  }
+
+  static Future toggleBookmark(Expression expression) async {
+    final docBookmark = (await bookmarkCollection
+            .where('expressionId', isEqualTo: expression.id)
+            .where('memberId',
+                isEqualTo: MembersController.to.currentMember.value!.id)
+            .get())
+        .docs
+        .firstOrNull;
+
+    if (docBookmark != null && docBookmark.exists) {
+      await docBookmark.reference.delete();
+    } else {
+      await createBookmark(expressionId: expression.id);
+    }
+  }
+
+  static Future isBookmarked(Expression expression) async {
+    final docBookmark = (await bookmarkCollection
+            .where('expressionId', isEqualTo: expression.id)
+            .where('memberId',
+                isEqualTo: MembersController.to.currentMember.value!.id)
+            .get())
+        .docs
+        .firstOrNull;
+
+    return docBookmark != null && docBookmark.exists;
   }
 }

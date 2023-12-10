@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:kitaabua/database/models/bookmark.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
 import '../../database/api/firebase_api.dart';
@@ -42,6 +43,11 @@ class Utils {
               for (T obj in objects) {
                 if (obj is Expression) {
                   obj.meanings = await FirebaseApi.futureReadMeanings(obj.id);
+                  obj.isBookmarked = await FirebaseApi.isBookmarked(obj);
+                }
+                if (obj is Bookmark) {
+                  obj.expression =
+                      await FirebaseApi.getExpression(obj.expressionId);
                 }
               }
 

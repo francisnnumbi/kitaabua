@@ -13,6 +13,7 @@ class Expression {
   late String? updatedBy;
   late bool? state = true;
   late List<Meaning>? meanings;
+  late bool? isBookmarked = false;
 
   Expression({
     required this.id,

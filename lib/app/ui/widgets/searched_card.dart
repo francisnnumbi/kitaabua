@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kitaabua/app/controllers/bookmarks_controller.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
@@ -49,8 +50,11 @@ class SearchedCard extends StatelessWidget {
           ),
         ),
         trailing: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.bookmark_add),
+          onPressed: () {
+            BookmarksController.to.toggleBookmark(expression: expression);
+          },
+          icon: Icon(Icons.bookmark_add,
+              color: expression.isBookmarked! ? kSuccessColor : kGreyColor),
         ),
       ),
     );

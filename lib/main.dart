@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:kitaabua/app/controllers/bookmarks_controller.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/pages/home/home_page.dart';
@@ -10,7 +12,6 @@ import 'package:kitaabua/routes.dart';
 
 import 'app/services/auth_service.dart';
 import 'firebase_options.dart';
-import 'package:get_storage/get_storage.dart';
 
 final GetStorage InnerStorage = GetStorage(kAppName);
 
@@ -31,6 +32,7 @@ Future<void> initServices() async {
 
 Future<void> _initControllers() async {
   await MembersController.init();
+  await BookmarksController.init();
 }
 
 class MainApp extends StatelessWidget {

@@ -50,6 +50,12 @@ class DictionaryService extends GetxService {
     expressions.refresh();
   }
 
+  void refreshExpressions() {
+    //expressions.refresh();
+    //clearBindings();
+    initializeBindings();
+  }
+
   openExpression({Expression? expression}) async {
     this.expression.value = expression;
     Get.toNamed(AddEditPage.route);

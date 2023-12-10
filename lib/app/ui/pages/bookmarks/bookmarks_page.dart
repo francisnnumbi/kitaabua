@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kitaabua/app/ui/widgets/bookmarked_views.dart';
 import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
@@ -24,6 +25,7 @@ class BookmarksPage extends StatelessWidget {
               titleFontSize: kSubTitleFontSize,
             ),
             SizedBox(height: kSizeBoxM),
+            Expanded(child: BookmarkedViews()),
           ],
         ),
       ),

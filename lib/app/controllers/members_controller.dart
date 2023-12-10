@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/database/models/member.dart';
@@ -207,7 +206,6 @@ class MembersController extends GetxController {
         currentMember.value =
             Member.fromStringJson(InnerStorage.read('currentMember'));
       } catch (e) {
-        if (kDebugMode) print(e);
         InnerStorage.remove('currentMember');
       }
     }
@@ -217,7 +215,6 @@ class MembersController extends GetxController {
     members.listen((p0) {
       if (currentMember.value == null) {
         for (final member in p0) {
-          if (kDebugMode) print(member.toString());
           if (member.email == Auth().currentUser?.email && member.state == 1) {
             currentMember.value = member;
             InnerStorage.write(
