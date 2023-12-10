@@ -60,22 +60,23 @@ class AppBarHeader extends StatelessWidget {
             ),
           ],
         ),
-        IconButton(
-          onPressed: onPressed,
-          padding: const EdgeInsets.all(0),
-          icon: Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              color: kDarkBackgroundColor,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Icon(
-              icon ?? Icons.swap_horiz,
-              color: kOnBackgroundColor,
+        if (onPressed != null)
+          IconButton(
+            onPressed: onPressed,
+            padding: const EdgeInsets.all(0),
+            icon: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: kDarkBackgroundColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Icon(
+                icon ?? Icons.swap_horiz,
+                color: kOnBackgroundColor,
+              ),
             ),
           ),
-        ),
       ],
     );
   }

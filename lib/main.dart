@@ -7,6 +7,7 @@ import 'package:kitaabua/app/ui/pages/home/home_page.dart';
 import 'package:kitaabua/core/configs/constants.dart';
 import 'package:kitaabua/routes.dart';
 
+import 'app/services/auth_service.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -20,6 +21,7 @@ Future<void> main() async {
 }
 
 Future<void> initServices() async {
+  await AuthService.init();
   await DictionaryService.init();
 }
 

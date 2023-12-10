@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:kitaabua/app/ui/pages/add_edit/add_edit_page.dart';
+import 'package:kitaabua/app/ui/pages/auth/profile/profile_page.dart';
+import 'package:kitaabua/app/ui/pages/bookmarks/bookmarks_page.dart';
 import 'package:kitaabua/app/ui/pages/dictionary/dictionary_page.dart';
 import 'package:kitaabua/app/ui/pages/home/home_page.dart';
 
@@ -39,6 +41,24 @@ class Routes {
       transitionDuration: const Duration(seconds: 1),
       transition: Transition.fadeIn,
       page: () => const SettingsPage(),
+      /* middlewares: [
+  AuthMiddleware(priority: -1),
+  ],*/
+    ),
+    GetPage(
+      name: BookmarksPage.route,
+      transitionDuration: const Duration(seconds: 1),
+      transition: Transition.fadeIn,
+      page: () => const BookmarksPage(),
+      /* middlewares: [
+  AuthMiddleware(priority: -1),
+  ],*/
+    ),
+    GetPage(
+      name: ProfilePage.route,
+      transitionDuration: const Duration(seconds: 1),
+      transition: Transition.fadeIn,
+      page: () => const ProfilePage(),
       /* middlewares: [
   AuthMiddleware(priority: -1),
   ],*/

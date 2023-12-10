@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kitaabua/app/ui/pages/bookmarks/bookmarks_page.dart';
 import 'package:kitaabua/app/ui/pages/dictionary/dictionary_page.dart';
 import 'package:kitaabua/app/ui/pages/home/home_page.dart';
 
@@ -19,15 +20,17 @@ class BottomNavBar extends StatelessWidget {
         cIndex = 0;
       case DictionaryPage.route:
         cIndex = 1;
-      case SettingsPage.route:
+      case BookmarksPage.route:
         cIndex = 2;
+      case SettingsPage.route:
+        cIndex = 3;
       default:
         cIndex = 1;
     }
     ;
     return BottomNavigationBar(
-      backgroundColor: kDarkBackgroundColor,
-      selectedItemColor: kOnBackgroundColor,
+      backgroundColor: kBackgroundColor,
+      selectedItemColor: kOnSecondaryColor,
       unselectedItemColor: kGreyColor,
       currentIndex: cIndex,
       onTap: (index) {
@@ -39,6 +42,9 @@ class BottomNavBar extends StatelessWidget {
             Get.offAllNamed(DictionaryPage.route);
             break;
           case 2:
+            Get.offAllNamed(BookmarksPage.route);
+            break;
+          case 3:
             Get.offAllNamed(SettingsPage.route);
             break;
           default:
@@ -51,8 +57,12 @@ class BottomNavBar extends StatelessWidget {
           label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.book),
+          icon: Icon(Icons.menu_book_outlined),
           label: "Dictionary",
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.book_outlined),
+          label: "Bookmarks",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.settings),

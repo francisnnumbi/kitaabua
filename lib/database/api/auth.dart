@@ -7,7 +7,7 @@ class Auth {
 
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
-  String get uid => _firebaseAuth.currentUser!.uid;
+  String? get uid => _firebaseAuth.currentUser?.uid;
 
   Future<void> signInWithEmailAndPassword({
     required String email,

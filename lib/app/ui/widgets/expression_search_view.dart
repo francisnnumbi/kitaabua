@@ -32,7 +32,7 @@ class ExpressionSearchView extends StatelessWidget {
         contentPadding: const EdgeInsets.symmetric(
           vertical: kPaddingM,
         ),
-        hintText: 'Search word...',
+        hintText: 'Search expression...',
         hintStyle: const TextStyle(
           color: kGreyColor,
         ),
