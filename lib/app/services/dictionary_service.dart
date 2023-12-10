@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
 import '../../database/api/firebase_api.dart';
+import '../ui/pages/add_edit/add_edit_page.dart';
 
 class DictionaryService extends GetxService {
   // ------- static methods ------- //
@@ -15,12 +15,15 @@ class DictionaryService extends GetxService {
 // ------- ./static methods ------- //
 
   final RxList<Expression> expressions = <Expression>[].obs;
+  final RxList<Expression> recentExpressions = <Expression>[].obs;
+  final RxList<Expression> favoriteExpressions = <Expression>[].obs;
+
   final Rxn<Expression> expression = Rxn<Expression>();
   final RxString searchQuery = ''.obs;
 
   List<Expression> get filteredExpressions {
-    return searchQuery.value.isEmpty
-        ? expressions
+    return searchQuery.isEmpty
+        ? []
         : expressions
             .where(
               (Expression expression) => expression.word.toLowerCase().contains(
@@ -30,14 +33,19 @@ class DictionaryService extends GetxService {
             .toList();
   }
 
+  void filterExpressions(String query) {
+    searchQuery.value = query.trim();
+    expressions.refresh();
+  }
+
+  void clearFilterExpressions() {
+    searchQuery.value = '';
+    expressions.refresh();
+  }
+
   openExpression({Expression? expression}) async {
     this.expression.value = expression;
-    if (this.expression.value != null) {
-      this.expression.value!.meanings =
-          await FirebaseApi.futureReadMeanings(this.expression.value!.id);
-      if (kDebugMode) print("dddd :: " + this.expression.value!.toString());
-    }
-    // Get.toNamed(AddEditPage.route);
+    Get.toNamed(AddEditPage.route);
   }
 
   void addExpression({
@@ -53,7 +61,6 @@ class DictionaryService extends GetxService {
 
   Future<void> initializeBindings() async {
     expressions.bindStream(FirebaseApi.readExpressions());
-    if (kDebugMode) print(expressions.toString());
   }
 
   Future<void> clearBindings() async {

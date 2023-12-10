@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:kitaabua/app/ui/pages/add_edit/add_edit_page.dart';
+import 'package:kitaabua/app/ui/pages/dictionary/dictionary_page.dart';
 import 'package:kitaabua/app/ui/pages/home/home_page.dart';
 
 class Routes {
@@ -9,6 +10,15 @@ class Routes {
       transitionDuration: const Duration(seconds: 1),
       transition: Transition.fadeIn,
       page: () => const HomePage(),
+      /* middlewares: [
+  AuthMiddleware(priority: -1),
+  ],*/
+    ),
+    GetPage(
+      name: DictionaryPage.route,
+      transitionDuration: const Duration(seconds: 1),
+      transition: Transition.fadeIn,
+      page: () => const DictionaryPage(),
       /* middlewares: [
   AuthMiddleware(priority: -1),
   ],*/

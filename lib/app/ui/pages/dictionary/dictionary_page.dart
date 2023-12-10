@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/widgets/expression_search_view.dart';
-import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
+import 'package:kitaabua/app/ui/widgets/searched_views.dart';
 import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
 import '../../widgets/app_bar_header.dart';
 import '../../widgets/botto_nav_bar.dart';
-import '../../widgets/recent_views.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class DictionaryPage extends StatelessWidget {
+  const DictionaryPage({super.key});
 
-  static String route = "/";
+  static String route = "/dictionary";
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +21,15 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
         child: Column(
           children: [
-            const AppBarHeader(),
-            const SizedBox(height: kSizeBoxM),
-            ExpressionSearchView(
-              isFakeSearch: true,
+            const AppBarHeader(
+              hasBackButton: true,
+              title: "Dictionary",
+              titleFontSize: kSubTitleFontSize,
             ),
             const SizedBox(height: kSizeBoxM),
-            const SubtitleBlock(
-              icon: Icons.history,
-              title: "Recent",
-              titleFontSize: kHeadingFontSize,
-            ),
-            const Expanded(child: RecentViews()),
+            ExpressionSearchView(),
+            const SizedBox(height: kSizeBoxS),
+            const Expanded(child: SearchedViews()),
           ],
         ),
       ),

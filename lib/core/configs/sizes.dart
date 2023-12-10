@@ -1,4 +1,4 @@
-const double kTitleFontSize = 30.0;
+const double kTitleFontSize = 26.0;
 const double kSubTitleFontSize = 24.0;
 const double kHeadingFontSize = 18.0;
 const double kSubHeadingFontSize = 14.0;

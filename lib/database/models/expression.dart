@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:kitaabua/database/models/meaning.dart';
 
 import '../../core/configs/utils.dart';
@@ -21,7 +23,9 @@ class Expression {
     this.updatedBy,
     this.state,
     this.meanings,
-  });
+  }) {
+    log(this.toString());
+  }
 
   Expression.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -41,7 +45,6 @@ class Expression {
         'updatedOn': Utils.fromDateTimeToJson(updatedOn!),
         'updatedBy': updatedBy,
         'state': state,
-        'meanings': meanings,
       };
 
   @override

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
-import 'package:kitaabua/app/ui/widgets/view_card.dart';
+import 'package:kitaabua/app/ui/widgets/searched_card.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
-class RecentViews extends StatelessWidget {
-  const RecentViews({super.key});
+class SearchedViews extends StatelessWidget {
+  const SearchedViews({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +14,13 @@ class RecentViews extends StatelessWidget {
       return ListView.builder(
         padding: const EdgeInsets.all(0),
         physics: const BouncingScrollPhysics(),
-        itemCount: DictionaryService.to.recentExpressions.length,
+        itemCount: DictionaryService.to.filteredExpressions.length,
         itemBuilder: (context, index) {
-          Expression expression = DictionaryService.to.recentExpressions[index];
+          Expression expression =
+              DictionaryService.to.filteredExpressions[index];
           return Padding(
             padding: const EdgeInsets.only(bottom: kPaddingS),
-            child: ViewCard(
+            child: SearchedCard(
               expression: expression,
             ),
           );
