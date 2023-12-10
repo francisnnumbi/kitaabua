@@ -11,7 +11,7 @@ import '../../widgets/botto_nav_bar.dart';
 class DictionaryPage extends StatelessWidget {
   const DictionaryPage({super.key});
 
-  static String route = "/dictionary";
+  static const String route = "/dictionary";
 
   @override
   Widget build(BuildContext context) {

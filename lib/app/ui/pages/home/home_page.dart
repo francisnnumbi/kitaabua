@@ -12,7 +12,7 @@ import '../../widgets/recent_views.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  static String route = "/";
+  static const String route = "/";
 
   @override
   Widget build(BuildContext context) {

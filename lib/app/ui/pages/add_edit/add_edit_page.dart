@@ -14,7 +14,7 @@ class AddEditPage extends StatelessWidget {
     wordEC.text = DictionaryService.to.expression.value?.word ?? "";
   }
 
-  static String route = "/expressions/add-edit";
+  static const String route = "/expressions/add-edit";
   final _addEditFormKey = GlobalKey<FormState>();
   final TextEditingController wordEC = TextEditingController();
 
