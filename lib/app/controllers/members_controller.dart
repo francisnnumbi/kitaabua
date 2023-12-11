@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:kitaabua/database/models/member.dart';
 import 'package:kitaabua/main.dart';
 
+import '../../core/configs/colors.dart';
+import '../../core/configs/sizes.dart';
 import '../../database/api/auth.dart';
 import '../../database/api/firebase_api.dart';
 
@@ -64,23 +66,76 @@ class MembersController extends GetxController {
         children: [
           TextField(
             controller: nameController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: 'Name',
               hintText: 'Enter name',
+              labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              filled: true,
+              fillColor: kBackgroundColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
             ),
           ),
+          const SizedBox(height: kSizeBoxM),
           TextField(
             controller: emailController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: 'Email',
               hintText: 'Enter email',
+              labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              filled: true,
+              fillColor: kBackgroundColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
             ),
           ),
+          const SizedBox(height: kSizeBoxM),
           TextField(
             controller: passwordController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: 'Password',
               hintText: 'Enter password',
+              labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              filled: true,
+              fillColor: kBackgroundColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
             ),
           ),
         ],
@@ -90,7 +145,10 @@ class MembersController extends GetxController {
           onPressed: () {
             Get.back();
           },
-          child: const Text('Cancel'),
+          child: const Text(
+            'Cancel',
+            style: TextStyle(color: kGreyColor),
+          ),
         ),
         TextButton(
           onPressed: () {
@@ -100,7 +158,10 @@ class MembersController extends GetxController {
               password: passwordController.text,
             );
           },
-          child: const Text('Add'),
+          child: Text(
+            'Add',
+            style: TextStyle(color: kBackgroundColor),
+          ),
         ),
       ],
     );
@@ -115,16 +176,51 @@ class MembersController extends GetxController {
         children: [
           TextField(
             controller: emailController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: 'Email',
               hintText: 'Enter email',
+              labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              filled: true,
+              fillColor: kBackgroundColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
             ),
           ),
+          const SizedBox(height: kSizeBoxM),
           TextField(
             controller: passwordController,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               labelText: 'Password',
               hintText: 'Enter password',
+              labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              filled: true,
+              fillColor: kBackgroundColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
             ),
           ),
         ],
@@ -134,7 +230,7 @@ class MembersController extends GetxController {
           onPressed: () {
             Get.back();
           },
-          child: const Text('Cancel'),
+          child: const Text('Cancel', style: TextStyle(color: kGreyColor)),
         ),
         TextButton(
           onPressed: () {
@@ -156,7 +252,7 @@ class MembersController extends GetxController {
               Get.snackbar('Error', 'Guest not found');
             }
           },
-          child: const Text('Login'),
+          child: Text('Login', style: TextStyle(color: kBackgroundColor)),
         ),
       ],
     );

@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/database/api/auth.dart';
 
+import '../../core/configs/colors.dart';
+import '../../core/configs/sizes.dart';
+
 class AuthService extends GetxService {
   // ------- static methods ------- //
   static AuthService get to => Get.find();
@@ -35,14 +38,57 @@ class AuthService extends GetxService {
         children: [
           TextField(
             controller: emailController,
-            decoration: const InputDecoration(
+            style: const TextStyle(
+              color: kOnBackgroundColor,
+              fontSize: kSearchFontSize,
+            ),
+            decoration: InputDecoration(
               labelText: "Email",
+              labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              filled: true,
+              fillColor: kBackgroundColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
             ),
           ),
+          const SizedBox(height: kSizeBoxM),
           TextField(
             controller: passwordController,
-            decoration: const InputDecoration(
+            style: const TextStyle(
+              color: kOnBackgroundColor,
+              fontSize: kSearchFontSize,
+            ),
+            decoration: InputDecoration(
               labelText: "Password",
+              labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              filled: true,
+              fillColor: kBackgroundColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
             ),
           ),
         ],
@@ -52,7 +98,7 @@ class AuthService extends GetxService {
           onPressed: () {
             Get.back();
           },
-          child: const Text("Cancel"),
+          child: const Text("Cancel", style: TextStyle(color: kGreyColor)),
         ),
         TextButton(
           onPressed: () {
@@ -69,7 +115,7 @@ class AuthService extends GetxService {
             });
             // Get.back();
           },
-          child: const Text("Login"),
+          child: Text("Login", style: TextStyle(color: kBackgroundColor)),
         ),
       ],
     );
@@ -84,14 +130,57 @@ class AuthService extends GetxService {
         children: [
           TextField(
             controller: emailController,
-            decoration: const InputDecoration(
+            style: const TextStyle(
+              color: kOnBackgroundColor,
+              fontSize: kSearchFontSize,
+            ),
+            decoration: InputDecoration(
               labelText: "Email",
+              labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              filled: true,
+              fillColor: kBackgroundColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
             ),
           ),
+          const SizedBox(height: kSizeBoxM),
           TextField(
             controller: passwordController,
-            decoration: const InputDecoration(
+            style: const TextStyle(
+              color: kOnBackgroundColor,
+              fontSize: kSearchFontSize,
+            ),
+            decoration: InputDecoration(
               labelText: "Password",
+              labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              filled: true,
+              fillColor: kBackgroundColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
             ),
           ),
         ],
@@ -101,7 +190,10 @@ class AuthService extends GetxService {
           onPressed: () {
             Get.back();
           },
-          child: const Text("Cancel"),
+          child: const Text(
+            "Cancel",
+            style: TextStyle(color: kGreyColor),
+          ),
         ),
         TextButton(
           onPressed: () {
@@ -118,7 +210,7 @@ class AuthService extends GetxService {
             });
             // Get.back();
           },
-          child: const Text("Register"),
+          child: Text("Register", style: TextStyle(color: kBackgroundColor)),
         ),
       ],
     );
