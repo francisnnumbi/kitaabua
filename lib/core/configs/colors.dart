@@ -8,6 +8,7 @@ const Color kAccentColor = Color(0xFF03DAC5);
 const Color kAccentLightColor = Color(0xFFB2EBF2);
 const Color kAccentDarkColor = Color(0xFF0097A7);
 const Color kSuccessColor = Color(0xFF1A237E);
+const Color kWarningColor = Color(0xFF7E491A);
 const Color kErrorColor = Color(0xFFB00020);
 const Color kSurfaceColor = Color(0xFFFFFFFF);
 const Color kGreyColor = Colors.grey;
