@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:kitaabua/database/api/firebase_api.dart';
 import 'package:kitaabua/database/models/meaning.dart';
 
 import '../../core/configs/utils.dart';
@@ -47,6 +48,10 @@ class Expression {
         'updatedBy': updatedBy,
         'state': state,
       };
+
+  Future<void> reloadMeanings() async {
+    meanings = await FirebaseApi.futureReadMeanings(id);
+  }
 
   @override
   String toString() {

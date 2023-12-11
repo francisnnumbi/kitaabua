@@ -107,23 +107,26 @@ class AddEditPage extends StatelessWidget {
                 icon: Icons.menu_book,
               ),
               Expanded(
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  padding: const EdgeInsets.only(top: kPaddingS),
-                  itemCount: DictionaryService.to.expression.value == null
-                      ? 0
-                      : DictionaryService.to.expression.value!.meanings!.length,
-                  itemBuilder: (context, index) {
-                    Meaning meaning =
-                        DictionaryService.to.expression.value!.meanings![index];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: kPaddingS),
-                      child: MeaningCard(
-                        meaning: meaning,
-                      ),
-                    );
-                  },
-                ),
+                child: Obx(() {
+                  return ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.only(top: kPaddingS),
+                    itemCount: DictionaryService.to.expression.value == null
+                        ? 0
+                        : DictionaryService
+                            .to.expression.value!.meanings!.length,
+                    itemBuilder: (context, index) {
+                      Meaning meaning = DictionaryService
+                          .to.expression.value!.meanings![index];
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: kPaddingS),
+                        child: MeaningCard(
+                          meaning: meaning,
+                        ),
+                      );
+                    },
+                  );
+                }),
               ),
             ],
           ),
@@ -145,9 +148,10 @@ class AddEditPage extends StatelessWidget {
                         MeaningsController.to.addMeaningDialog(
                           expressionId:
                               DictionaryService.to.expression.value!.id,
-                          onAdd: () {
+                          onAdd: () async {
                             DictionaryService.to.refreshExpressions();
-                            DictionaryService.to.expression.refresh();
+                            await DictionaryService.to.expression.value!
+                                .reloadMeanings();
                           },
                         );
                       },
