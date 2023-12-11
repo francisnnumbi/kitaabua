@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
+import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/database/api/firebase_api.dart';
 
 import '../../database/models/expression.dart';
@@ -154,6 +155,33 @@ class MeaningsController extends GetxController {
         ),
       ),
       actions: [
+        TextButton(
+          onPressed: () {
+            Get.defaultDialog(
+              title: 'Delete Meaning',
+              content: const Text('Are you sure you want to delete this?'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    FirebaseApi.deleteMeaning(meaning, expressionId);
+                    Get.back();
+                    Get.back();
+                    Get.snackbar('Success', 'Meaning deleted successfully');
+                  },
+                  child: const Text('Delete',
+                      style: TextStyle(color: kErrorColor)),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  child: const Text('Cancel'),
+                ),
+              ],
+            );
+          },
+          child: const Text('Delete', style: TextStyle(color: kErrorColor)),
+        ),
         TextButton(
           onPressed: () {
             Get.back();
