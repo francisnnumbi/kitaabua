@@ -4,6 +4,7 @@ import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/pages/dictionary/dictionary_page.dart';
 import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
+import 'package:kitaabua/core/configs/utils.dart';
 
 class ExpressionSearchView extends StatelessWidget {
   ExpressionSearchView({super.key, this.isFakeSearch = false});
@@ -23,6 +24,9 @@ class ExpressionSearchView extends StatelessWidget {
       controller: searchController,
       onChanged: (value) {
         DictionaryService.to.filterExpressions(searchController.text);
+      },
+      onTapOutside: (value) {
+        Utils.hideKeyboard(context);
       },
       style: const TextStyle(
         color: kOnBackgroundColor,

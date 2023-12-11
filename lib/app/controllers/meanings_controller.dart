@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/database/api/firebase_api.dart';
 
+import '../../database/models/expression.dart';
 import '../../database/models/meaning.dart';
 
 class MeaningsController extends GetxController {
@@ -16,6 +18,7 @@ class MeaningsController extends GetxController {
 
   final RxList<Meaning> meanings = <Meaning>[].obs;
   final Rxn<Meaning> meaning = Rxn<Meaning>();
+  final Rxn<Expression> expression = Rxn<Expression>();
 
   void selectMeaning(Meaning meaning) {
     this.meaning.value = meaning;
@@ -104,5 +107,105 @@ class MeaningsController extends GetxController {
         ),
       ],
     );
+  }
+
+  editMeaningDialog({
+    required String expressionId,
+    required Meaning meaning,
+    VoidCallback? onEdit,
+  }) {
+    final meaningFormKey = GlobalKey<FormState>();
+
+    final meaningController = TextEditingController(text: meaning.meaning);
+    final exampleController = TextEditingController(text: meaning.example);
+    final exampleTranslationController =
+        TextEditingController(text: meaning.exampleTranslation);
+    Get.defaultDialog(
+      title: 'Edit Meaning',
+      content: Form(
+        key: meaningFormKey,
+        child: Column(
+          children: [
+            TextFormField(
+              controller: meaningController,
+              validator: (va) {
+                if (va!.isEmpty) {
+                  return "meaning must not be empty".tr;
+                }
+                return null;
+              },
+              decoration: const InputDecoration(
+                labelText: 'Meaning',
+              ),
+            ),
+            TextFormField(
+              controller: exampleController,
+              decoration: const InputDecoration(
+                labelText: 'Example',
+              ),
+            ),
+            TextFormField(
+              controller: exampleTranslationController,
+              decoration: const InputDecoration(
+                labelText: 'Example Translation',
+              ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Get.back();
+          },
+          child: const Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            if (!meaningFormKey.currentState!.validate()) {
+              return;
+            }
+            meaningFormKey.currentState!.save();
+            Meaning m = Meaning(
+              id: meaning.id,
+              addedOn: meaning.addedOn,
+              updatedOn: DateTime.now(),
+              meaning: meaningController.text,
+              example: exampleController.text,
+              exampleTranslation: exampleTranslationController.text,
+              grammar: meaning.grammar,
+              expressionId: meaning.expressionId != ''
+                  ? meaning.expressionId
+                  : expressionId,
+              addedBy: meaning.addedBy,
+              updatedBy: meaning.updatedBy,
+              state: meaning.state,
+            );
+
+            FirebaseApi.updateMeaning(
+              expressionId: expressionId,
+              meaning: m,
+            );
+            Get.back();
+            Get.snackbar('Success', 'Meaning updated successfully');
+            if (onEdit != null) {
+              onEdit();
+            }
+          },
+          child: const Text('Update'),
+        ),
+      ],
+    );
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+    DictionaryService.to.expression.listen((p0) {
+      if (p0 != null) {
+        expression.value = p0;
+        meanings.bindStream(FirebaseApi.readMeanings(p0.id));
+      }
+    });
   }
 }

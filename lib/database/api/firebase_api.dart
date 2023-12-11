@@ -94,6 +94,7 @@ class FirebaseApi {
       example: example,
       exampleTranslation: exampleTranslation,
       grammar: grammar,
+      expressionId: expressionId,
       addedBy: Auth().currentUser!.email!,
       updatedBy: Auth().currentUser!.email!,
       state: true,
@@ -104,11 +105,13 @@ class FirebaseApi {
     return docMeaning.id;
   }
 
-  static Future updateMeaning(Meaning meaning, String expressionId) async {
+  static Future updateMeaning(
+      {required Meaning meaning, required String expressionId}) async {
     meaning.updatedOn = DateTime.now();
     meaning.updatedBy = Auth().currentUser!.email!;
     final docMeaning =
         dbCollection.doc(expressionId).collection('meanings').doc(meaning.id);
+
     await docMeaning.update(meaning.toJson());
   }
 

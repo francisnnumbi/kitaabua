@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
+import 'package:kitaabua/core/configs/utils.dart';
 
 import '../../../../core/configs/colors.dart';
 import '../../../../core/configs/sizes.dart';
@@ -24,6 +25,7 @@ class AddEditPage extends StatelessWidget {
     return WillPopScope(
       onWillPop: () async {
         DictionaryService.to.expression.value = null;
+        Utils.hideKeyboard(context);
         return true;
       },
       child: Scaffold(
@@ -94,7 +96,7 @@ class AddEditPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                      autofocus: true,
+                      //autofocus: true,
                       textAlignVertical: TextAlignVertical.top,
                     ),
                   ],
@@ -111,16 +113,15 @@ class AddEditPage extends StatelessWidget {
                   return ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     padding: const EdgeInsets.only(top: kPaddingS),
-                    itemCount: DictionaryService.to.expression.value == null
-                        ? 0
-                        : DictionaryService
-                            .to.expression.value!.meanings!.length,
+                    itemCount: MeaningsController.to.meanings.length,
                     itemBuilder: (context, index) {
-                      Meaning meaning = DictionaryService
-                          .to.expression.value!.meanings![index];
+                      Meaning meaning = MeaningsController.to.meanings[index];
+
                       return Padding(
                         padding: const EdgeInsets.only(bottom: kPaddingS),
                         child: MeaningCard(
+                          expressionId:
+                              MeaningsController.to.expression.value!.id,
                           meaning: meaning,
                         ),
                       );

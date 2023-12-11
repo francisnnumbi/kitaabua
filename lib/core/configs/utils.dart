@@ -1,12 +1,18 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:kitaabua/database/models/bookmark.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
 import '../../database/api/firebase_api.dart';
 
 class Utils {
+  /// Hide the soft keyboard.
+  static void hideKeyboard(BuildContext context) {
+    FocusScope.of(context).requestFocus(FocusNode());
+  }
+
   static DateTime? stringToDateTime(String value) {
     if (value == null) return null;
 

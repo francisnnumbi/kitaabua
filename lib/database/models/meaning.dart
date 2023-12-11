@@ -5,9 +5,10 @@ import '../../core/configs/utils.dart';
 class Meaning {
   final String id;
   final String meaning;
-  final String? example;
-  final String? exampleTranslation;
-  final String? grammar;
+  late String? example;
+  late String? exampleTranslation;
+  late String? grammar;
+  late String? expressionId;
   final String addedBy;
   final DateTime addedOn;
   late DateTime? updatedOn;
@@ -20,6 +21,7 @@ class Meaning {
     this.example,
     this.exampleTranslation,
     this.grammar,
+    this.expressionId,
     required this.addedBy,
     required this.addedOn,
     this.updatedOn,
@@ -30,9 +32,11 @@ class Meaning {
   Meaning.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         meaning = json['meaning'],
-        example = json['example'],
-        exampleTranslation = json['exampleTranslation'],
-        grammar = json['grammar'],
+        example = json['example']!,
+        exampleTranslation = json['exampleTranslation']!,
+        grammar = json['grammar']!,
+        expressionId =
+            json.containsKey('expressionId') ? json['expressionId']! : '',
         addedBy = json['addedBy'],
         addedOn = Utils.toDateTime(json['addedOn'])!,
         updatedOn = Utils.toDateTime(json['updatedOn'])!,
@@ -41,14 +45,25 @@ class Meaning {
 
   Meaning.fromSnapshot(QueryDocumentSnapshot<Map<String, dynamic>> snapshot)
       : id = snapshot.id,
-        meaning = snapshot['meaning'],
-        example = snapshot['example'],
-        exampleTranslation = snapshot['exampleTranslation'],
-        grammar = snapshot['grammar'],
-        addedBy = snapshot['addedBy'],
+        meaning =
+            snapshot.data().containsKey('meaning') ? snapshot['meaning'] : '',
+        example =
+            snapshot.data().containsKey('example') ? snapshot['example']! : '',
+        exampleTranslation = snapshot.data().containsKey('exampleTranslation')
+            ? snapshot['exampleTranslation']!
+            : '',
+        grammar =
+            snapshot.data().containsKey('grammar') ? snapshot['grammar']! : '',
+        expressionId = snapshot.data().containsKey('expressionId')
+            ? snapshot['expressionId']!
+            : '',
+        addedBy =
+            snapshot.data().containsKey('addedBy') ? snapshot['addedBy'] : '',
         addedOn = Utils.toDateTime(snapshot['addedOn'])!,
         updatedOn = Utils.toDateTime(snapshot['updatedOn'])!,
-        updatedBy = snapshot['updatedBy'],
+        updatedBy = snapshot.data().containsKey('updatedBy')
+            ? snapshot['updatedBy']
+            : '',
         state = snapshot['state'];
 
   Map<String, dynamic> toJson() => {
@@ -57,6 +72,7 @@ class Meaning {
         'example': example,
         'exampleTranslation': exampleTranslation,
         'grammar': grammar,
+        'expressionId': expressionId,
         'addedBy': addedBy,
         'addedOn': Utils.fromDateTimeToJson(addedOn),
         'updatedOn': Utils.fromDateTimeToJson(updatedOn!),
@@ -66,6 +82,6 @@ class Meaning {
 
   @override
   String toString() {
-    return 'Meaning{id: $id, meaning: $meaning, example: $example, exampleTranslation: $exampleTranslation, grammar: $grammar, addedBy: $addedBy, addedOn: $addedOn, updatedOn: $updatedOn, updatedBy: $updatedBy, state: $state}';
+    return 'Meaning{id: $id, meaning: $meaning, example: $example, exampleTranslation: $exampleTranslation, grammar: $grammar, expressionId: $expressionId, addedBy: $addedBy, addedOn: $addedOn, updatedOn: $updatedOn, updatedBy: $updatedBy, state: $state}';
   }
 }

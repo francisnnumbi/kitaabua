@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/database/models/meaning.dart';
 
 import '../../../core/configs/colors.dart';
@@ -8,9 +9,11 @@ class MeaningCard extends StatelessWidget {
   const MeaningCard({
     super.key,
     required this.meaning,
+    required this.expressionId,
   });
 
   final Meaning meaning;
+  final String expressionId;
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +82,10 @@ class MeaningCard extends StatelessWidget {
           ),
         ),
         trailing: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            MeaningsController.to.editMeaningDialog(
+                expressionId: expressionId, meaning: meaning);
+          },
           icon: const Icon(
             Icons.edit,
             color: kOnBackgroundColor,
