@@ -5,9 +5,9 @@ import '../../core/configs/utils.dart';
 class Meaning {
   final String id;
   final String meaning;
-  final String example;
-  final String exampleTranslation;
-  final String grammar;
+  final String? example;
+  final String? exampleTranslation;
+  final String? grammar;
   final String addedBy;
   final DateTime addedOn;
   late DateTime? updatedOn;
@@ -17,9 +17,9 @@ class Meaning {
   Meaning({
     required this.id,
     required this.meaning,
-    required this.example,
-    required this.exampleTranslation,
-    required this.grammar,
+    this.example,
+    this.exampleTranslation,
+    this.grammar,
     required this.addedBy,
     required this.addedOn,
     this.updatedOn,

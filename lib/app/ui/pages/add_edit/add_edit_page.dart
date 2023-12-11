@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
 
 import '../../../../core/configs/colors.dart';
@@ -141,7 +142,14 @@ class AddEditPage extends StatelessWidget {
                 onPressed: DictionaryService.to.expression.value == null
                     ? null
                     : () {
-                        // DictionaryService.to.openExpression();
+                        MeaningsController.to.addMeaningDialog(
+                          expressionId:
+                              DictionaryService.to.expression.value!.id,
+                          onAdd: () {
+                            DictionaryService.to.refreshExpressions();
+                            DictionaryService.to.expression.refresh();
+                          },
+                        );
                       },
                 child: const Icon(
                   Icons.add,

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:kitaabua/app/controllers/bookmarks_controller.dart';
+import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/pages/home/home_page.dart';
@@ -32,6 +33,7 @@ Future<void> initServices() async {
 
 Future<void> _initControllers() async {
   await MembersController.init();
+  await MeaningsController.init();
   await BookmarksController.init();
 }
 

@@ -49,6 +49,8 @@ class FirebaseApi {
   }
 
   static Future updateExpression(Expression expression) async {
+    expression.updatedOn = DateTime.now();
+    expression.updatedBy = Auth().currentUser!.email!;
     final docExpression = dbCollection.doc(expression.id);
     await docExpression.update(expression.toJson());
   }
@@ -103,6 +105,8 @@ class FirebaseApi {
   }
 
   static Future updateMeaning(Meaning meaning, String expressionId) async {
+    meaning.updatedOn = DateTime.now();
+    meaning.updatedBy = Auth().currentUser!.email!;
     final docMeaning =
         dbCollection.doc(expressionId).collection('meanings').doc(meaning.id);
     await docMeaning.update(meaning.toJson());

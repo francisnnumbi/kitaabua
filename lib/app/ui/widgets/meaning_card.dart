@@ -69,7 +69,7 @@ class MeaningCard extends StatelessWidget {
         subtitle: Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: Text(
-            meaning.example,
+            meaning.example!,
             style: const TextStyle(
               color: kGreyColor,
               fontSize: kFooterFontSize,
