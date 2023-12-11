@@ -172,7 +172,7 @@ class FirebaseApi {
 // Handle bookmarks
   static Stream<List<Bookmark>> readBookmarks() => bookmarkCollection
       .where('memberId',
-          isEqualTo: MembersController.to.currentMember.value!.id)
+          isEqualTo: MembersController.to.currentMember.value?.id)
       .snapshots()
       .transform(Utils.transformer(Bookmark.fromJson));
 

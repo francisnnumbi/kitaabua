@@ -105,7 +105,7 @@ class AddEditPage extends StatelessWidget {
               const SizedBox(height: kSizeBoxL),
               const SubtitleBlock(
                 title: "Meanings",
-                titleFontSize: kSubTitleFontSize,
+                titleFontSize: kSubHeadingFontSize,
                 icon: Icons.menu_book,
               ),
               Expanded(

@@ -4,6 +4,7 @@ import 'package:kitaabua/database/models/bookmark.dart';
 import '../../../core/configs/colors.dart';
 import '../../../core/configs/sizes.dart';
 import '../../controllers/bookmarks_controller.dart';
+import '../../controllers/members_controller.dart';
 
 class BookmarkedCard extends StatelessWidget {
   const BookmarkedCard({
@@ -39,13 +40,15 @@ class BookmarkedCard extends StatelessWidget {
           ),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingS),
-        trailing: IconButton(
-          onPressed: () {
-            BookmarksController.to
-                .toggleBookmark(expression: bookmark.expression!);
-          },
-          icon: const Icon(Icons.bookmark_add, color: kSuccessColor),
-        ),
+        trailing: !MembersController.to.isLoggedIn
+            ? null
+            : IconButton(
+                onPressed: () {
+                  BookmarksController.to
+                      .toggleBookmark(expression: bookmark.expression!);
+                },
+                icon: const Icon(Icons.bookmark_add, color: kSuccessColor),
+              ),
       ),
     );
   }

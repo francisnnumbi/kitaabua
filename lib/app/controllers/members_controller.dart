@@ -25,6 +25,7 @@ class MembersController extends GetxController {
     Get.toNamed(AddEditPage.route);
   }
 */
+  bool get isLoggedIn => currentMember.value != null;
 
   void addMember({
     required String name,
