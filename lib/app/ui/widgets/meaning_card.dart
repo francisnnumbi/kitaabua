@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kitaabua/app/controllers/meanings_controller.dart';
+import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/database/models/meaning.dart';
 
 import '../../../core/configs/colors.dart';
@@ -75,18 +76,19 @@ class MeaningCard extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton(
-              padding: const EdgeInsets.all(0),
-              iconSize: 20,
-              onPressed: () {
-                MeaningsController.to.editMeaningDialog(
-                    expressionId: expressionId, meaning: meaning);
-              },
-              icon: const Icon(
-                Icons.edit,
-                color: kOnBackgroundColor,
+            if (DictionaryService.to.canManageDictionary())
+              IconButton(
+                padding: const EdgeInsets.all(0),
+                iconSize: 20,
+                onPressed: () {
+                  MeaningsController.to.editMeaningDialog(
+                      expressionId: expressionId, meaning: meaning);
+                },
+                icon: const Icon(
+                  Icons.edit,
+                  color: kOnBackgroundColor,
+                ),
               ),
-            ),
           ],
         ),
         contentPadding:

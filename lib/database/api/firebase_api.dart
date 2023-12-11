@@ -221,7 +221,7 @@ class FirebaseApi {
     final docBookmark = (await bookmarkCollection
             .where('expressionId', isEqualTo: expression.id)
             .where('memberId',
-                isEqualTo: MembersController.to.currentMember.value!.id)
+                isEqualTo: MembersController.to.currentMember.value?.id)
             .get())
         .docs
         .firstOrNull;
