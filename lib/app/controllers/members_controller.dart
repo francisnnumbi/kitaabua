@@ -7,6 +7,7 @@ import '../../core/configs/colors.dart';
 import '../../core/configs/sizes.dart';
 import '../../database/api/auth.dart';
 import '../../database/api/firebase_api.dart';
+import '../ui/widgets/snack.dart';
 
 class MembersController extends GetxController {
   // ------- static methods ------- //
@@ -41,14 +42,14 @@ class MembersController extends GetxController {
       password: password,
     ).then((value) async {
       Get.back();
-      Get.snackbar('Success', 'Guest added successfully with id: $name');
+      Snack.success('Guest added successfully with id: $name');
       currentMember.value = await FirebaseApi.getMember(value);
       InnerStorage.write(
         'currentMember',
         currentMember.value!.toStringJson(),
       );
     }).catchError((onError) {
-      Get.snackbar('Error', onError.toString());
+      Snack.error(onError.toString());
       currentMember.value = null;
     });
   }
@@ -66,10 +67,17 @@ class MembersController extends GetxController {
         children: [
           TextField(
             controller: nameController,
+            style: const TextStyle(
+              color: kOnBackgroundColor,
+              fontSize: kSearchFontSize,
+            ),
             decoration: InputDecoration(
               labelText: 'Name',
               hintText: 'Enter name',
               labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              hintStyle: const TextStyle(
                 color: kGreyColor,
               ),
               filled: true,
@@ -91,10 +99,17 @@ class MembersController extends GetxController {
           const SizedBox(height: kSizeBoxM),
           TextField(
             controller: emailController,
+            style: const TextStyle(
+              color: kOnBackgroundColor,
+              fontSize: kSearchFontSize,
+            ),
             decoration: InputDecoration(
               labelText: 'Email',
               hintText: 'Enter email',
               labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              hintStyle: const TextStyle(
                 color: kGreyColor,
               ),
               filled: true,
@@ -116,10 +131,17 @@ class MembersController extends GetxController {
           const SizedBox(height: kSizeBoxM),
           TextField(
             controller: passwordController,
+            style: const TextStyle(
+              color: kOnBackgroundColor,
+              fontSize: kSearchFontSize,
+            ),
             decoration: InputDecoration(
               labelText: 'Password',
               hintText: 'Enter password',
               labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              hintStyle: const TextStyle(
                 color: kGreyColor,
               ),
               filled: true,
@@ -176,10 +198,17 @@ class MembersController extends GetxController {
         children: [
           TextField(
             controller: emailController,
+            style: const TextStyle(
+              color: kOnBackgroundColor,
+              fontSize: kSearchFontSize,
+            ),
             decoration: InputDecoration(
               labelText: 'Email',
               hintText: 'Enter email',
               labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              hintStyle: const TextStyle(
                 color: kGreyColor,
               ),
               filled: true,
@@ -201,10 +230,17 @@ class MembersController extends GetxController {
           const SizedBox(height: kSizeBoxM),
           TextField(
             controller: passwordController,
+            style: const TextStyle(
+              color: kOnBackgroundColor,
+              fontSize: kSearchFontSize,
+            ),
             decoration: InputDecoration(
               labelText: 'Password',
               hintText: 'Enter password',
               labelStyle: const TextStyle(
+                color: kGreyColor,
+              ),
+              hintStyle: const TextStyle(
                 color: kGreyColor,
               ),
               filled: true,
@@ -244,12 +280,12 @@ class MembersController extends GetxController {
                   currentMember.value!.toStringJson(),
                 );
                 Get.back();
-                Get.snackbar('Success', 'Guest logged in successfully');
+                Snack.success('Guest logged in successfully');
                 return;
               }
             }
             if (currentMember.value == null) {
-              Get.snackbar('Error', 'Guest not found');
+              Snack.error('Guest not found');
             }
           },
           child: Text('Login', style: TextStyle(color: kBackgroundColor)),
@@ -271,20 +307,15 @@ class MembersController extends GetxController {
         ),
         TextButton(
           onPressed: () {
-            currentMember.value!.state = false;
-            FirebaseApi.updateMember(
-              currentMember.value!,
-            ).then((value) async {
-              Get.back();
-              Get.snackbar('Success', 'Guest logged out successfully');
-              currentMember.value = null;
+            if (InnerStorage.hasData('currentMember')) {
               InnerStorage.remove('currentMember');
-            }).catchError((onError) {
-              Get.snackbar('Error', onError.toString());
-            });
-            /*currentMember.value = null;
-            InnerStorage.remove('currentMember');
-            Get.back();*/
+              Get.back();
+              Snack.success('Guest logged out successfully');
+              currentMember.value = null;
+            } else {
+              Get.back();
+              Snack.error('No guest logged in');
+            }
           },
           child: const Text('Logout'),
         ),
@@ -309,10 +340,11 @@ class MembersController extends GetxController {
 
     super.onReady();
     initializeBindings();
-    members.listen((p0) {
+    /* members.listen((p0) {
       if (currentMember.value == null) {
         for (final member in p0) {
-          if (member.email == Auth().currentUser?.email && member.state == 1) {
+          if (member.email == Auth().currentUser?.email &&
+              member.state == true) {
             currentMember.value = member;
             InnerStorage.write(
               'currentMember',
@@ -322,6 +354,6 @@ class MembersController extends GetxController {
           }
         }
       }
-    });
+    });*/
   }
 }

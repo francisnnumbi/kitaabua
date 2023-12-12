@@ -6,6 +6,7 @@ import 'package:kitaabua/database/api/auth.dart';
 
 import '../../core/configs/colors.dart';
 import '../../core/configs/sizes.dart';
+import '../ui/widgets/snack.dart';
 
 class AuthService extends GetxService {
   // ------- static methods ------- //
@@ -109,9 +110,9 @@ class AuthService extends GetxService {
             )
                 .then((value) {
               Get.back();
-              Get.snackbar('Success', "Login success");
+              Snack.success("Login success");
             }).catchError((onError) {
-              Get.snackbar('Error', onError.toString());
+              Snack.error(onError.toString());
             });
             // Get.back();
           },
@@ -204,9 +205,9 @@ class AuthService extends GetxService {
             )
                 .then((value) {
               Get.back();
-              Get.snackbar('Success', "Register success");
+              Snack.success("Register success");
             }).catchError((onError) {
-              Get.snackbar('Error', onError.toString());
+              Snack.error(onError.toString());
             });
             // Get.back();
           },
@@ -231,9 +232,9 @@ class AuthService extends GetxService {
           onPressed: () {
             Auth().signOut().then((value) {
               Get.back();
-              Get.snackbar('Success', "Logout success");
+              Snack.success("Logout success");
             }).catchError((onError) {
-              Get.snackbar('Error', onError.toString());
+              Snack.error(onError.toString());
             });
             // Get.back();
           },

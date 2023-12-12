@@ -7,7 +7,7 @@ const Color kPrimaryDarkColor = Color(0xFF1A237E);
 const Color kAccentColor = Color(0xFF03DAC5);
 const Color kAccentLightColor = Color(0xFFB2EBF2);
 const Color kAccentDarkColor = Color(0xFF0097A7);
-const Color kSuccessColor = Color(0xFF1A237E);
+const Color kSuccessColor = Color(0xFF247E1A);
 const Color kWarningColor = Color(0xFF7E491A);
 const Color kErrorColor = Color(0xFFB00020);
 const Color kSurfaceColor = Color(0xFFFFFFFF);
@@ -19,6 +19,7 @@ const Color kOnSecondaryColor = Color(0xFF000000);
 const Color kOnBackgroundColor = Color(0xFFFFFFFF);
 const Color kOnSurfaceColor = Color(0xFF000000);
 const Color kOnErrorColor = Color(0xFFFFFFFF);
+const Color kOnSuccessColor = Color(0xFFFFFFFF);
 
 List<Color> backgroundColors = [
   const Color(0xFFCCE5FF), // light blue
