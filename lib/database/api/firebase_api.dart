@@ -62,9 +62,9 @@ class FirebaseApi {
   }
 
 // Reading meaning as per expression id
-  static Future<List<Meaning>> futureReadMeanings(String document_id) async {
+  static Future<List<Meaning>> futureReadMeanings(String documentId) async {
     QuerySnapshot<Map<String, dynamic>> qs =
-        await dbCollection.doc(document_id).collection('meanings').get();
+        await dbCollection.doc(documentId).collection('meanings').get();
 
     return qs.docs.map((e) => Meaning.fromSnapshot(e)).toList();
   }

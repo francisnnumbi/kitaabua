@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
+import 'package:kitaabua/app/ui/widgets/snack.dart';
 import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/database/api/firebase_api.dart';
 
@@ -99,7 +100,7 @@ class MeaningsController extends GetxController {
               exampleTranslation: exampleTranslationController.text,
             );
             Get.back();
-            Get.snackbar('Success', 'Meaning added successfully');
+            Snack.success('Meaning added successfully');
             if (onAdd != null) {
               onAdd();
             }
@@ -166,7 +167,7 @@ class MeaningsController extends GetxController {
                     FirebaseApi.deleteMeaning(meaning, expressionId);
                     Get.back();
                     Get.back();
-                    Get.snackbar('Success', 'Meaning deleted successfully');
+                    Snack.success('Meaning deleted successfully');
                   },
                   child: const Text('Delete',
                       style: TextStyle(color: kErrorColor)),
@@ -215,7 +216,7 @@ class MeaningsController extends GetxController {
               meaning: m,
             );
             Get.back();
-            Get.snackbar('Success', 'Meaning updated successfully');
+            Snack.success('Meaning updated successfully');
             if (onEdit != null) {
               onEdit();
             }

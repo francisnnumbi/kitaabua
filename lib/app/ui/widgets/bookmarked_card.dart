@@ -22,12 +22,6 @@ class BookmarkedCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(kBorderRadiusS),
       ),
       child: ListTile(
-        onTap: () {
-          //  DictionaryService.to.openExpression(expression: expression);
-        },
-        onLongPress: () {
-          // BookmarksController.to.toggleBookmark(expression: expression);
-        },
         title: RichText(
           text: TextSpan(
             text: bookmark.expression!.word,

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:kitaabua/database/api/firebase_api.dart';
 import 'package:kitaabua/database/models/meaning.dart';
 
@@ -25,9 +23,7 @@ class Expression {
     this.updatedBy,
     this.state,
     this.meanings,
-  }) {
-    log(this.toString());
-  }
+  });
 
   Expression.fromJson(Map<String, dynamic> json)
       : id = json['id'],
@@ -36,8 +32,7 @@ class Expression {
         addedOn = Utils.toDateTime(json['addedOn'])!,
         updatedOn = Utils.toDateTime(json['updatedOn'])!,
         updatedBy = json['updatedBy'],
-        state = json['state'],
-        meanings = json['meanings'];
+        state = json['state'];
 
   Map<String, dynamic> toJson() => {
         'id': id,

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
+import 'package:kitaabua/app/ui/widgets/snack.dart';
 
 import '../../database/api/firebase_api.dart';
 import '../../database/models/bookmark.dart';
@@ -37,17 +38,17 @@ class BookmarksController extends GetxController {
     FirebaseApi.createBookmark(
       expressionId: expressionId,
     ).then((value) async {
-      Get.snackbar('Success', 'Bookmark added successfully');
+      Snack.success('Bookmark added successfully');
     }).catchError((onError) {
-      Get.snackbar('Error', onError.toString());
+      Snack.error(onError.toString());
     });
   }
 
   void deleteBookmark(Bookmark bookmark) {
     FirebaseApi.deleteBookmark(bookmark).then((value) async {
-      Get.snackbar('Success', 'Bookmark deleted successfully');
+      Snack.success('Bookmark deleted successfully');
     }).catchError((onError) {
-      Get.snackbar('Error', onError.toString());
+      Snack.error(onError.toString());
     });
   }
 
