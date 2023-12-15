@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/meanings_controller.dart';
+import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
 import 'package:kitaabua/core/configs/utils.dart';
 
@@ -23,8 +24,9 @@ class AddEditPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        DictionaryService.to.expression.value = null;
         Utils.hideKeyboard(context);
+        DictionaryService.to.expression.value = null;
+        DictionaryService.to.wordEC.text = "";
         return true;
       },
       child: Scaffold(
@@ -106,11 +108,13 @@ class AddEditPage extends StatelessWidget {
                         textAlignVertical: TextAlignVertical.top,
                       );
                     }),
-                    const SizedBox(height: kSizeBoxS),
-                    const SubtitleBlock(
-                      title: "Similar Words",
-                      titleFontSize: kSummaryFontSize,
-                    ),
+                    if (MembersController.to.isLoggedIn)
+                      const SizedBox(height: kSizeBoxS),
+                    if (MembersController.to.isLoggedIn)
+                      const SubtitleBlock(
+                        title: "Similar Words",
+                        titleFontSize: kSummaryFontSize,
+                      ),
                     const SizedBox(height: kSizeBoxS),
                     Obx(() {
                       return Align(

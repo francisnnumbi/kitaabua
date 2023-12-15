@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
@@ -79,10 +78,12 @@ class DictionaryService extends GetxService {
     initializeBindings();
   }
 
-  openExpression({Expression? expression, bool off = false}) async {
+  openExpression({Expression? expression = null, bool off = false}) async {
     this.expression.value = expression;
     if (expression != null) {
       wordEC.text = expression.word;
+    } else {
+      wordEC.text = "";
     }
     if (off) {
       Get.offNamed(AddEditPage.route);
@@ -144,7 +145,8 @@ class DictionaryService extends GetxService {
         for (int i = 0; i < p0.length; i++) {
           wordExpressions.add(p0[i].word);
         }
-        if (kDebugMode) print(wordExpressions);
+        // if (kDebugMode) print(wordExpressions);
+        recentExpressions.value = p0.reversed.take(5).toList();
       }
     });
   }

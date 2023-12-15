@@ -5,6 +5,7 @@ import 'package:kitaabua/app/ui/widgets/snack.dart';
 import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/database/api/firebase_api.dart';
 
+import '../../core/configs/sizes.dart';
 import '../../database/models/expression.dart';
 import '../../database/models/meaning.dart';
 
@@ -55,26 +56,100 @@ class MeaningsController extends GetxController {
           children: [
             TextFormField(
               controller: meaningController,
+              style: const TextStyle(
+                color: kOnBackgroundColor,
+                fontSize: kSearchFontSize,
+              ),
               validator: (va) {
                 if (va!.isEmpty) {
                   return "meaning must not be empty".tr;
                 }
                 return null;
               },
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Meaning',
+                labelStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                hintStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                filled: true,
+                fillColor: kBackgroundColor,
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
               ),
             ),
+            const SizedBox(height: kSizeBoxS),
             TextFormField(
+              style: const TextStyle(
+                color: kOnBackgroundColor,
+                fontSize: kSearchFontSize,
+              ),
               controller: exampleController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Example',
+                labelStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                hintStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                filled: true,
+                fillColor: kBackgroundColor,
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
               ),
             ),
+            const SizedBox(height: kSizeBoxS),
             TextFormField(
               controller: exampleTranslationController,
-              decoration: const InputDecoration(
+              style: const TextStyle(
+                color: kOnBackgroundColor,
+                fontSize: kSearchFontSize,
+              ),
+              decoration: InputDecoration(
                 labelText: 'Example Translation',
+                labelStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                hintStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                filled: true,
+                fillColor: kBackgroundColor,
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
               ),
             ),
           ],
@@ -130,26 +205,100 @@ class MeaningsController extends GetxController {
           children: [
             TextFormField(
               controller: meaningController,
+              style: const TextStyle(
+                color: kOnBackgroundColor,
+                fontSize: kSearchFontSize,
+              ),
               validator: (va) {
                 if (va!.isEmpty) {
                   return "meaning must not be empty".tr;
                 }
                 return null;
               },
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Meaning',
+                labelStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                hintStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                filled: true,
+                fillColor: kBackgroundColor,
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
               ),
             ),
+            const SizedBox(height: kSizeBoxS),
             TextFormField(
               controller: exampleController,
-              decoration: const InputDecoration(
+              style: const TextStyle(
+                color: kOnBackgroundColor,
+                fontSize: kSearchFontSize,
+              ),
+              decoration: InputDecoration(
                 labelText: 'Example',
+                labelStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                hintStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                filled: true,
+                fillColor: kBackgroundColor,
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
               ),
             ),
+            const SizedBox(height: kSizeBoxS),
             TextFormField(
               controller: exampleTranslationController,
-              decoration: const InputDecoration(
+              style: const TextStyle(
+                color: kOnBackgroundColor,
+                fontSize: kSearchFontSize,
+              ),
+              decoration: InputDecoration(
                 labelText: 'Example Translation',
+                labelStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                hintStyle: const TextStyle(
+                  color: kGreyColor,
+                ),
+                filled: true,
+                fillColor: kBackgroundColor,
+                focusedBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
+                enabledBorder: const OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.transparent),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(kBorderRadiusS),
+                  ),
+                ),
               ),
             ),
           ],

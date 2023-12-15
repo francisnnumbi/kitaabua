@@ -26,6 +26,7 @@ class SearchedCard extends StatelessWidget {
         onTap: () {
           DictionaryService.to.openExpression(expression: expression);
         },
+        dense: true,
         title: RichText(
           text: TextSpan(
             text: expression.word,
@@ -38,18 +39,6 @@ class SearchedCard extends StatelessWidget {
           ),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingS),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: Text(
-            'Edited : ${expression.addedOn}',
-            style: const TextStyle(
-              color: kGreyColor,
-              fontSize: kFooterFontSize,
-              fontStyle: FontStyle.italic,
-              height: 1.5,
-            ),
-          ),
-        ),
         trailing: !MembersController.to.isLoggedIn
             ? null
             : IconButton(

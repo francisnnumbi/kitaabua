@@ -44,7 +44,7 @@ class DictionaryPage extends StatelessWidget {
               ),
               elevation: 10,
               onPressed: () {
-                DictionaryService.to.openExpression();
+                DictionaryService.to.openExpression(expression: null);
               },
               child: const Icon(
                 Icons.add,
