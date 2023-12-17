@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kitaabua/database/models/bookmark.dart';
 import 'package:kitaabua/database/models/expression.dart';
@@ -8,30 +9,34 @@ import 'package:kitaabua/database/models/expression.dart';
 import '../../database/api/firebase_api.dart';
 
 class Utils {
+  static void consoleLog(Object? object) {
+    if (kDebugMode) print(object);
+  }
+
   /// Hide the soft keyboard.
   static void hideKeyboard(BuildContext context) {
     FocusScope.of(context).requestFocus(FocusNode());
   }
 
-  static DateTime? stringToDateTime(String value) {
+  static DateTime? stringToDateTime(String? value) {
     if (value == null) return null;
 
     return DateTime.tryParse(value);
   }
 
-  static dynamic fromDateTimeToStringJson(DateTime date) {
+  static dynamic fromDateTimeToStringJson(DateTime? date) {
     if (date == null) return null;
 
     return date.toIso8601String();
   }
 
-  static DateTime? toDateTime(Timestamp value) {
+  static DateTime? toDateTime(Timestamp? value) {
     if (value == null) return null;
 
     return value.toDate();
   }
 
-  static dynamic fromDateTimeToJson(DateTime date) {
+  static dynamic fromDateTimeToJson(DateTime? date) {
     if (date == null) return null;
 
     return date.toUtc();

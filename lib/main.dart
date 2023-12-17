@@ -7,14 +7,20 @@ import 'package:kitaabua/app/controllers/bookmarks_controller.dart';
 import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
+import 'package:kitaabua/app/services/settings_service.dart';
 import 'package:kitaabua/app/ui/pages/home/home_page.dart';
 import 'package:kitaabua/core/configs/constants.dart';
 import 'package:kitaabua/routes.dart';
 
 import 'app/services/auth_service.dart';
+import 'core/lang/locales.dart';
 import 'firebase_options.dart';
 
 final GetStorage InnerStorage = GetStorage(kAppName);
+
+Locale _initLang() {
+  return Locales.getStoredLocale();
+}
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,6 +33,7 @@ Future<void> main() async {
 }
 
 Future<void> initServices() async {
+  await SettingsService.init();
   await AuthService.init();
   await DictionaryService.init();
 }
@@ -52,6 +59,9 @@ class MainApp extends StatelessWidget {
     return GetMaterialApp(
       title: kAppName,
       debugShowCheckedModeBanner: false,
+      translations: Locales(),
+      locale: _initLang(),
+      fallbackLocale: const Locale('fr', 'FR'),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

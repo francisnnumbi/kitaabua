@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/ui/pages/auth/profile/profile_page.dart';
+import 'package:kitaabua/app/ui/pages/settings/options_page.dart';
 import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
@@ -42,13 +43,15 @@ class SettingsPage extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  title: const Text("Settings",
+                  title: const Text("Options",
                       style: TextStyle(color: kOnBackgroundColor)),
-                  subtitle: const Text("Manage your settings",
+                  subtitle: const Text("Manage your options",
                       style: TextStyle(color: kGreyColor)),
                   leading: const Icon(Icons.settings, color: kGreyColor),
                   trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(OptionsPage.route);
+                  },
                 ),
                 ListTile(
                   title: const Text("Notifications",
