@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/widgets/expression_search_view.dart';
 import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
@@ -28,9 +29,9 @@ class HomePage extends StatelessWidget {
               isFakeSearch: true,
             ),
             const SizedBox(height: kSizeBoxM),
-            const SubtitleBlock(
+            SubtitleBlock(
               icon: Icons.history,
-              title: "Recent",
+              title: "Recent".tr,
               titleFontSize: kHeadingFontSize,
             ),
             const Expanded(child: RecentViews()),

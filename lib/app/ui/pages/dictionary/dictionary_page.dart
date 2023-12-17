@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/widgets/expression_search_view.dart';
 import 'package:kitaabua/app/ui/widgets/searched_views.dart';
@@ -21,9 +22,9 @@ class DictionaryPage extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
         child: Column(
           children: [
-            const SimpleAppBarHeader(
+            SimpleAppBarHeader(
               icon: Icons.menu_book_outlined,
-              title: "Dictionary",
+              title: "Dictionary".tr,
               titleFontSize: kSubTitleFontSize,
             ),
             const SizedBox(height: kSizeBoxM),

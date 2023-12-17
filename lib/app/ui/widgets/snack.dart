@@ -8,7 +8,7 @@ class Snack {
     SnackPosition snackPosition = SnackPosition.TOP,
   }) {
     Get.snackbar(
-      "Success",
+      "Success".tr,
       message,
       backgroundColor: kSuccessColor,
       colorText: kOnSuccessColor,
@@ -21,7 +21,7 @@ class Snack {
     SnackPosition snackPosition = SnackPosition.TOP,
   }) {
     Get.snackbar(
-      "Error",
+      "Error".tr,
       message,
       backgroundColor: kErrorColor,
       colorText: kOnErrorColor,

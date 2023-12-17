@@ -34,7 +34,7 @@ class AuthService extends GetxService {
       emailController.text = MembersController.to.currentMember.value!.email;
     }
     Get.defaultDialog(
-      title: "Login",
+      title: "Login".tr,
       content: Column(
         children: [
           TextField(
@@ -44,7 +44,7 @@ class AuthService extends GetxService {
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
-              labelText: "Email",
+              labelText: "Email".tr,
               labelStyle: const TextStyle(
                 color: kGreyColor,
               ),
@@ -72,7 +72,7 @@ class AuthService extends GetxService {
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
-              labelText: "Password",
+              labelText: "Password".tr,
               labelStyle: const TextStyle(
                 color: kGreyColor,
               ),
@@ -99,7 +99,7 @@ class AuthService extends GetxService {
           onPressed: () {
             Get.back();
           },
-          child: const Text("Cancel", style: TextStyle(color: kGreyColor)),
+          child: Text("Cancel".tr, style: const TextStyle(color: kGreyColor)),
         ),
         TextButton(
           onPressed: () {
@@ -110,13 +110,13 @@ class AuthService extends GetxService {
             )
                 .then((value) {
               Get.back();
-              Snack.success("Login success");
+              Snack.success("Login success".tr);
             }).catchError((onError) {
               Snack.error(onError.toString());
             });
             // Get.back();
           },
-          child: Text("Login", style: TextStyle(color: kBackgroundColor)),
+          child: Text("Login".tr, style: TextStyle(color: kBackgroundColor)),
         ),
       ],
     );
@@ -126,7 +126,7 @@ class AuthService extends GetxService {
     TextEditingController emailController = TextEditingController();
     TextEditingController passwordController = TextEditingController();
     Get.defaultDialog(
-      title: "Register",
+      title: "Register".tr,
       content: Column(
         children: [
           TextField(
@@ -136,7 +136,7 @@ class AuthService extends GetxService {
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
-              labelText: "Email",
+              labelText: "Email".tr,
               labelStyle: const TextStyle(
                 color: kGreyColor,
               ),
@@ -164,7 +164,7 @@ class AuthService extends GetxService {
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
-              labelText: "Password",
+              labelText: "Password".tr,
               labelStyle: const TextStyle(
                 color: kGreyColor,
               ),
@@ -191,9 +191,9 @@ class AuthService extends GetxService {
           onPressed: () {
             Get.back();
           },
-          child: const Text(
-            "Cancel",
-            style: TextStyle(color: kGreyColor),
+          child: Text(
+            "Cancel".tr,
+            style: const TextStyle(color: kGreyColor),
           ),
         ),
         TextButton(
@@ -205,13 +205,13 @@ class AuthService extends GetxService {
             )
                 .then((value) {
               Get.back();
-              Snack.success("Register success");
+              Snack.success("Register success".tr);
             }).catchError((onError) {
               Snack.error(onError.toString());
             });
             // Get.back();
           },
-          child: Text("Register", style: TextStyle(color: kBackgroundColor)),
+          child: Text("Register".tr, style: TextStyle(color: kBackgroundColor)),
         ),
       ],
     );
@@ -219,26 +219,26 @@ class AuthService extends GetxService {
 
   void logoutDialog() {
     Get.defaultDialog(
-      title: "Logout",
-      content: const Text("Are you sure you want to logout?"),
+      title: "Logout".tr,
+      content: Text("Are you sure you want to logout?".tr),
       actions: [
         TextButton(
           onPressed: () {
             Get.back();
           },
-          child: const Text("Cancel"),
+          child: Text("Cancel".tr),
         ),
         TextButton(
           onPressed: () {
             Auth().signOut().then((value) {
               Get.back();
-              Snack.success("Logout success");
+              Snack.success("Logout success".tr);
             }).catchError((onError) {
               Snack.error(onError.toString());
             });
             // Get.back();
           },
-          child: const Text("Logout"),
+          child: Text("Logout".tr),
         ),
       ],
     );

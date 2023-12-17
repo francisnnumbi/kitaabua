@@ -42,7 +42,8 @@ class MembersController extends GetxController {
       password: password,
     ).then((value) async {
       Get.back();
-      Snack.success('Guest added successfully with id: $name');
+      Snack.success(
+          'Guest added successfully with name'.trParams({'name': name}));
       currentMember.value = await FirebaseApi.getMember(value);
       InnerStorage.write(
         'currentMember',
@@ -62,7 +63,7 @@ class MembersController extends GetxController {
       emailController.text = Auth().currentUser!.email!;
     }
     Get.defaultDialog(
-      title: 'Register Guest',
+      title: 'Register Guest'.tr,
       content: Column(
         children: [
           TextField(
@@ -72,8 +73,8 @@ class MembersController extends GetxController {
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
-              labelText: 'Name',
-              hintText: 'Enter name',
+              labelText: 'Name'.tr,
+              hintText: 'Enter name'.tr,
               labelStyle: const TextStyle(
                 color: kGreyColor,
               ),
@@ -104,8 +105,8 @@ class MembersController extends GetxController {
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
-              labelText: 'Email',
-              hintText: 'Enter email',
+              labelText: 'Email'.tr,
+              hintText: 'Enter email'.tr,
               labelStyle: const TextStyle(
                 color: kGreyColor,
               ),
@@ -136,8 +137,8 @@ class MembersController extends GetxController {
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
-              labelText: 'Password',
-              hintText: 'Enter password',
+              labelText: 'Password'.tr,
+              hintText: 'Enter password'.tr,
               labelStyle: const TextStyle(
                 color: kGreyColor,
               ),
@@ -167,9 +168,9 @@ class MembersController extends GetxController {
           onPressed: () {
             Get.back();
           },
-          child: const Text(
-            'Cancel',
-            style: TextStyle(color: kGreyColor),
+          child: Text(
+            'Cancel'.tr,
+            style: const TextStyle(color: kGreyColor),
           ),
         ),
         TextButton(
@@ -181,7 +182,7 @@ class MembersController extends GetxController {
             );
           },
           child: Text(
-            'Add',
+            'Add'.tr,
             style: TextStyle(color: kBackgroundColor),
           ),
         ),
@@ -193,7 +194,7 @@ class MembersController extends GetxController {
     final emailController = TextEditingController();
     final passwordController = TextEditingController();
     Get.defaultDialog(
-      title: 'Login as guest',
+      title: 'Login as guest'.tr,
       content: Column(
         children: [
           TextField(
@@ -203,8 +204,8 @@ class MembersController extends GetxController {
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
-              labelText: 'Email',
-              hintText: 'Enter email',
+              labelText: 'Email'.tr,
+              hintText: 'Enter email'.tr,
               labelStyle: const TextStyle(
                 color: kGreyColor,
               ),
@@ -235,8 +236,8 @@ class MembersController extends GetxController {
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
-              labelText: 'Password',
-              hintText: 'Enter password',
+              labelText: 'Password'.tr,
+              hintText: 'Enter password'.tr,
               labelStyle: const TextStyle(
                 color: kGreyColor,
               ),
@@ -266,7 +267,7 @@ class MembersController extends GetxController {
           onPressed: () {
             Get.back();
           },
-          child: const Text('Cancel', style: TextStyle(color: kGreyColor)),
+          child: Text('Cancel'.tr, style: const TextStyle(color: kGreyColor)),
         ),
         TextButton(
           onPressed: () {
@@ -280,15 +281,15 @@ class MembersController extends GetxController {
                   currentMember.value!.toStringJson(),
                 );
                 Get.back();
-                Snack.success('Guest logged in successfully');
+                Snack.success('Guest logged in successfully'.tr);
                 return;
               }
             }
             if (currentMember.value == null) {
-              Snack.error('Guest not found');
+              Snack.error('Guest not found'.tr);
             }
           },
-          child: Text('Login', style: TextStyle(color: kBackgroundColor)),
+          child: Text('Login'.tr, style: TextStyle(color: kBackgroundColor)),
         ),
       ],
     );
@@ -296,28 +297,28 @@ class MembersController extends GetxController {
 
   void logoutMemberDialog() {
     Get.defaultDialog(
-      title: 'Logout Guest',
-      content: const Text('Are you sure you want to logout as guest ?'),
+      title: 'Logout Guest'.tr,
+      content: Text('Are you sure you want to logout as guest ?'.tr),
       actions: [
         TextButton(
           onPressed: () {
             Get.back();
           },
-          child: const Text('Cancel'),
+          child: Text('Cancel'.tr),
         ),
         TextButton(
           onPressed: () {
             if (InnerStorage.hasData('currentMember')) {
               InnerStorage.remove('currentMember');
               Get.back();
-              Snack.success('Guest logged out successfully');
+              Snack.success('Guest logged out successfully'.tr);
               currentMember.value = null;
             } else {
               Get.back();
-              Snack.error('No guest logged in');
+              Snack.error('No guest logged in'.tr);
             }
           },
-          child: const Text('Logout'),
+          child: Text('Logout'.tr),
         ),
       ],
     );

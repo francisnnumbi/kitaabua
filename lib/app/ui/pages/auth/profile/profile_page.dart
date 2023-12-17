@@ -21,10 +21,10 @@ class ProfilePage extends StatelessWidget {
         child: Obx(() {
           return Column(
             children: [
-              const AppBarHeader(
+              AppBarHeader(
                 hasBackButton: true,
                 icon: Icons.account_circle_outlined,
-                title: "Profile",
+                title: "Profile".tr,
                 titleFontSize: kSubTitleFontSize,
               ),
               const SizedBox(height: kSizeBoxM),
@@ -35,30 +35,30 @@ class ProfilePage extends StatelessWidget {
                     ListTile(
                       title: Text(
                           MembersController.to.currentMember.value?.name ??
-                              "Not logged in !",
+                              "Not logged in !".tr,
                           style: const TextStyle(color: kOnBackgroundColor)),
-                      subtitle: const Text("Name",
-                          style: TextStyle(color: kGreyColor)),
+                      subtitle: Text("Name".tr,
+                          style: const TextStyle(color: kGreyColor)),
                       leading:
                           const Icon(Icons.account_circle, color: kGreyColor),
                     ),
                     ListTile(
                       title: Text(
                           AuthService.to.currentUser?.email ??
-                              "Not logged in !",
+                              "Not logged in !".tr,
                           style: const TextStyle(color: kOnBackgroundColor)),
-                      subtitle: const Text("principal email",
-                          style: TextStyle(color: kGreyColor)),
+                      subtitle: Text("principal email".tr,
+                          style: const TextStyle(color: kGreyColor)),
                       leading:
                           const Icon(Icons.mail_outline, color: kGreyColor),
                     ),
                     ListTile(
                       title: Text(
                           MembersController.to.currentMember.value?.email ??
-                              "Not logged in !",
+                              "Not logged in !".tr,
                           style: const TextStyle(color: kOnBackgroundColor)),
-                      subtitle: const Text("secondary email",
-                          style: TextStyle(color: kGreyColor)),
+                      subtitle: Text("secondary email".tr,
+                          style: const TextStyle(color: kGreyColor)),
                       leading:
                           const Icon(Icons.mail_outline, color: kGreyColor),
                     ),
@@ -73,30 +73,30 @@ class ProfilePage extends StatelessWidget {
                   Expanded(
                     child: Column(
                       children: [
-                        const Text(
-                          'Logged in as Principal',
-                          style: TextStyle(color: kOnBackgroundColor),
+                        Text(
+                          'Logged in as Principal'.tr,
+                          style: const TextStyle(color: kOnBackgroundColor),
                         ),
                         if (!AuthService.to.isLoggedIn.value)
                           ElevatedButton(
                             onPressed: () {
                               AuthService.to.loginDialog();
                             },
-                            child: const Text("Sign in"),
+                            child: Text("Sign in".tr),
                           ),
                         if (!AuthService.to.isLoggedIn.value)
                           ElevatedButton(
                             onPressed: () {
                               AuthService.to.registerDialog();
                             },
-                            child: const Text("Register"),
+                            child: Text("Register".tr),
                           ),
                         if (AuthService.to.isLoggedIn.value)
                           ElevatedButton(
                             onPressed: () {
                               AuthService.to.logoutDialog();
                             },
-                            child: const Text("Sign out"),
+                            child: Text("Sign out".tr),
                           ),
                       ],
                     ),
@@ -104,30 +104,30 @@ class ProfilePage extends StatelessWidget {
                   Expanded(
                     child: Column(
                       children: [
-                        const Text(
-                          'Logged in as Guest',
-                          style: TextStyle(color: kOnBackgroundColor),
+                        Text(
+                          'Logged in as Guest'.tr,
+                          style: const TextStyle(color: kOnBackgroundColor),
                         ),
                         if (MembersController.to.currentMember.value == null)
                           ElevatedButton(
                             onPressed: () {
                               MembersController.to.loginMemberDialog();
                             },
-                            child: const Text("Login"),
+                            child: Text("Login".tr),
                           ),
                         if (MembersController.to.currentMember.value == null)
                           ElevatedButton(
                             onPressed: () {
                               MembersController.to.addMemberDialog();
                             },
-                            child: const Text("Register"),
+                            child: Text("Register".tr),
                           ),
                         if (MembersController.to.currentMember.value != null)
                           ElevatedButton(
                             onPressed: () {
                               MembersController.to.logoutMemberDialog();
                             },
-                            child: const Text("Logout"),
+                            child: Text("Logout".tr),
                           ),
                       ],
                     ),

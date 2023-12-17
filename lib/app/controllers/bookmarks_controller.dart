@@ -38,7 +38,7 @@ class BookmarksController extends GetxController {
     FirebaseApi.createBookmark(
       expressionId: expressionId,
     ).then((value) async {
-      Snack.success('Bookmark added successfully');
+      Snack.success('Bookmark added successfully'.tr);
     }).catchError((onError) {
       Snack.error(onError.toString());
     });
@@ -46,7 +46,7 @@ class BookmarksController extends GetxController {
 
   void deleteBookmark(Bookmark bookmark) {
     FirebaseApi.deleteBookmark(bookmark).then((value) async {
-      Snack.success('Bookmark deleted successfully');
+      Snack.success('Bookmark deleted successfully'.tr);
     }).catchError((onError) {
       Snack.error(onError.toString());
     });

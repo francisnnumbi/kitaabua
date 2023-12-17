@@ -78,7 +78,7 @@ class DictionaryService extends GetxService {
     initializeBindings();
   }
 
-  openExpression({Expression? expression = null, bool off = false}) async {
+  openExpression({Expression? expression, bool off = false}) async {
     this.expression.value = expression;
     if (expression != null) {
       wordEC.text = expression.word;
@@ -105,16 +105,16 @@ class DictionaryService extends GetxService {
       );
       FirebaseApi.updateExpression(express).then((value) {
         //Get.back();
-        Snack.success('Expression updated successfully');
+        Snack.success('Expression updated successfully'.tr);
       }).catchError((onError) {
-        Snack.error(onError.toString());
+        Snack.error('Expression update failed'.tr);
       });
     } else {
       FirebaseApi.createExpression(word: word).then((value) {
         //  Get.back();
-        Snack.success('Expression added successfully');
+        Snack.success('Expression added successfully'.tr);
       }).catchError((onError) {
-        Snack.error(onError.toString());
+        Snack.error('Expression add failed'.tr);
       });
     }
   }

@@ -39,8 +39,8 @@ class AddEditPage extends StatelessWidget {
               AppBarHeader(
                 hasBackButton: true,
                 title: DictionaryService.to.expression.value == null
-                    ? "New"
-                    : "Expression",
+                    ? "New".tr
+                    : "Expression".tr,
                 titleFontSize: kSubTitleFontSize,
                 icon: Icons.save,
                 onPressed: () {
@@ -80,11 +80,11 @@ class AddEditPage extends StatelessWidget {
                         maxLines: 2,
                         cursorColor: kOnBackgroundColor,
                         decoration: InputDecoration(
-                          hintText: 'Enter expression',
+                          hintText: 'Enter expression'.tr,
                           hintStyle: const TextStyle(
                             color: kGreyColor,
                           ),
-                          labelText: 'Expression',
+                          labelText: 'Expression'.tr,
                           labelStyle: const TextStyle(
                             color: kGreyColor,
                           ),
@@ -111,8 +111,8 @@ class AddEditPage extends StatelessWidget {
                     if (MembersController.to.isLoggedIn)
                       const SizedBox(height: kSizeBoxS),
                     if (MembersController.to.isLoggedIn)
-                      const SubtitleBlock(
-                        title: "Similar Words",
+                      SubtitleBlock(
+                        title: "Similar Words".tr,
                         titleFontSize: kSummaryFontSize,
                       ),
                     const SizedBox(height: kSizeBoxS),
@@ -155,8 +155,8 @@ class AddEditPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: kSizeBoxL),
-              const SubtitleBlock(
-                title: "Meanings",
+              SubtitleBlock(
+                title: "Meanings".tr,
                 titleFontSize: kSubHeadingFontSize,
                 icon: Icons.menu_book,
               ),
@@ -188,7 +188,7 @@ class AddEditPage extends StatelessWidget {
             ? null
             : FloatingActionButton(
                 mini: true,
-                tooltip: "Add Meaning",
+                tooltip: "Add Meaning".tr,
                 backgroundColor: kDarkBackgroundColor,
                 foregroundColor: kOnBackgroundColor,
                 shape: RoundedRectangleBorder(

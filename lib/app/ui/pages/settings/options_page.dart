@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:kitaabua/app/services/settings_service.dart';
 import 'package:kitaabua/app/ui/widgets/dialogs/options_dialogs.dart';
 
 import '../../../../core/configs/colors.dart';
@@ -21,7 +23,7 @@ class OptionsPage extends StatelessWidget {
             AppBarHeader(
               hasBackButton: true,
               icon: Icons.settings,
-              title: "Options",
+              title: "Options".tr,
               titleFontSize: kSubTitleFontSize,
               onPressed: () {},
             ),
@@ -39,10 +41,38 @@ class OptionsPage extends StatelessWidget {
                   onTap: () {},
                 ),*/
                 ListTile(
-                  title: const Text("Language",
-                      style: TextStyle(color: kOnBackgroundColor)),
-                  subtitle: const Text("Manage your language",
-                      style: TextStyle(color: kGreyColor)),
+                  title: Text.rich(
+                    TextSpan(
+                      text: "Language".tr,
+                      children: [
+                        const TextSpan(
+                          text: " ( ",
+                          style: TextStyle(
+                            color: kGreyColor,
+                            fontSize: kSummaryFontSize,
+                          ),
+                        ),
+                        TextSpan(
+                          text: "${SettingsService.to.locale.value!['name']}",
+                          style: const TextStyle(
+                            color: kGreyColor,
+                            fontSize: kSummaryFontSize,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                        const TextSpan(
+                          text: " )",
+                          style: TextStyle(
+                            color: kGreyColor,
+                            fontSize: kSummaryFontSize,
+                          ),
+                        ),
+                      ],
+                      style: const TextStyle(color: kOnBackgroundColor),
+                    ),
+                  ),
+                  subtitle: Text("Manage your language".tr,
+                      style: const TextStyle(color: kGreyColor)),
                   leading: const Icon(Icons.language, color: kGreyColor),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {

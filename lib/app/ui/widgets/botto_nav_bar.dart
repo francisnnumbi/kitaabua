@@ -51,22 +51,22 @@ class BottomNavBar extends StatelessWidget {
             Get.offAllNamed(DictionaryPage.route);
         }
       },
-      items: const [
+      items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          label: "Home",
+          icon: const Icon(Icons.home),
+          label: "Home".tr,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.menu_book_outlined),
-          label: "Dictionary",
+          icon: const Icon(Icons.menu_book_outlined),
+          label: "Dictionary".tr,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.book_outlined),
-          label: "Bookmarks",
+          icon: const Icon(Icons.book_outlined),
+          label: "Bookmarks".tr,
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          label: "Settings",
+          icon: const Icon(Icons.settings),
+          label: "Settings".tr,
         ),
       ],
     );

@@ -14,7 +14,7 @@ openLanguageSettingsDialog() {
       .toList();
 
   Get.defaultDialog(
-    title: "Language",
+    title: "Language".tr,
     titleStyle: const TextStyle(
       color: kOnBackgroundColor,
       fontSize: kTitleFontSize,
@@ -33,23 +33,23 @@ openLanguageSettingsDialog() {
             color: kOnSurfaceColor,
             fontSize: kSearchFontSize,
           ),
-          decoration: const InputDecoration(
-            labelText: 'Select Language',
-            labelStyle: TextStyle(
+          decoration: InputDecoration(
+            labelText: 'Select Language'.tr,
+            labelStyle: const TextStyle(
               color: kOnBackgroundColor,
             ),
-            hintStyle: TextStyle(
+            hintStyle: const TextStyle(
               color: kOnBackgroundColor,
             ),
             filled: true,
             fillColor: kGreyColor,
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.transparent),
               borderRadius: BorderRadius.all(
                 Radius.circular(kBorderRadiusS),
               ),
             ),
-            enabledBorder: OutlineInputBorder(
+            enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.transparent),
               borderRadius: BorderRadius.all(
                 Radius.circular(kBorderRadiusS),

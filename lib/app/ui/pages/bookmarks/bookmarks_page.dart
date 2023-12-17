@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kitaabua/app/ui/widgets/bookmarked_views.dart';
 import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
@@ -15,17 +16,17 @@ class BookmarksPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
-      body: const Padding(
-        padding: EdgeInsets.fromLTRB(16, 40, 16, 0),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
         child: Column(
           children: [
             SimpleAppBarHeader(
               icon: Icons.bookmark_outline,
-              title: "Bookmarks",
+              title: "Bookmarks".tr,
               titleFontSize: kSubTitleFontSize,
             ),
-            SizedBox(height: kSizeBoxM),
-            Expanded(child: BookmarkedViews()),
+            const SizedBox(height: kSizeBoxM),
+            const Expanded(child: BookmarkedViews()),
           ],
         ),
       ),

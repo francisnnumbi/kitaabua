@@ -49,7 +49,7 @@ class MeaningsController extends GetxController {
     final exampleController = TextEditingController();
     final exampleTranslationController = TextEditingController();
     Get.defaultDialog(
-      title: 'Add Meaning',
+      title: 'Add Meaning'.tr,
       content: Form(
         key: meaningFormKey,
         child: Column(
@@ -67,7 +67,7 @@ class MeaningsController extends GetxController {
                 return null;
               },
               decoration: InputDecoration(
-                labelText: 'Meaning',
+                labelText: 'Meaning'.tr,
                 labelStyle: const TextStyle(
                   color: kGreyColor,
                 ),
@@ -98,7 +98,7 @@ class MeaningsController extends GetxController {
               ),
               controller: exampleController,
               decoration: InputDecoration(
-                labelText: 'Example',
+                labelText: 'Example'.tr,
                 labelStyle: const TextStyle(
                   color: kGreyColor,
                 ),
@@ -129,7 +129,7 @@ class MeaningsController extends GetxController {
                 fontSize: kSearchFontSize,
               ),
               decoration: InputDecoration(
-                labelText: 'Example Translation',
+                labelText: 'Example Translation'.tr,
                 labelStyle: const TextStyle(
                   color: kGreyColor,
                 ),
@@ -160,7 +160,7 @@ class MeaningsController extends GetxController {
           onPressed: () {
             Get.back();
           },
-          child: const Text('Cancel'),
+          child: Text('Cancel'.tr),
         ),
         TextButton(
           onPressed: () {
@@ -175,12 +175,12 @@ class MeaningsController extends GetxController {
               exampleTranslation: exampleTranslationController.text,
             );
             Get.back();
-            Snack.success('Meaning added successfully');
+            Snack.success('Meaning added successfully'.tr);
             if (onAdd != null) {
               onAdd();
             }
           },
-          child: const Text('Add'),
+          child: Text('Add'.tr),
         ),
       ],
     );
@@ -198,7 +198,7 @@ class MeaningsController extends GetxController {
     final exampleTranslationController =
         TextEditingController(text: meaning.exampleTranslation);
     Get.defaultDialog(
-      title: 'Edit Meaning',
+      title: 'Edit Meaning'.tr,
       content: Form(
         key: meaningFormKey,
         child: Column(
@@ -216,7 +216,7 @@ class MeaningsController extends GetxController {
                 return null;
               },
               decoration: InputDecoration(
-                labelText: 'Meaning',
+                labelText: 'Meaning'.tr,
                 labelStyle: const TextStyle(
                   color: kGreyColor,
                 ),
@@ -247,7 +247,7 @@ class MeaningsController extends GetxController {
                 fontSize: kSearchFontSize,
               ),
               decoration: InputDecoration(
-                labelText: 'Example',
+                labelText: 'Example'.tr,
                 labelStyle: const TextStyle(
                   color: kGreyColor,
                 ),
@@ -278,7 +278,7 @@ class MeaningsController extends GetxController {
                 fontSize: kSearchFontSize,
               ),
               decoration: InputDecoration(
-                labelText: 'Example Translation',
+                labelText: 'Example Translation'.tr,
                 labelStyle: const TextStyle(
                   color: kGreyColor,
                 ),
@@ -308,35 +308,35 @@ class MeaningsController extends GetxController {
         TextButton(
           onPressed: () {
             Get.defaultDialog(
-              title: 'Delete Meaning',
-              content: const Text('Are you sure you want to delete this?'),
+              title: 'Delete Meaning'.tr,
+              content: Text('Are you sure you want to delete this meaning?'.tr),
               actions: [
                 TextButton(
                   onPressed: () {
                     FirebaseApi.deleteMeaning(meaning, expressionId);
                     Get.back();
                     Get.back();
-                    Snack.success('Meaning deleted successfully');
+                    Snack.success('Meaning deleted successfully'.tr);
                   },
-                  child: const Text('Delete',
-                      style: TextStyle(color: kErrorColor)),
+                  child: Text('Delete'.tr,
+                      style: const TextStyle(color: kErrorColor)),
                 ),
                 TextButton(
                   onPressed: () {
                     Get.back();
                   },
-                  child: const Text('Cancel'),
+                  child: Text('Cancel'.tr),
                 ),
               ],
             );
           },
-          child: const Text('Delete', style: TextStyle(color: kErrorColor)),
+          child: Text('Delete'.tr, style: const TextStyle(color: kErrorColor)),
         ),
         TextButton(
           onPressed: () {
             Get.back();
           },
-          child: const Text('Cancel'),
+          child: Text('Cancel'.tr),
         ),
         TextButton(
           onPressed: () {
@@ -365,12 +365,12 @@ class MeaningsController extends GetxController {
               meaning: m,
             );
             Get.back();
-            Snack.success('Meaning updated successfully');
+            Snack.success('Meaning updated successfully'.tr);
             if (onEdit != null) {
               onEdit();
             }
           },
-          child: const Text('Update'),
+          child: Text('Update'.tr),
         ),
       ],
     );

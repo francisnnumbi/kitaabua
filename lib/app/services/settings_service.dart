@@ -25,7 +25,7 @@ class SettingsService extends GetxService {
     final langie = lang['code']!.split("_");
     Get.updateLocale(Locale(langie[0], langie[1]));
     Get.back();
-    Snack.success("Language changed to ${lang['name']}");
+    Snack.success("Language changed to".trParams({'lang': lang['name']!}));
   }
 
   @override
