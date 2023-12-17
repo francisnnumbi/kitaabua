@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:kitaabua/app/controllers/bookmarks_controller.dart';
 import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
@@ -65,6 +66,23 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        primaryTextTheme: GoogleFonts.tekoTextTheme(
+          Theme.of(context).textTheme,
+        ),
+        textTheme: GoogleFonts.tekoTextTheme(
+          Theme.of(context).textTheme,
+          /*.copyWith(
+                bodyLarge: const TextStyle(fontSize: 12.0),
+                bodyMedium: const TextStyle(fontSize: 10.0),
+                bodySmall: const TextStyle(fontSize: 8.0),
+                labelLarge: const TextStyle(fontSize: 12.0),
+                labelMedium: const TextStyle(fontSize: 10.0),
+                labelSmall: const TextStyle(fontSize: 8.0),
+                headlineLarge: const TextStyle(fontSize: 18.0),
+                headlineMedium: const TextStyle(fontSize: 16.0),
+                headlineSmall: const TextStyle(fontSize: 14.0),
+              ),*/
+        ),
       ),
       initialRoute: HomePage.route,
       getPages: Routes.routes,

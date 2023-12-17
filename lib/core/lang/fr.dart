@@ -108,4 +108,12 @@ get fr => {
       'Update': 'Mettre à jour',
       'Bookmark added successfully': 'Signet ajouté avec succès',
       'Bookmark deleted successfully': 'Signet supprimé avec succès',
+      'Developed by': 'Développé par',
+      'With love to Taabua Community': 'Avec amour à la communauté Taabua',
+      "Kitaabua is a Kitaabua-Français dictionary that helps you learn Kitaabua language. "
+              "It is a free and open source project. "
+              "You can contribute to the project by reporting bugs, suggesting new features, translating the app to your language or by donating to the project.":
+          "Kitaabua est un dictionnaire Kitaabua-Français qui vous aide à apprendre la langue Kitaabua. "
+              "C'est un projet gratuit et open source. "
+              "Vous pouvez contribuer au projet en signalant des bugs, en suggérant de nouvelles fonctionnalités, en traduisant l'application dans votre langue ou en faisant un don au projet.",
     };

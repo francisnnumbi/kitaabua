@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/services/settings_service.dart';
 import 'package:kitaabua/generated/assets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../core/configs/colors.dart';
 import '../../../../core/configs/sizes.dart';
@@ -84,15 +85,16 @@ openAboutDialog() {
         const SizedBox(
           height: 10,
         ),
-        const Text(
+        Text(
           "Kitaabua is a Kitaabua-Français dictionary that helps you learn Kitaabua language. "
-          "It is a free and open source project. "
-          "You can contribute to the project by reporting bugs, suggesting new features, translating the app to your language or by donating to the project.",
-          style: TextStyle(
+                  "It is a free and open source project. "
+                  "You can contribute to the project by reporting bugs, suggesting new features, translating the app to your language or by donating to the project."
+              .tr,
+          style: const TextStyle(
             color: kOnBackgroundColor,
             fontSize: kSummaryFontSize,
           ),
-          textAlign: TextAlign.justify,
+          textAlign: TextAlign.center,
         ),
         const SizedBox(
           height: 20,
@@ -103,9 +105,6 @@ openAboutDialog() {
             color: kOnBackgroundColor,
             fontSize: kSummaryFontSize,
           ),
-        ),
-        const SizedBox(
-          height: 5,
         ),
         const Text(
           "Francis Nduba Numbi",
@@ -122,6 +121,22 @@ openAboutDialog() {
           style: const TextStyle(
             color: kOnBackgroundColor,
             fontSize: kFooterFontSize,
+          ),
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        InkWell(
+          onTap: () => launchUrl(
+            Uri.parse('https://smirltech.com'),
+            mode: LaunchMode.externalApplication,
+          ),
+          child: const Text(
+            "SmirlTech sarl",
+            style: TextStyle(
+              color: kAccentColor,
+              fontSize: kFooterFontSize,
+            ),
           ),
         ),
       ],
