@@ -2,7 +2,7 @@ name: kitaabua
 description: A kitaabua-french dictionary project with firebase firestore as database.
 
 
-publish_to: 'none' 
+publish_to: 'none'
 
 version: 1.0.0+1
 
@@ -31,7 +31,20 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  image_path: "assets/logos/logo.png"
+  #image_path_ios: "assets/logos/logo.png"
+  #image_path_android: "assets/logos/logo.png"
+  android: true
+  ios: true
+  min_sdk_android: 21
+  # You will have to run 'flutter pub run flutter_launcher_icons' to actually change the icons
 
 flutter:
 
   uses-material-design: true
+
+  assets:
+    - assets/logos/

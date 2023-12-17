@@ -41,9 +41,9 @@ class SettingsService extends GetxService {
             })
         .toList();
 
-    final lali = InnerStorage.read('lang');
+    final lali = InnerStorage.read('lang')?['code'] ?? 'en_US';
     locale.value = locales.value!.firstWhere(
-      (element) => element['code'] == lali['code'],
+      (element) => element['code'] == lali,
       orElse: () => locales.value!.first,
     );
   }

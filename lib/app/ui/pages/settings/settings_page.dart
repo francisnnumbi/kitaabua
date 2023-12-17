@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/ui/pages/auth/profile/profile_page.dart';
 import 'package:kitaabua/app/ui/pages/settings/options_page.dart';
+import 'package:kitaabua/app/ui/widgets/dialogs/options_dialogs.dart';
 import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
@@ -87,7 +88,9 @@ class SettingsPage extends StatelessWidget {
                       style: const TextStyle(color: kGreyColor)),
                   leading: const Icon(Icons.info, color: kGreyColor),
                   trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
+                  onTap: () {
+                    openAboutDialog();
+                  },
                 ),
               ],
             )),
