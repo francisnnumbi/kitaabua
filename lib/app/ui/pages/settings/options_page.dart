@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/services/settings_service.dart';
 import 'package:kitaabua/app/ui/widgets/dialogs/options_dialogs.dart';
+import 'package:kitaabua/core/configs/themes.dart';
 
 import '../../../../core/configs/colors.dart';
 import '../../../../core/configs/sizes.dart';
@@ -31,15 +32,28 @@ class OptionsPage extends StatelessWidget {
             Expanded(
                 child: ListView(
               children: [
-                /*   ListTile(
-                  title: const Text("Dark Mode",
-                      style: TextStyle(color: kOnBackgroundColor)),
-                  subtitle: const Text("Manage your dark mode",
-                      style: TextStyle(color: kGreyColor)),
-                  leading: const Icon(Icons.dark_mode, color: kGreyColor),
+                ListTile(
+                  title: Text(
+                    "${SettingsService.to.getThemeMode().capitalizeFirst} Mode"
+                        .tr,
+                    style: const TextStyle(color: kOnBackgroundColor),
+                  ),
+                  subtitle: Text(
+                    "Manage your theme mode".tr,
+                    style: const TextStyle(color: kGreyColor),
+                  ),
+                  leading: Icon(
+                      SettingsService.to.getThemeMode() == Themes.LIGHT
+                          ? Icons.light_mode
+                          : SettingsService.to.getThemeMode() == Themes.DARK
+                              ? Icons.dark_mode
+                              : Icons.phone_android,
+                      color: kGreyColor),
                   trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {},
-                ),*/
+                  onTap: () {
+                    SettingsService.to.openThemeSelectDialog();
+                  },
+                ),
                 ListTile(
                   title: Text.rich(
                     TextSpan(

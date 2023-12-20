@@ -1,7 +1,7 @@
-import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/ui/widgets/snack.dart';
+import 'package:kitaabua/core/configs/themes.dart';
 import 'package:kitaabua/main.dart';
 
 import '../../core/lang/locales.dart';
@@ -26,6 +26,53 @@ class SettingsService extends GetxService {
     Get.updateLocale(Locale(langie[0], langie[1]));
     Get.back();
     Snack.success("Language changed to".trParams({'lang': lang['name']!}));
+  }
+
+  void setThemeMode(String themeMode, {bool? canBack = false}) {
+    InnerStorage.write('themeMode', themeMode);
+    switch (themeMode) {
+      case Themes.LIGHT:
+        Get.changeThemeMode(ThemeMode.light);
+      case Themes.DARK:
+        Get.changeThemeMode(ThemeMode.dark);
+      case Themes.SYSTEM:
+        Get.changeThemeMode(ThemeMode.system);
+      default:
+        Get.changeThemeMode(ThemeMode.light);
+    }
+    if (canBack == true) Get.back();
+  }
+
+  void openThemeSelectDialog() {
+    Get.defaultDialog(
+      title: "Select Theme Mode".tr,
+      content: Column(
+        children: [
+          ListTile(
+            title: Text("Light".tr),
+            leading: const Icon(Icons.light_mode),
+            onTap: () => setThemeMode(Themes.LIGHT, canBack: true),
+            selected: getThemeMode() == Themes.LIGHT,
+          ),
+          ListTile(
+            title: Text("Dark".tr),
+            leading: const Icon(Icons.dark_mode),
+            onTap: () => setThemeMode(Themes.DARK, canBack: true),
+            selected: getThemeMode() == Themes.DARK,
+          ),
+          ListTile(
+            title: Text("System".tr),
+            leading: const Icon(Icons.phone_android),
+            onTap: () => setThemeMode(Themes.SYSTEM, canBack: true),
+            selected: getThemeMode() == Themes.SYSTEM,
+          ),
+        ],
+      ),
+    );
+  }
+
+  String getThemeMode() {
+    return InnerStorage.read('themeMode') ?? Themes.LIGHT;
   }
 
   @override

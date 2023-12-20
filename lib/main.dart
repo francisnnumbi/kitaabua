@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kitaabua/app/controllers/bookmarks_controller.dart';
 import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
@@ -22,6 +21,24 @@ final GetStorage InnerStorage = GetStorage(kAppName);
 
 Locale _initLang() {
   return Locales.getStoredLocale();
+}
+
+ThemeMode _initThemeMode() {
+  if (InnerStorage.hasData('themeMode')) {
+    final themeMode = InnerStorage.read('themeMode');
+    switch (themeMode) {
+      case Themes.LIGHT:
+        return ThemeMode.light;
+      case Themes.DARK:
+        return ThemeMode.dark;
+      case Themes.SYSTEM:
+        return ThemeMode.system;
+      default:
+        return ThemeMode.light;
+    }
+  } else {
+    return ThemeMode.light;
+  }
 }
 
 Future<void> main() async {
@@ -64,13 +81,9 @@ class MainApp extends StatelessWidget {
       translations: Locales(),
       locale: _initLang(),
       fallbackLocale: const Locale('fr', 'FR'),
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        textTheme: GoogleFonts.tekoTextTheme(
-          Themes.customTextTheme(context, seed: 8),
-        ),
-      ),
+      theme: Themes.light(context),
+      darkTheme: Themes.dark(context),
+      themeMode: _initThemeMode(),
       initialRoute: HomePage.route,
       getPages: Routes.routes,
     );

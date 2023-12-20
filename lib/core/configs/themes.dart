@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Themes {
   static const String LIGHT = 'light';
@@ -55,6 +56,28 @@ class Themes {
       labelSmall: Theme.of(context).textTheme.labelSmall!.copyWith(
             fontSize: seed,
           ),
+    );
+  }
+
+  static ThemeData light(
+    BuildContext context,
+  ) {
+    return ThemeData.light().copyWith(
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+      textTheme: GoogleFonts.tekoTextTheme(
+        Themes.customTextTheme(context, seed: 8),
+      ),
+    );
+  }
+
+  static ThemeData dark(
+    BuildContext context,
+  ) {
+    return ThemeData.dark().copyWith(
+      colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+      textTheme: GoogleFonts.tekoTextTheme(
+        Themes.customTextTheme(context, seed: 8),
+      ),
     );
   }
 }

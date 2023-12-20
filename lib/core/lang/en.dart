@@ -115,4 +115,11 @@ get en => {
           "Kitaabua is a Kitaabua-Français dictionary that helps you learn Kitaabua language. "
               "It is a free and open source project. "
               "You can contribute to the project by reporting bugs, suggesting new features, translating the app to your language or by donating to the project.",
+      'Light Mode': 'Light Mode',
+      'Dark Mode': 'Dark Mode',
+      'System Mode': 'System Mode',
+      'Manage your theme mode': 'Manage your theme mode',
+      'Select Theme Mode': 'Select Theme Mode',
+      'Light': 'Light',
+      'Dark': 'Dark',
     };
