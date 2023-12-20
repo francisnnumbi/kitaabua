@@ -15,49 +15,46 @@ class ViewCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 3,
+    return ListTile(
+      onTap: () {
+        DictionaryService.to.openExpression(expression: expression);
+      },
+      tileColor: kDarkBackgroundColor,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(kBorderRadiusS),
       ),
-      child: ListTile(
-        onTap: () {
-          DictionaryService.to.openExpression(expression: expression);
-        },
-        dense: true,
-        title: RichText(
-          text: TextSpan(
-            text: expression.word,
-            style: const TextStyle(
-              color: kOnSurfaceColor,
-              fontWeight: FontWeight.bold,
-              fontSize: kHeadingFontSize,
-              height: 1.5,
-            ),
-            children: <TextSpan>[
-              const TextSpan(
-                text: " - ",
-                style: TextStyle(
-                  color: kOnSurfaceColor,
-                  fontWeight: FontWeight.normal,
-                  fontSize: kSubHeadingFontSize,
-                  height: 1.5,
-                ),
-              ),
-              TextSpan(
-                text: expression.addedBy,
-                style: const TextStyle(
-                  color: kOnSurfaceColor,
-                  fontWeight: FontWeight.normal,
-                  fontSize: kSubHeadingFontSize,
-                  height: 1.5,
-                ),
-              ),
-            ],
+      dense: true,
+      isThreeLine: false,
+      title: RichText(
+        text: TextSpan(
+          text: expression.word,
+          style: TextStyle(
+            color: kOnBackgroundColor,
+            fontWeight: FontWeight.bold,
+            fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
           ),
+          children: <TextSpan>[
+            TextSpan(
+              text: " - ",
+              style: TextStyle(
+                color: kOnBackgroundColor,
+                fontWeight: FontWeight.normal,
+                fontSize: Theme.of(context).textTheme.bodySmall!.fontSize,
+              ),
+            ),
+            TextSpan(
+              text: expression.addedBy,
+              style: TextStyle(
+                color: kOnBackgroundColor,
+                fontWeight: FontWeight.normal,
+                fontSize: Theme.of(context).textTheme.labelSmall!.fontSize,
+              ),
+            ),
+          ],
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingS),
       ),
+      contentPadding:
+          const EdgeInsets.symmetric(horizontal: kPaddingS, vertical: 0),
     );
   }
 }

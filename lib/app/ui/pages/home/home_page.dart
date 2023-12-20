@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
             SubtitleBlock(
               icon: Icons.history,
               title: "Recent".tr,
-              titleFontSize: kHeadingFontSize,
+              // titleFontSize: kHeadingFontSize,
             ),
             const Expanded(child: RecentViews()),
           ],

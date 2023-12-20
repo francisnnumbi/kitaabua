@@ -55,7 +55,8 @@ class AppBarHeader extends StatelessWidget {
               softWrap: true,
               style: TextStyle(
                 color: kOnBackgroundColor,
-                fontSize: titleFontSize ?? kTitleFontSize,
+                fontSize: titleFontSize ??
+                    Theme.of(context).textTheme.titleLarge!.fontSize,
                 fontWeight: FontWeight.bold,
               ),
             ),

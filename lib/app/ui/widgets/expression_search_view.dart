@@ -28,9 +28,9 @@ class ExpressionSearchView extends StatelessWidget {
       onTapOutside: (value) {
         Utils.hideKeyboard(context);
       },
-      style: const TextStyle(
+      style: TextStyle(
         color: kOnBackgroundColor,
-        fontSize: kSearchFontSize,
+        fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
       ),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(

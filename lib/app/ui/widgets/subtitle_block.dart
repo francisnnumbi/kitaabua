@@ -40,7 +40,8 @@ class SubtitleBlock extends StatelessWidget {
           title ?? kAppName,
           style: TextStyle(
             color: kOnBackgroundColor,
-            fontSize: titleFontSize ?? kSubHeadingFontSize,
+            fontSize: titleFontSize ??
+                Theme.of(context).textTheme.titleMedium!.fontSize,
             fontWeight: FontWeight.bold,
           ),
         ),

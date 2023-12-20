@@ -14,6 +14,7 @@ import 'package:kitaabua/core/configs/constants.dart';
 import 'package:kitaabua/routes.dart';
 
 import 'app/services/auth_service.dart';
+import 'core/configs/themes.dart';
 import 'core/lang/locales.dart';
 import 'firebase_options.dart';
 
@@ -66,22 +67,8 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-        primaryTextTheme: GoogleFonts.tekoTextTheme(
-          Theme.of(context).textTheme,
-        ),
         textTheme: GoogleFonts.tekoTextTheme(
-          Theme.of(context).textTheme,
-          /*.copyWith(
-                bodyLarge: const TextStyle(fontSize: 12.0),
-                bodyMedium: const TextStyle(fontSize: 10.0),
-                bodySmall: const TextStyle(fontSize: 8.0),
-                labelLarge: const TextStyle(fontSize: 12.0),
-                labelMedium: const TextStyle(fontSize: 10.0),
-                labelSmall: const TextStyle(fontSize: 8.0),
-                headlineLarge: const TextStyle(fontSize: 18.0),
-                headlineMedium: const TextStyle(fontSize: 16.0),
-                headlineSmall: const TextStyle(fontSize: 14.0),
-              ),*/
+          Themes.customTextTheme(context, seed: 8),
         ),
       ),
       initialRoute: HomePage.route,

@@ -31,7 +31,9 @@ class BottomNavBar extends StatelessWidget {
     return BottomNavigationBar(
       backgroundColor: kDarkBackgroundColor,
       selectedItemColor: kOnSecondaryColor,
+      selectedFontSize: Theme.of(context).textTheme.headlineSmall!.fontSize!,
       unselectedItemColor: kGreyColor,
+      unselectedFontSize: Theme.of(context).textTheme.headlineSmall!.fontSize!,
       currentIndex: cIndex,
       onTap: (index) {
         switch (index) {
