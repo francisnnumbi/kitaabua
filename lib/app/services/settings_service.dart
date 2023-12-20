@@ -4,6 +4,7 @@ import 'package:kitaabua/app/ui/widgets/snack.dart';
 import 'package:kitaabua/core/configs/themes.dart';
 import 'package:kitaabua/main.dart';
 
+import '../../core/configs/sizes.dart';
 import '../../core/lang/locales.dart';
 
 class SettingsService extends GetxService {
@@ -54,12 +55,14 @@ class SettingsService extends GetxService {
             onTap: () => setThemeMode(Themes.LIGHT, canBack: true),
             selected: getThemeMode() == Themes.LIGHT,
           ),
+          const SizedBox(height: kSizeBoxS),
           ListTile(
             title: Text("Dark".tr),
             leading: const Icon(Icons.dark_mode),
             onTap: () => setThemeMode(Themes.DARK, canBack: true),
             selected: getThemeMode() == Themes.DARK,
           ),
+          const SizedBox(height: kSizeBoxS),
           ListTile(
             title: Text("System".tr),
             leading: const Icon(Icons.phone_android),

@@ -27,6 +27,7 @@ class SearchedCard extends StatelessWidget {
       ),
       title: Text(
         expression.word,
+        overflow: TextOverflow.ellipsis,
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingS),
       trailing: !MembersController.to.isLoggedIn

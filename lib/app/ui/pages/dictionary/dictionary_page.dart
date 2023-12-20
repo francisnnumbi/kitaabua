@@ -17,20 +17,22 @@ class DictionaryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
-        child: Column(
-          children: [
-            SimpleAppBarHeader(
-              icon: Icons.menu_book_outlined,
-              title: "Dictionary".tr,
-              titleFontSize: kSubTitleFontSize,
-            ),
-            const SizedBox(height: kSizeBoxM),
-            ExpressionSearchView(),
-            const SizedBox(height: kSizeBoxM),
-            const Expanded(child: SearchedViews()),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+          child: Column(
+            children: [
+              SimpleAppBarHeader(
+                icon: Icons.menu_book_outlined,
+                title: "Dictionary".tr,
+                titleFontSize: kSubTitleFontSize,
+              ),
+              const SizedBox(height: kSizeBoxM),
+              ExpressionSearchView(),
+              const SizedBox(height: kSizeBoxM),
+              const Expanded(child: SearchedViews()),
+            ],
+          ),
         ),
       ),
       floatingActionButton: !DictionaryService.to.canManageDictionary()

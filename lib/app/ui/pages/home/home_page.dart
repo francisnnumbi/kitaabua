@@ -19,23 +19,25 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       //  backgroundColor: kBackgroundColor,
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
-        child: Column(
-          children: [
-            const AppBarHeader(),
-            const SizedBox(height: kSizeBoxM),
-            ExpressionSearchView(
-              isFakeSearch: true,
-            ),
-            const SizedBox(height: kSizeBoxM),
-            SubtitleBlock(
-              icon: Icons.history,
-              title: "Recent".tr,
-              // titleFontSize: kHeadingFontSize,
-            ),
-            const Expanded(child: RecentViews()),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+          child: Column(
+            children: [
+              const AppBarHeader(),
+              const SizedBox(height: kSizeBoxM),
+              ExpressionSearchView(
+                isFakeSearch: true,
+              ),
+              const SizedBox(height: kSizeBoxM),
+              SubtitleBlock(
+                icon: Icons.history,
+                title: "Recent".tr,
+                // titleFontSize: kHeadingFontSize,
+              ),
+              const Expanded(child: RecentViews()),
+            ],
+          ),
         ),
       ),
       floatingActionButton: !DictionaryService.to.canManageDictionary()

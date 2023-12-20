@@ -22,6 +22,7 @@ class BookmarkedCard extends StatelessWidget {
       ),
       title: Text(
         bookmark.expression!.word,
+        overflow: TextOverflow.ellipsis,
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingS),
       trailing: !MembersController.to.isLoggedIn

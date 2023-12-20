@@ -22,166 +22,167 @@ class AddEditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
+    return PopScope(
+      onPopInvoked: (value) async {
         Utils.hideKeyboard(context);
         DictionaryService.to.expression.value = null;
         DictionaryService.to.wordEC.text = "";
-        return true;
       },
       child: Scaffold(
         backgroundColor: kBackgroundColor,
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              AppBarHeader(
-                hasBackButton: true,
-                title: DictionaryService.to.expression.value == null
-                    ? "New".tr
-                    : "Expression".tr,
-                titleFontSize: kSubTitleFontSize,
-                icon: Icons.save,
-                onPressed: () {
-                  if (!_addEditFormKey.currentState!.validate()) {
-                    return;
-                  }
-                  _addEditFormKey.currentState!.save();
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                AppBarHeader(
+                  hasBackButton: true,
+                  title: DictionaryService.to.expression.value == null
+                      ? "New".tr
+                      : "Expression".tr,
+                  titleFontSize: kSubTitleFontSize,
+                  icon: Icons.save,
+                  onPressed: () {
+                    if (!_addEditFormKey.currentState!.validate()) {
+                      return;
+                    }
+                    _addEditFormKey.currentState!.save();
 
-                  DictionaryService.to
-                      .addExpression(word: DictionaryService.to.wordEC.text);
-                },
-              ),
-              const SizedBox(height: kSizeBoxL),
-              Form(
-                key: _addEditFormKey,
-                child: Column(
-                  children: [
-                    Obx(() {
-                      return TextFormField(
-                        controller: DictionaryService.to.wordEC,
-                        onChanged: (value) {
-                          DictionaryService.to.fetchSimilarExpressions(value);
-                        },
-                        validator: (va) {
-                          if (va!.isEmpty) {
-                            return "Title must not be empty".tr;
-                          } else if (DictionaryService.to.wordExists(va)) {
-                            return "This word already exists".tr;
-                          }
-                          return null;
-                        },
-                        readOnly: !DictionaryService.to.canManageDictionary(),
-                        style: const TextStyle(
-                          color: kOnBackgroundColor,
-                          fontSize: kSearchFontSize,
-                        ),
-                        maxLines: 2,
-                        cursorColor: kOnBackgroundColor,
-                        decoration: InputDecoration(
-                          hintText: 'Enter expression'.tr,
-                          hintStyle: const TextStyle(
-                            color: kGreyColor,
+                    DictionaryService.to
+                        .addExpression(word: DictionaryService.to.wordEC.text);
+                  },
+                ),
+                const SizedBox(height: kSizeBoxL),
+                Form(
+                  key: _addEditFormKey,
+                  child: Column(
+                    children: [
+                      Obx(() {
+                        return TextFormField(
+                          controller: DictionaryService.to.wordEC,
+                          onChanged: (value) {
+                            DictionaryService.to.fetchSimilarExpressions(value);
+                          },
+                          validator: (va) {
+                            if (va!.isEmpty) {
+                              return "Title must not be empty".tr;
+                            } else if (DictionaryService.to.wordExists(va)) {
+                              return "This word already exists".tr;
+                            }
+                            return null;
+                          },
+                          readOnly: !DictionaryService.to.canManageDictionary(),
+                          style: const TextStyle(
+                            color: kOnBackgroundColor,
+                            fontSize: kSearchFontSize,
                           ),
-                          labelText: 'Expression'.tr,
-                          labelStyle: const TextStyle(
-                            color: kGreyColor,
-                          ),
-                          alignLabelWithHint: true,
-                          filled: true,
-                          fillColor: kDarkBackgroundColor,
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(kBorderRadiusS),
+                          maxLines: 2,
+                          cursorColor: kOnBackgroundColor,
+                          decoration: InputDecoration(
+                            hintText: 'Enter expression'.tr,
+                            hintStyle: const TextStyle(
+                              color: kGreyColor,
+                            ),
+                            labelText: 'Expression'.tr,
+                            labelStyle: const TextStyle(
+                              color: kGreyColor,
+                            ),
+                            alignLabelWithHint: true,
+                            filled: true,
+                            fillColor: kDarkBackgroundColor,
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(kBorderRadiusS),
+                              ),
+                            ),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.transparent),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(kBorderRadiusS),
+                              ),
                             ),
                           ),
-                          enabledBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.transparent),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(kBorderRadiusS),
-                            ),
-                          ),
+                          //autofocus: true,
+                          textAlignVertical: TextAlignVertical.top,
+                        );
+                      }),
+                      if (MembersController.to.isLoggedIn)
+                        const SizedBox(height: kSizeBoxS),
+                      if (MembersController.to.isLoggedIn)
+                        SubtitleBlock(
+                          title: "Similar Words".tr,
+                          titleFontSize: kSummaryFontSize,
                         ),
-                        //autofocus: true,
-                        textAlignVertical: TextAlignVertical.top,
-                      );
-                    }),
-                    if (MembersController.to.isLoggedIn)
                       const SizedBox(height: kSizeBoxS),
-                    if (MembersController.to.isLoggedIn)
-                      SubtitleBlock(
-                        title: "Similar Words".tr,
-                        titleFontSize: kSummaryFontSize,
-                      ),
-                    const SizedBox(height: kSizeBoxS),
-                    Obx(() {
-                      return Align(
-                        alignment: Alignment.centerLeft,
-                        child: Wrap(
-                          children: DictionaryService.to
-                              .similarExpressions()
-                              .map(
-                                (e) => Padding(
-                                  padding: const EdgeInsets.all(
-                                    2,
-                                  ),
-                                  child: InkWell(
-                                    onTap: () {
-                                      DictionaryService.to.openExpression(
-                                          expression: e, off: true);
-                                    },
-                                    child: Badge(
-                                      backgroundColor: kSurfaceColor,
-                                      //isLabelVisible: false,
-                                      label: Text(
-                                        e.word,
-                                        style: const TextStyle(
-                                          color: kOnSurfaceColor,
+                      Obx(() {
+                        return Align(
+                          alignment: Alignment.centerLeft,
+                          child: Wrap(
+                            children: DictionaryService.to
+                                .similarExpressions()
+                                .map(
+                                  (e) => Padding(
+                                    padding: const EdgeInsets.all(
+                                      2,
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        DictionaryService.to.openExpression(
+                                            expression: e, off: true);
+                                      },
+                                      child: Badge(
+                                        backgroundColor: kSurfaceColor,
+                                        //isLabelVisible: false,
+                                        label: Text(
+                                          e.word,
+                                          style: const TextStyle(
+                                            color: kOnSurfaceColor,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
+                                )
+                                .toList(
+                                  growable: false,
                                 ),
-                              )
-                              .toList(
-                                growable: false,
-                              ),
-                        ),
-                      );
-                    }),
-                  ],
+                          ),
+                        );
+                      }),
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: kSizeBoxL),
-              SubtitleBlock(
-                title: "Meanings".tr,
-                titleFontSize: kSubHeadingFontSize,
-                icon: Icons.menu_book,
-              ),
-              Expanded(
-                child: Obx(() {
-                  return ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.only(top: kPaddingS),
-                    itemCount: MeaningsController.to.meanings.length,
-                    itemBuilder: (context, index) {
-                      Meaning meaning = MeaningsController.to.meanings[index];
+                const SizedBox(height: kSizeBoxL),
+                SubtitleBlock(
+                  title: "Meanings".tr,
+                  titleFontSize: kSubHeadingFontSize,
+                  icon: Icons.menu_book,
+                ),
+                Expanded(
+                  child: Obx(() {
+                    return ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      padding: const EdgeInsets.only(top: kPaddingS),
+                      itemCount: MeaningsController.to.meanings.length,
+                      itemBuilder: (context, index) {
+                        Meaning meaning = MeaningsController.to.meanings[index];
 
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: kPaddingS),
-                        child: MeaningCard(
-                          expressionId:
-                              MeaningsController.to.expression.value!.id,
-                          meaning: meaning,
-                        ),
-                      );
-                    },
-                  );
-                }),
-              ),
-            ],
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: kPaddingS),
+                          child: MeaningCard(
+                            expressionId:
+                                MeaningsController.to.expression.value!.id,
+                            meaning: meaning,
+                          ),
+                        );
+                      },
+                    );
+                  }),
+                ),
+              ],
+            ),
           ),
         ),
         floatingActionButton: !DictionaryService.to.canManageDictionary()

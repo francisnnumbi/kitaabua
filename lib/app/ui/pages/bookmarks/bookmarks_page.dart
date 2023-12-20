@@ -14,18 +14,20 @@ class BookmarksPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
-        child: Column(
-          children: [
-            SimpleAppBarHeader(
-              icon: Icons.bookmark_outline,
-              title: "Bookmarks".tr,
-              titleFontSize: kSubTitleFontSize,
-            ),
-            const SizedBox(height: kSizeBoxM),
-            const Expanded(child: BookmarkedViews()),
-          ],
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+          child: Column(
+            children: [
+              SimpleAppBarHeader(
+                icon: Icons.bookmark_outline,
+                title: "Bookmarks".tr,
+                titleFontSize: kSubTitleFontSize,
+              ),
+              const SizedBox(height: kSizeBoxM),
+              const Expanded(child: BookmarkedViews()),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: const BottomNavBar(),
