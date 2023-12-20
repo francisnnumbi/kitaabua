@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/auth_service.dart';
-import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
 import '../../../widgets/app_bar_header.dart';
@@ -15,7 +14,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      //backgroundColor: kBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
         child: Obx(() {
@@ -33,34 +32,51 @@ class ProfilePage extends StatelessWidget {
                   padding: const EdgeInsets.all(0),
                   children: [
                     ListTile(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       title: Text(
-                          MembersController.to.currentMember.value?.name ??
-                              "Not logged in !".tr,
-                          style: const TextStyle(color: kOnBackgroundColor)),
-                      subtitle: Text("Name".tr,
-                          style: const TextStyle(color: kGreyColor)),
-                      leading:
-                          const Icon(Icons.account_circle, color: kGreyColor),
+                        MembersController.to.currentMember.value?.name ??
+                            "Not logged in !".tr,
+                      ),
+                      subtitle: Text(
+                        "Name".tr,
+                      ),
+                      leading: const Icon(
+                        Icons.account_circle,
+                      ),
                     ),
+                    const SizedBox(height: kSizeBoxS),
                     ListTile(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       title: Text(
-                          AuthService.to.currentUser?.email ??
-                              "Not logged in !".tr,
-                          style: const TextStyle(color: kOnBackgroundColor)),
-                      subtitle: Text("principal email".tr,
-                          style: const TextStyle(color: kGreyColor)),
-                      leading:
-                          const Icon(Icons.mail_outline, color: kGreyColor),
+                        AuthService.to.currentUser?.email ??
+                            "Not logged in !".tr,
+                      ),
+                      subtitle: Text(
+                        "principal email".tr,
+                      ),
+                      leading: const Icon(
+                        Icons.contact_mail,
+                      ),
                     ),
+                    const SizedBox(height: kSizeBoxS),
                     ListTile(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       title: Text(
-                          MembersController.to.currentMember.value?.email ??
-                              "Not logged in !".tr,
-                          style: const TextStyle(color: kOnBackgroundColor)),
-                      subtitle: Text("secondary email".tr,
-                          style: const TextStyle(color: kGreyColor)),
-                      leading:
-                          const Icon(Icons.mail_outline, color: kGreyColor),
+                        MembersController.to.currentMember.value?.email ??
+                            "Not logged in !".tr,
+                      ),
+                      subtitle: Text(
+                        "secondary email".tr,
+                      ),
+                      leading: const Icon(
+                        Icons.quick_contacts_mail_outlined,
+                      ),
                     ),
                   ],
                 ),
@@ -75,7 +91,6 @@ class ProfilePage extends StatelessWidget {
                       children: [
                         Text(
                           'Logged in as Principal'.tr,
-                          style: const TextStyle(color: kOnBackgroundColor),
                         ),
                         if (!AuthService.to.isLoggedIn.value)
                           ElevatedButton(
@@ -106,7 +121,6 @@ class ProfilePage extends StatelessWidget {
                       children: [
                         Text(
                           'Logged in as Guest'.tr,
-                          style: const TextStyle(color: kOnBackgroundColor),
                         ),
                         if (MembersController.to.currentMember.value == null)
                           ElevatedButton(

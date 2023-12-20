@@ -129,6 +129,7 @@ class Themes {
         Themes.customTextTheme(context, seed: 8, color: Colors.black),
       ),
       listTileTheme: Theme.of(context).listTileTheme.copyWith(
+            tileColor: Colors.grey.shade300,
             titleTextStyle: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
