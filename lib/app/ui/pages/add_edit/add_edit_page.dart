@@ -29,7 +29,6 @@ class AddEditPage extends StatelessWidget {
         DictionaryService.to.wordEC.text = "";
       },
       child: Scaffold(
-        backgroundColor: kBackgroundColor,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -73,24 +72,15 @@ class AddEditPage extends StatelessWidget {
                             return null;
                           },
                           readOnly: !DictionaryService.to.canManageDictionary(),
-                          style: const TextStyle(
-                            color: kOnBackgroundColor,
-                            fontSize: kSearchFontSize,
-                          ),
+
                           maxLines: 2,
                           cursorColor: kOnBackgroundColor,
                           decoration: InputDecoration(
                             hintText: 'Enter expression'.tr,
-                            hintStyle: const TextStyle(
-                              color: kGreyColor,
-                            ),
                             labelText: 'Expression'.tr,
-                            labelStyle: const TextStyle(
-                              color: kGreyColor,
-                            ),
                             alignLabelWithHint: true,
                             filled: true,
-                            fillColor: kDarkBackgroundColor,
+                            // fillColor: kDarkBackgroundColor,
                             focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
                               borderRadius: BorderRadius.all(
