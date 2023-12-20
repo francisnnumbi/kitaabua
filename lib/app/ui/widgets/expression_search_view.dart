@@ -29,7 +29,7 @@ class ExpressionSearchView extends StatelessWidget {
         Utils.hideKeyboard(context);
       },
       style: TextStyle(
-        color: kOnBackgroundColor,
+        // color: kOnBackgroundColor,
         fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
       ),
       decoration: InputDecoration(
@@ -42,7 +42,7 @@ class ExpressionSearchView extends StatelessWidget {
         ),
         prefixIcon: const Icon(
           Icons.search,
-          color: kGreyColor,
+          // color: kGreyColor,
         ),
         suffixIcon: Obx(() {
           return IconButton(
@@ -60,7 +60,7 @@ class ExpressionSearchView extends StatelessWidget {
           );
         }),
         filled: true,
-        fillColor: kDarkBackgroundColor,
+        //  fillColor: kDarkBackgroundColor,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(kBorderRadius),
           borderSide: const BorderSide(color: Colors.transparent),

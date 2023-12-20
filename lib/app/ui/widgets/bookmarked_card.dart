@@ -16,34 +16,23 @@ class BookmarkedCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 3,
+    return ListTile(
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(kBorderRadiusS),
+        borderRadius: BorderRadius.circular(10),
       ),
-      child: ListTile(
-        title: RichText(
-          text: TextSpan(
-            text: bookmark.expression!.word,
-            style: const TextStyle(
-              color: kOnSurfaceColor,
-              fontWeight: FontWeight.bold,
-              fontSize: kHeadingFontSize,
-              height: 1.5,
+      title: Text(
+        bookmark.expression!.word,
+      ),
+      contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingS),
+      trailing: !MembersController.to.isLoggedIn
+          ? null
+          : IconButton(
+              onPressed: () {
+                BookmarksController.to
+                    .toggleBookmark(expression: bookmark.expression!);
+              },
+              icon: const Icon(Icons.bookmark_add, color: kSuccessColor),
             ),
-          ),
-        ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingS),
-        trailing: !MembersController.to.isLoggedIn
-            ? null
-            : IconButton(
-                onPressed: () {
-                  BookmarksController.to
-                      .toggleBookmark(expression: bookmark.expression!);
-                },
-                icon: const Icon(Icons.bookmark_add, color: kSuccessColor),
-              ),
-      ),
     );
   }
 }

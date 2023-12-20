@@ -4,7 +4,6 @@ import 'package:kitaabua/app/services/settings_service.dart';
 import 'package:kitaabua/app/ui/widgets/dialogs/options_dialogs.dart';
 import 'package:kitaabua/core/configs/themes.dart';
 
-import '../../../../core/configs/colors.dart';
 import '../../../../core/configs/sizes.dart';
 import '../../widgets/app_bar_header.dart';
 
@@ -16,7 +15,7 @@ class OptionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      // backgroundColor: kBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
         child: Column(
@@ -33,28 +32,36 @@ class OptionsPage extends StatelessWidget {
                 child: ListView(
               children: [
                 ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   title: Text(
                     "${SettingsService.to.getThemeMode().capitalizeFirst} Mode"
                         .tr,
-                    style: const TextStyle(color: kOnBackgroundColor),
+                    // style: const TextStyle(color: kOnBackgroundColor),
                   ),
                   subtitle: Text(
                     "Manage your theme mode".tr,
-                    style: const TextStyle(color: kGreyColor),
+                    //  style: const TextStyle(color: kGreyColor),
                   ),
                   leading: Icon(
-                      SettingsService.to.getThemeMode() == Themes.LIGHT
-                          ? Icons.light_mode
-                          : SettingsService.to.getThemeMode() == Themes.DARK
-                              ? Icons.dark_mode
-                              : Icons.phone_android,
-                      color: kGreyColor),
+                    SettingsService.to.getThemeMode() == Themes.LIGHT
+                        ? Icons.light_mode
+                        : SettingsService.to.getThemeMode() == Themes.DARK
+                            ? Icons.dark_mode
+                            : Icons.phone_android,
+                    //  color: kGreyColor,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     SettingsService.to.openThemeSelectDialog();
                   },
                 ),
+                const SizedBox(height: kSizeBoxS),
                 ListTile(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   title: Text.rich(
                     TextSpan(
                       text: "Language".tr,
@@ -62,14 +69,14 @@ class OptionsPage extends StatelessWidget {
                         const TextSpan(
                           text: " ( ",
                           style: TextStyle(
-                            color: kGreyColor,
+                            //   color: kGreyColor,
                             fontSize: kSummaryFontSize,
                           ),
                         ),
                         TextSpan(
                           text: "${SettingsService.to.locale.value!['name']}",
                           style: const TextStyle(
-                            color: kGreyColor,
+                            //   color: kGreyColor,
                             fontSize: kSummaryFontSize,
                             fontStyle: FontStyle.italic,
                           ),
@@ -77,17 +84,22 @@ class OptionsPage extends StatelessWidget {
                         const TextSpan(
                           text: " )",
                           style: TextStyle(
-                            color: kGreyColor,
+                            //  color: kGreyColor,
                             fontSize: kSummaryFontSize,
                           ),
                         ),
                       ],
-                      style: const TextStyle(color: kOnBackgroundColor),
+                      // style: const TextStyle(color: kOnBackgroundColor),
                     ),
                   ),
-                  subtitle: Text("Manage your language".tr,
-                      style: const TextStyle(color: kGreyColor)),
-                  leading: const Icon(Icons.language, color: kGreyColor),
+                  subtitle: Text(
+                    "Manage your language".tr,
+                    //style: const TextStyle(color: kGreyColor),
+                  ),
+                  leading: const Icon(
+                    Icons.language,
+                    //      color: kGreyColor,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     openLanguageSettingsDialog();

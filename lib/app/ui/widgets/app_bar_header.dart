@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../core/configs/colors.dart';
 import '../../../core/configs/constants.dart';
 import '../../../core/configs/sizes.dart';
 import '../../services/dictionary_service.dart';
@@ -39,12 +38,12 @@ class AppBarHeader extends StatelessWidget {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: kDarkBackgroundColor,
+                    //  color: kDarkBackgroundColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: const Icon(
                     Icons.arrow_back,
-                    color: kOnBackgroundColor,
+                    //    color: kOnBackgroundColor,
                   ),
                 ),
               ),
@@ -54,7 +53,7 @@ class AppBarHeader extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               softWrap: true,
               style: TextStyle(
-                color: kOnBackgroundColor,
+                // color: kOnBackgroundColor,
                 fontSize: titleFontSize ??
                     Theme.of(context).textTheme.titleLarge!.fontSize,
                 fontWeight: FontWeight.bold,
@@ -70,12 +69,12 @@ class AppBarHeader extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: kDarkBackgroundColor,
+                //color: kDarkBackgroundColor,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Icon(
                 icon ?? Icons.swap_horiz,
-                color: kOnBackgroundColor,
+                // color: kOnBackgroundColor,
               ),
             ),
           ),

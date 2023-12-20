@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:kitaabua/app/ui/pages/auth/profile/profile_page.dart';
 import 'package:kitaabua/app/ui/pages/settings/options_page.dart';
 import 'package:kitaabua/app/ui/widgets/dialogs/options_dialogs.dart';
-import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
 import '../../widgets/botto_nav_bar.dart';
@@ -17,7 +16,7 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      //  backgroundColor: kBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
         child: Column(
@@ -33,60 +32,111 @@ class SettingsPage extends StatelessWidget {
               padding: const EdgeInsets.all(0),
               children: [
                 ListTile(
-                  title: Text("Profile".tr,
-                      style: const TextStyle(color: kOnBackgroundColor)),
-                  subtitle: Text("Manage your profile".tr,
-                      style: const TextStyle(color: kGreyColor)),
-                  leading: const Icon(Icons.account_circle, color: kGreyColor),
+                  title: Text(
+                    "Profile".tr,
+                    //   style: const TextStyle(color: kOnBackgroundColor),
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  subtitle: Text(
+                    "Manage your profile".tr,
+                    //    style: const TextStyle(color: kGreyColor),
+                  ),
+                  leading: const Icon(
+                    Icons.account_circle,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     Get.toNamed(ProfilePage.route);
                   },
                 ),
+                const SizedBox(height: kSizeBoxS),
                 ListTile(
-                  title: Text("Options".tr,
-                      style: const TextStyle(color: kOnBackgroundColor)),
-                  subtitle: Text("Manage your options".tr,
-                      style: const TextStyle(color: kGreyColor)),
-                  leading: const Icon(Icons.settings, color: kGreyColor),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  title: Text(
+                    "Options".tr,
+                    //   style: const TextStyle(color: kOnBackgroundColor),
+                  ),
+                  subtitle: Text(
+                    "Manage your options".tr,
+                    //   style: const TextStyle(color: kGreyColor),
+                  ),
+                  leading: const Icon(
+                    Icons.settings,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     Get.toNamed(OptionsPage.route);
                   },
                 ),
+                const SizedBox(height: kSizeBoxS),
                 ListTile(
-                  title: Text("Notifications".tr,
-                      style: const TextStyle(color: kOnBackgroundColor)),
-                  subtitle: Text("Manage your notifications".tr,
-                      style: const TextStyle(color: kGreyColor)),
-                  leading: const Icon(Icons.notifications, color: kGreyColor),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  title: Text(
+                    "Notifications".tr,
+                  ),
+                  subtitle: Text(
+                    "Manage your notifications".tr,
+                  ),
+                  leading: const Icon(
+                    Icons.notifications,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {},
                 ),
+                const SizedBox(height: kSizeBoxS),
                 ListTile(
-                  title: Text("Privacy".tr,
-                      style: const TextStyle(color: kOnBackgroundColor)),
-                  subtitle: Text("View privacy policy".tr,
-                      style: const TextStyle(color: kGreyColor)),
-                  leading: const Icon(Icons.privacy_tip, color: kGreyColor),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  title: Text(
+                    "Privacy".tr,
+                  ),
+                  subtitle: Text(
+                    "View privacy policy".tr,
+                  ),
+                  leading: const Icon(
+                    Icons.privacy_tip,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {},
                 ),
+                const SizedBox(height: kSizeBoxS),
                 ListTile(
-                  title: Text("Contributors".tr,
-                      style: const TextStyle(color: kOnBackgroundColor)),
-                  subtitle: Text("View contributors".tr,
-                      style: const TextStyle(color: kGreyColor)),
-                  leading: const Icon(Icons.people, color: kGreyColor),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  title: Text(
+                    "Contributors".tr,
+                  ),
+                  subtitle: Text(
+                    "View contributors".tr,
+                  ),
+                  leading: const Icon(
+                    Icons.people,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {},
                 ),
+                const SizedBox(height: kSizeBoxS),
                 ListTile(
-                  title: Text("About".tr,
-                      style: const TextStyle(color: kOnBackgroundColor)),
-                  subtitle: Text("About this app".tr,
-                      style: const TextStyle(color: kGreyColor)),
-                  leading: const Icon(Icons.info, color: kGreyColor),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  title: Text(
+                    "About".tr,
+                  ),
+                  subtitle: Text(
+                    "About this app".tr,
+                  ),
+                  leading: const Icon(
+                    Icons.info,
+                  ),
                   trailing: const Icon(Icons.arrow_forward_ios),
                   onTap: () {
                     openAboutDialog();

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/configs/colors.dart';
 import '../../../core/configs/constants.dart';
 import '../../../core/configs/sizes.dart';
 
@@ -31,7 +30,7 @@ class SimpleAppBarHeader extends StatelessWidget {
               ),
               child: Icon(
                 icon ?? Icons.menu,
-                color: kOnBackgroundColor,
+                // color: kOnBackgroundColor,
               ),
             ),
             const SizedBox(width: kSizeBoxM),
@@ -40,7 +39,7 @@ class SimpleAppBarHeader extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               softWrap: true,
               style: TextStyle(
-                color: kOnBackgroundColor,
+                // color: kOnBackgroundColor,
                 fontSize: titleFontSize ?? kTitleFontSize,
                 fontWeight: FontWeight.bold,
               ),

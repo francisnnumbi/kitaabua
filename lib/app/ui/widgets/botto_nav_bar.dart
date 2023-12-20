@@ -4,7 +4,6 @@ import 'package:kitaabua/app/ui/pages/bookmarks/bookmarks_page.dart';
 import 'package:kitaabua/app/ui/pages/dictionary/dictionary_page.dart';
 import 'package:kitaabua/app/ui/pages/home/home_page.dart';
 
-import '../../../core/configs/colors.dart';
 import '../pages/settings/settings_page.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -27,12 +26,11 @@ class BottomNavBar extends StatelessWidget {
       default:
         cIndex = 1;
     }
-    ;
     return BottomNavigationBar(
-      backgroundColor: kDarkBackgroundColor,
-      selectedItemColor: kOnSecondaryColor,
+      //  backgroundColor: kDarkBackgroundColor,
+      //  selectedItemColor: kOnSecondaryColor,
       selectedFontSize: Theme.of(context).textTheme.headlineSmall!.fontSize!,
-      unselectedItemColor: kGreyColor,
+      // unselectedItemColor: kGreyColor,
       unselectedFontSize: Theme.of(context).textTheme.headlineSmall!.fontSize!,
       currentIndex: cIndex,
       onTap: (index) {

@@ -17,7 +17,6 @@ class DictionaryPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.fromLTRB(16, 40, 16, 0),
         child: Column(
@@ -29,7 +28,7 @@ class DictionaryPage extends StatelessWidget {
             ),
             const SizedBox(height: kSizeBoxM),
             ExpressionSearchView(),
-            const SizedBox(height: kSizeBoxS),
+            const SizedBox(height: kSizeBoxM),
             const Expanded(child: SearchedViews()),
           ],
         ),
