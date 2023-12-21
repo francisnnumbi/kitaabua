@@ -37,7 +37,6 @@ class DictionaryPage extends StatelessWidget {
       floatingActionButton: !DictionaryService.to.canManageDictionary()
           ? null
           : FloatingActionButton(
-              mini: true,
               // backgroundColor: kDarkBackgroundColor,
               // foregroundColor: kOnBackgroundColor,
               shape: RoundedRectangleBorder(
