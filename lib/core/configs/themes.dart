@@ -94,6 +94,9 @@ class Themes {
             buttonColor: Colors.grey.shade300,
             textTheme: ButtonTextTheme.primary,
           ),
+      floatingActionButtonTheme: Theme.of(context)
+          .floatingActionButtonTheme
+          .copyWith(backgroundColor: Colors.grey.shade300),
       bottomNavigationBarTheme:
           Theme.of(context).bottomNavigationBarTheme.copyWith(
                 backgroundColor: Colors.grey.shade300,
@@ -123,6 +126,11 @@ class Themes {
               color: Colors.grey.shade600,
             ),
           ),
+      floatingActionButtonTheme:
+          Theme.of(context).floatingActionButtonTheme.copyWith(
+                backgroundColor: Colors.grey.shade800,
+                foregroundColor: Colors.white,
+              ),
       bottomNavigationBarTheme:
           Theme.of(context).bottomNavigationBarTheme.copyWith(
                 backgroundColor: Colors.grey.shade800,
