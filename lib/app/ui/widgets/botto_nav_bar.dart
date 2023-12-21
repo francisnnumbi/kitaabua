@@ -33,6 +33,7 @@ class BottomNavBar extends StatelessWidget {
       // unselectedItemColor: kGreyColor,
       unselectedFontSize: Theme.of(context).textTheme.headlineSmall!.fontSize!,
       currentIndex: cIndex,
+      // type: BottomNavigationBarType.fixed,
       onTap: (index) {
         switch (index) {
           case 0:

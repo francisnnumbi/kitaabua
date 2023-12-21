@@ -137,9 +137,10 @@ class Themes {
           ),
       bottomNavigationBarTheme:
           Theme.of(context).bottomNavigationBarTheme.copyWith(
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.grey.shade300,
                 selectedItemColor: Colors.black,
-                unselectedItemColor: Colors.grey,
+                unselectedItemColor: Colors.black38,
+                type: BottomNavigationBarType.fixed,
               ),
     );
   }
@@ -165,9 +166,10 @@ class Themes {
           ),
       bottomNavigationBarTheme:
           Theme.of(context).bottomNavigationBarTheme.copyWith(
-                backgroundColor: Colors.grey.shade600,
+                backgroundColor: Colors.grey.shade800,
                 selectedItemColor: Colors.white,
                 unselectedItemColor: Colors.grey.shade700,
+                type: BottomNavigationBarType.fixed,
               ),
     );
   }
