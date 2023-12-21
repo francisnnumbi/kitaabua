@@ -4,7 +4,6 @@ import 'package:kitaabua/app/services/settings_service.dart';
 import 'package:kitaabua/generated/assets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../../core/configs/colors.dart';
 import '../../../../core/configs/sizes.dart';
 
 openLanguageSettingsDialog() {
@@ -18,10 +17,10 @@ openLanguageSettingsDialog() {
   Get.defaultDialog(
     title: "Language".tr,
     titleStyle: const TextStyle(
-      color: kOnBackgroundColor,
+      //   color: kOnBackgroundColor,
       fontSize: kTitleFontSize,
     ),
-    backgroundColor: kOnSurfaceColor,
+    // backgroundColor: kOnSurfaceColor,
     content: Column(
       children: [
         DropdownButtonFormField<Map<String, String>>(
@@ -32,19 +31,19 @@ openLanguageSettingsDialog() {
             SettingsService.to.setLocale(lang!);
           },
           style: const TextStyle(
-            color: kOnSurfaceColor,
+            //    color: kOnSurfaceColor,
             fontSize: kSearchFontSize,
           ),
           decoration: InputDecoration(
             labelText: 'Select Language'.tr,
             labelStyle: const TextStyle(
-              color: kOnBackgroundColor,
-            ),
+                //     color: kOnBackgroundColor,
+                ),
             hintStyle: const TextStyle(
-              color: kOnBackgroundColor,
-            ),
+                //    color: kOnBackgroundColor,
+                ),
             filled: true,
-            fillColor: kGreyColor,
+            //  fillColor: kGreyColor,
             focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.transparent),
               borderRadius: BorderRadius.all(
@@ -68,10 +67,10 @@ openAboutDialog() {
   Get.defaultDialog(
     title: "About".tr,
     titleStyle: const TextStyle(
-      color: kOnBackgroundColor,
+      //  color: kOnBackgroundColor,
       fontSize: kTitleFontSize,
     ),
-    backgroundColor: kOnSurfaceColor,
+    // backgroundColor: kOnSurfaceColor,
     contentPadding: const EdgeInsets.all(16),
     content: Column(
       children: [
@@ -91,7 +90,7 @@ openAboutDialog() {
                   "You can contribute to the project by reporting bugs, suggesting new features, translating the app to your language or by donating to the project."
               .tr,
           style: const TextStyle(
-            color: kOnBackgroundColor,
+            //    color: kOnBackgroundColor,
             fontSize: kSummaryFontSize,
           ),
           textAlign: TextAlign.center,
@@ -102,14 +101,14 @@ openAboutDialog() {
         Text(
           "${"Developed by".tr} :",
           style: const TextStyle(
-            color: kOnBackgroundColor,
+            //     color: kOnBackgroundColor,
             fontSize: kSummaryFontSize,
           ),
         ),
         const Text(
           "Francis Nduba Numbi",
           style: TextStyle(
-            color: kOnBackgroundColor,
+            //    color: kOnBackgroundColor,
             fontSize: kSearchFontSize,
           ),
         ),
@@ -119,7 +118,7 @@ openAboutDialog() {
         Text(
           "With love to Taabua Community".tr,
           style: const TextStyle(
-            color: kOnBackgroundColor,
+            //   color: kOnBackgroundColor,
             fontSize: kFooterFontSize,
           ),
         ),
@@ -134,7 +133,7 @@ openAboutDialog() {
           child: const Text(
             "SmirlTech sarl",
             style: TextStyle(
-              color: kAccentColor,
+              //    color: kAccentColor,
               fontSize: kFooterFontSize,
             ),
           ),

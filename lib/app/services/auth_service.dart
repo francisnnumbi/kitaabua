@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/database/api/auth.dart';
 
-import '../../core/configs/colors.dart';
 import '../../core/configs/sizes.dart';
 import '../ui/widgets/snack.dart';
 
@@ -40,16 +39,16 @@ class AuthService extends GetxService {
           TextField(
             controller: emailController,
             style: const TextStyle(
-              color: kOnBackgroundColor,
+              // color: kOnBackgroundColor,
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
               labelText: "Email".tr,
               labelStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  //      color: kGreyColor,
+                  ),
               filled: true,
-              fillColor: kBackgroundColor,
+              //    fillColor: kBackgroundColor,
               focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(
@@ -68,108 +67,16 @@ class AuthService extends GetxService {
           TextField(
             controller: passwordController,
             style: const TextStyle(
-              color: kOnBackgroundColor,
+              //    color: kOnBackgroundColor,
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
               labelText: "Password".tr,
               labelStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  //       color: kGreyColor,
+                  ),
               filled: true,
-              fillColor: kBackgroundColor,
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(kBorderRadiusS),
-                ),
-              ),
-              enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(kBorderRadiusS),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Get.back();
-          },
-          child: Text("Cancel".tr, style: const TextStyle(color: kGreyColor)),
-        ),
-        TextButton(
-          onPressed: () {
-            Auth()
-                .signInWithEmailAndPassword(
-              email: emailController.text,
-              password: passwordController.text,
-            )
-                .then((value) {
-              Get.back();
-              Snack.success("Login success".tr);
-            }).catchError((onError) {
-              Snack.error(onError.toString());
-            });
-            // Get.back();
-          },
-          child: Text("Login".tr, style: TextStyle(color: kBackgroundColor)),
-        ),
-      ],
-    );
-  }
-
-  void registerDialog() {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    Get.defaultDialog(
-      title: "Register".tr,
-      content: Column(
-        children: [
-          TextField(
-            controller: emailController,
-            style: const TextStyle(
-              color: kOnBackgroundColor,
-              fontSize: kSearchFontSize,
-            ),
-            decoration: InputDecoration(
-              labelText: "Email".tr,
-              labelStyle: const TextStyle(
-                color: kGreyColor,
-              ),
-              filled: true,
-              fillColor: kBackgroundColor,
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(kBorderRadiusS),
-                ),
-              ),
-              enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(kBorderRadiusS),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: kSizeBoxM),
-          TextField(
-            controller: passwordController,
-            style: const TextStyle(
-              color: kOnBackgroundColor,
-              fontSize: kSearchFontSize,
-            ),
-            decoration: InputDecoration(
-              labelText: "Password".tr,
-              labelStyle: const TextStyle(
-                color: kGreyColor,
-              ),
-              filled: true,
-              fillColor: kBackgroundColor,
+              //  fillColor: kBackgroundColor,
               focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(
@@ -193,7 +100,105 @@ class AuthService extends GetxService {
           },
           child: Text(
             "Cancel".tr,
-            style: const TextStyle(color: kGreyColor),
+            //     style: const TextStyle(color: kGreyColor),
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            Auth()
+                .signInWithEmailAndPassword(
+              email: emailController.text,
+              password: passwordController.text,
+            )
+                .then((value) {
+              Get.back();
+              Snack.success("Login success".tr);
+            }).catchError((onError) {
+              Snack.error(onError.toString());
+            });
+            // Get.back();
+          },
+          child: Text(
+            "Login".tr,
+            //         style: TextStyle(color: kBackgroundColor),
+          ),
+        ),
+      ],
+    );
+  }
+
+  void registerDialog() {
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
+    Get.defaultDialog(
+      title: "Register".tr,
+      content: Column(
+        children: [
+          TextField(
+            controller: emailController,
+            style: const TextStyle(
+              //   color: kOnBackgroundColor,
+              fontSize: kSearchFontSize,
+            ),
+            decoration: InputDecoration(
+              labelText: "Email".tr,
+              labelStyle: const TextStyle(
+                  //  color: kGreyColor,
+                  ),
+              filled: true,
+              //  fillColor: kBackgroundColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: kSizeBoxM),
+          TextField(
+            controller: passwordController,
+            style: const TextStyle(
+              //  color: kOnBackgroundColor,
+              fontSize: kSearchFontSize,
+            ),
+            decoration: InputDecoration(
+              labelText: "Password".tr,
+              labelStyle: const TextStyle(
+                  //    color: kGreyColor,
+                  ),
+              filled: true,
+              //   fillColor: kBackgroundColor,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.transparent),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(kBorderRadiusS),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Get.back();
+          },
+          child: Text(
+            "Cancel".tr,
+            //   style: const TextStyle(color: kGreyColor),
           ),
         ),
         TextButton(
@@ -211,7 +216,10 @@ class AuthService extends GetxService {
             });
             // Get.back();
           },
-          child: Text("Register".tr, style: TextStyle(color: kBackgroundColor)),
+          child: Text(
+            "Register".tr,
+            //       style: TextStyle(color: kBackgroundColor),
+          ),
         ),
       ],
     );

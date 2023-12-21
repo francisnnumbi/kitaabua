@@ -3,7 +3,6 @@ import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/database/models/meaning.dart';
 
-import '../../../core/configs/colors.dart';
 import '../../../core/configs/sizes.dart';
 
 class MeaningCard extends StatelessWidget {
@@ -35,7 +34,7 @@ class MeaningCard extends StatelessWidget {
               text: TextSpan(
                 text: meaning.meaning,
                 style: const TextStyle(
-                  color: kOnBackgroundColor,
+                  // color: kOnBackgroundColor,
                   fontWeight: FontWeight.bold,
                   fontSize: kHeadingFontSize,
                   height: 1.5,
@@ -44,7 +43,7 @@ class MeaningCard extends StatelessWidget {
                   const TextSpan(
                     text: " ( ",
                     style: TextStyle(
-                      color: kOnBackgroundColor,
+                      //   color: kOnBackgroundColor,
                       fontWeight: FontWeight.normal,
                       fontSize: kSubHeadingFontSize,
                       height: 1.5,
@@ -53,7 +52,7 @@ class MeaningCard extends StatelessWidget {
                   TextSpan(
                     text: meaning.grammar,
                     style: const TextStyle(
-                      color: kOnBackgroundColor,
+                      //   color: kOnBackgroundColor,
                       fontWeight: FontWeight.normal,
                       fontSize: kSubHeadingFontSize,
                       height: 1.5,
@@ -62,7 +61,7 @@ class MeaningCard extends StatelessWidget {
                   const TextSpan(
                     text: " ) ",
                     style: TextStyle(
-                      color: kOnBackgroundColor,
+                      //   color: kOnBackgroundColor,
                       fontWeight: FontWeight.normal,
                       fontSize: kSubHeadingFontSize,
                       height: 1.5,
@@ -82,7 +81,7 @@ class MeaningCard extends StatelessWidget {
               },
               icon: const Icon(
                 Icons.edit,
-                color: kOnBackgroundColor,
+                // color: kOnBackgroundColor,
               ),
             ),
         ],
@@ -97,7 +96,7 @@ class MeaningCard extends StatelessWidget {
             Text(
               meaning.example!,
               style: const TextStyle(
-                color: kGreyColor,
+                //    color: kGreyColor,
                 fontSize: kFooterFontSize,
                 fontStyle: FontStyle.italic,
                 height: 1.5,
@@ -106,7 +105,7 @@ class MeaningCard extends StatelessWidget {
             Text(
               meaning.exampleTranslation!,
               style: const TextStyle(
-                color: kAccentDarkColor,
+                //   color: kAccentDarkColor,
                 fontSize: kFooterFontSize,
                 fontStyle: FontStyle.italic,
                 height: 1.5,

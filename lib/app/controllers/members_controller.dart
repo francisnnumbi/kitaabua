@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:kitaabua/database/models/member.dart';
 import 'package:kitaabua/main.dart';
 
-import '../../core/configs/colors.dart';
 import '../../core/configs/sizes.dart';
 import '../../database/api/auth.dart';
 import '../../database/api/firebase_api.dart';
@@ -69,20 +68,20 @@ class MembersController extends GetxController {
           TextField(
             controller: nameController,
             style: const TextStyle(
-              color: kOnBackgroundColor,
+              //  color: kOnBackgroundColor,
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
               labelText: 'Name'.tr,
               hintText: 'Enter name'.tr,
               labelStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  //   color: kGreyColor,
+                  ),
               hintStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  //   color: kGreyColor,
+                  ),
               filled: true,
-              fillColor: kBackgroundColor,
+              //  fillColor: kBackgroundColor,
               focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(
@@ -101,20 +100,20 @@ class MembersController extends GetxController {
           TextField(
             controller: emailController,
             style: const TextStyle(
-              color: kOnBackgroundColor,
+              //   color: kOnBackgroundColor,
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
               labelText: 'Email'.tr,
               hintText: 'Enter email'.tr,
               labelStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  //   color: kGreyColor,
+                  ),
               hintStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  // color: kGreyColor,
+                  ),
               filled: true,
-              fillColor: kBackgroundColor,
+              // fillColor: kBackgroundColor,
               focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(
@@ -133,20 +132,20 @@ class MembersController extends GetxController {
           TextField(
             controller: passwordController,
             style: const TextStyle(
-              color: kOnBackgroundColor,
+              // color: kOnBackgroundColor,
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
               labelText: 'Password'.tr,
               hintText: 'Enter password'.tr,
               labelStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  // color: kGreyColor,
+                  ),
               hintStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  // color: kGreyColor,
+                  ),
               filled: true,
-              fillColor: kBackgroundColor,
+              // fillColor: kBackgroundColor,
               focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(
@@ -170,7 +169,7 @@ class MembersController extends GetxController {
           },
           child: Text(
             'Cancel'.tr,
-            style: const TextStyle(color: kGreyColor),
+            // style: const TextStyle(color: kGreyColor),
           ),
         ),
         TextButton(
@@ -183,7 +182,7 @@ class MembersController extends GetxController {
           },
           child: Text(
             'Add'.tr,
-            style: TextStyle(color: kBackgroundColor),
+            // style: TextStyle(color: kBackgroundColor),
           ),
         ),
       ],
@@ -200,20 +199,20 @@ class MembersController extends GetxController {
           TextField(
             controller: emailController,
             style: const TextStyle(
-              color: kOnBackgroundColor,
+              // color: kOnBackgroundColor,
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
               labelText: 'Email'.tr,
               hintText: 'Enter email'.tr,
               labelStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  // color: kGreyColor,
+                  ),
               hintStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  // color: kGreyColor,
+                  ),
               filled: true,
-              fillColor: kBackgroundColor,
+              // fillColor: kBackgroundColor,
               focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(
@@ -232,20 +231,20 @@ class MembersController extends GetxController {
           TextField(
             controller: passwordController,
             style: const TextStyle(
-              color: kOnBackgroundColor,
+              // color: kOnBackgroundColor,
               fontSize: kSearchFontSize,
             ),
             decoration: InputDecoration(
               labelText: 'Password'.tr,
               hintText: 'Enter password'.tr,
               labelStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  // color: kGreyColor,
+                  ),
               hintStyle: const TextStyle(
-                color: kGreyColor,
-              ),
+                  // color: kGreyColor,
+                  ),
               filled: true,
-              fillColor: kBackgroundColor,
+              // fillColor: kBackgroundColor,
               focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.transparent),
                 borderRadius: BorderRadius.all(
@@ -267,7 +266,10 @@ class MembersController extends GetxController {
           onPressed: () {
             Get.back();
           },
-          child: Text('Cancel'.tr, style: const TextStyle(color: kGreyColor)),
+          child: Text(
+            'Cancel'.tr,
+            // style: const TextStyle(color: kGreyColor),
+          ),
         ),
         TextButton(
           onPressed: () {
@@ -289,7 +291,10 @@ class MembersController extends GetxController {
               Snack.error('Guest not found'.tr);
             }
           },
-          child: Text('Login'.tr, style: TextStyle(color: kBackgroundColor)),
+          child: Text(
+            'Login'.tr,
+            // style: TextStyle(color: kBackgroundColor),
+          ),
         ),
       ],
     );

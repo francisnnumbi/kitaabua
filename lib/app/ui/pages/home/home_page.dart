@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/widgets/expression_search_view.dart';
 import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
-import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
 import '../../widgets/app_bar_header.dart';
@@ -44,8 +43,8 @@ class HomePage extends StatelessWidget {
           ? null
           : FloatingActionButton(
               mini: true,
-              backgroundColor: kDarkBackgroundColor,
-              foregroundColor: kOnBackgroundColor,
+              //   backgroundColor: kDarkBackgroundColor,
+              // foregroundColor: kOnBackgroundColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(kBorderRadius),
               ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/pages/dictionary/dictionary_page.dart';
-import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 import 'package:kitaabua/core/configs/utils.dart';
 
@@ -38,8 +37,8 @@ class ExpressionSearchView extends StatelessWidget {
         ),
         hintText: '${'Search expression'.tr}...',
         hintStyle: const TextStyle(
-          color: kGreyColor,
-        ),
+            //color: kGreyColor,
+            ),
         prefixIcon: const Icon(
           Icons.search,
           // color: kGreyColor,
@@ -55,7 +54,7 @@ class ExpressionSearchView extends StatelessWidget {
             icon: DictionaryService.to.searchQuery.isEmpty
                 ? const SizedBox()
                 : const Icon(Icons.close),
-            color: kGreyColor,
+            //  color: kGreyColor,
             iconSize: 20,
           );
         }),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/configs/colors.dart';
 import '../../../core/configs/constants.dart';
 import '../../../core/configs/sizes.dart';
 
@@ -32,14 +31,14 @@ class SubtitleBlock extends StatelessWidget {
             ),
             child: Icon(
               icon,
-              color: kOnBackgroundColor,
+              color: Theme.of(context).colorScheme.background,
             ),
           ),
         if (icon != null) const SizedBox(width: kSizeBoxS),
         Text(
           title ?? kAppName,
           style: TextStyle(
-            color: kOnBackgroundColor,
+            color: Theme.of(context).colorScheme.background,
             fontSize: titleFontSize ??
                 Theme.of(context).textTheme.titleMedium!.fontSize,
             fontWeight: FontWeight.bold,
@@ -49,7 +48,7 @@ class SubtitleBlock extends StatelessWidget {
         Expanded(
           child: Container(
             height: 2,
-            color: kOnBackgroundColor,
+            color: Theme.of(context).colorScheme.background,
           ),
         ),
       ],

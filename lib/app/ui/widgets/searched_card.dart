@@ -4,7 +4,6 @@ import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
-import '../../../core/configs/colors.dart';
 import '../../../core/configs/sizes.dart';
 
 class SearchedCard extends StatelessWidget {
@@ -38,7 +37,9 @@ class SearchedCard extends StatelessWidget {
               },
               icon: Icon(
                 Icons.bookmark_add,
-                color: expression.isBookmarked! ? kSuccessColor : kGreyColor,
+                color: expression.isBookmarked!
+                    ? Theme.of(context).colorScheme.error
+                    : Theme.of(context).colorScheme.primary,
               ),
             ),
     );

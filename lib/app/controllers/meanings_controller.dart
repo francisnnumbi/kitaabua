@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/widgets/snack.dart';
-import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/database/api/firebase_api.dart';
 
 import '../../core/configs/sizes.dart';
@@ -57,7 +56,7 @@ class MeaningsController extends GetxController {
             TextFormField(
               controller: meaningController,
               style: const TextStyle(
-                color: kOnBackgroundColor,
+                // color: kOnBackgroundColor,
                 fontSize: kSearchFontSize,
               ),
               validator: (va) {
@@ -69,13 +68,13 @@ class MeaningsController extends GetxController {
               decoration: InputDecoration(
                 labelText: 'Meaning'.tr,
                 labelStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 hintStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 filled: true,
-                fillColor: kBackgroundColor,
+                // fillColor: kBackgroundColor,
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.all(
@@ -93,20 +92,20 @@ class MeaningsController extends GetxController {
             const SizedBox(height: kSizeBoxS),
             TextFormField(
               style: const TextStyle(
-                color: kOnBackgroundColor,
+                // color: kOnBackgroundColor,
                 fontSize: kSearchFontSize,
               ),
               controller: exampleController,
               decoration: InputDecoration(
                 labelText: 'Example'.tr,
                 labelStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 hintStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 filled: true,
-                fillColor: kBackgroundColor,
+                // fillColor: kBackgroundColor,
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.all(
@@ -125,19 +124,19 @@ class MeaningsController extends GetxController {
             TextFormField(
               controller: exampleTranslationController,
               style: const TextStyle(
-                color: kOnBackgroundColor,
+                // color: kOnBackgroundColor,
                 fontSize: kSearchFontSize,
               ),
               decoration: InputDecoration(
                 labelText: 'Example Translation'.tr,
                 labelStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 hintStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 filled: true,
-                fillColor: kBackgroundColor,
+                // fillColor: kBackgroundColor,
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.all(
@@ -206,7 +205,7 @@ class MeaningsController extends GetxController {
             TextFormField(
               controller: meaningController,
               style: const TextStyle(
-                color: kOnBackgroundColor,
+                // color: kOnBackgroundColor,
                 fontSize: kSearchFontSize,
               ),
               validator: (va) {
@@ -218,13 +217,13 @@ class MeaningsController extends GetxController {
               decoration: InputDecoration(
                 labelText: 'Meaning'.tr,
                 labelStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 hintStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 filled: true,
-                fillColor: kBackgroundColor,
+                // fillColor: kBackgroundColor,
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.all(
@@ -243,19 +242,19 @@ class MeaningsController extends GetxController {
             TextFormField(
               controller: exampleController,
               style: const TextStyle(
-                color: kOnBackgroundColor,
+                // color: kOnBackgroundColor,
                 fontSize: kSearchFontSize,
               ),
               decoration: InputDecoration(
                 labelText: 'Example'.tr,
                 labelStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 hintStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 filled: true,
-                fillColor: kBackgroundColor,
+                // fillColor: kBackgroundColor,
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.all(
@@ -274,19 +273,19 @@ class MeaningsController extends GetxController {
             TextFormField(
               controller: exampleTranslationController,
               style: const TextStyle(
-                color: kOnBackgroundColor,
+                // color: kOnBackgroundColor,
                 fontSize: kSearchFontSize,
               ),
               decoration: InputDecoration(
                 labelText: 'Example Translation'.tr,
                 labelStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 hintStyle: const TextStyle(
-                  color: kGreyColor,
-                ),
+                    // color: kGreyColor,
+                    ),
                 filled: true,
-                fillColor: kBackgroundColor,
+                // fillColor: kBackgroundColor,
                 focusedBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.transparent),
                   borderRadius: BorderRadius.all(
@@ -318,8 +317,10 @@ class MeaningsController extends GetxController {
                     Get.back();
                     Snack.success('Meaning deleted successfully'.tr);
                   },
-                  child: Text('Delete'.tr,
-                      style: const TextStyle(color: kErrorColor)),
+                  child: Text(
+                    'Delete'.tr,
+                    // style: const TextStyle(color: kErrorColor),
+                  ),
                 ),
                 TextButton(
                   onPressed: () {
@@ -330,7 +331,10 @@ class MeaningsController extends GetxController {
               ],
             );
           },
-          child: Text('Delete'.tr, style: const TextStyle(color: kErrorColor)),
+          child: Text(
+            'Delete'.tr,
+            // style: const TextStyle(color: kErrorColor),
+          ),
         ),
         TextButton(
           onPressed: () {

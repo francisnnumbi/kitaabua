@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kitaabua/database/models/bookmark.dart';
 
-import '../../../core/configs/colors.dart';
 import '../../../core/configs/sizes.dart';
 import '../../controllers/bookmarks_controller.dart';
 import '../../controllers/members_controller.dart';
@@ -32,7 +31,8 @@ class BookmarkedCard extends StatelessWidget {
                 BookmarksController.to
                     .toggleBookmark(expression: bookmark.expression!);
               },
-              icon: const Icon(Icons.bookmark_add, color: kSuccessColor),
+              icon: Icon(Icons.bookmark_add,
+                  color: Theme.of(context).colorScheme.error),
             ),
     );
   }

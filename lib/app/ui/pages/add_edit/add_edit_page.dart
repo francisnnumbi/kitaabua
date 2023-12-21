@@ -5,7 +5,6 @@ import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
 import 'package:kitaabua/core/configs/utils.dart';
 
-import '../../../../core/configs/colors.dart';
 import '../../../../core/configs/sizes.dart';
 import '../../../../database/models/meaning.dart';
 import '../../../services/dictionary_service.dart';
@@ -74,7 +73,7 @@ class AddEditPage extends StatelessWidget {
                           readOnly: !DictionaryService.to.canManageDictionary(),
 
                           maxLines: 2,
-                          cursorColor: kOnBackgroundColor,
+                          //   cursorColor: kOnBackgroundColor,
                           decoration: InputDecoration(
                             hintText: 'Enter expression'.tr,
                             labelText: 'Expression'.tr,
@@ -123,13 +122,13 @@ class AddEditPage extends StatelessWidget {
                                             expression: e, off: true);
                                       },
                                       child: Badge(
-                                        backgroundColor: kSurfaceColor,
+                                        //     backgroundColor: kSurfaceColor,
                                         //isLabelVisible: false,
                                         label: Text(
                                           e.word,
                                           style: const TextStyle(
-                                            color: kOnSurfaceColor,
-                                          ),
+                                              //      color: kOnSurfaceColor,
+                                              ),
                                         ),
                                       ),
                                     ),
@@ -180,8 +179,8 @@ class AddEditPage extends StatelessWidget {
             : FloatingActionButton(
                 mini: true,
                 tooltip: "Add Meaning".tr,
-                backgroundColor: kDarkBackgroundColor,
-                foregroundColor: kOnBackgroundColor,
+                //  backgroundColor: kDarkBackgroundColor,
+                //  foregroundColor: kOnBackgroundColor,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(kBorderRadius),
                 ),

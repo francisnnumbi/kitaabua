@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/widgets/expression_search_view.dart';
 import 'package:kitaabua/app/ui/widgets/searched_views.dart';
-import 'package:kitaabua/core/configs/colors.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
 import '../../widgets/botto_nav_bar.dart';
@@ -39,8 +38,8 @@ class DictionaryPage extends StatelessWidget {
           ? null
           : FloatingActionButton(
               mini: true,
-              backgroundColor: kDarkBackgroundColor,
-              foregroundColor: kOnBackgroundColor,
+              // backgroundColor: kDarkBackgroundColor,
+              // foregroundColor: kOnBackgroundColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(kBorderRadius),
               ),

@@ -1,7 +1,5 @@
 import 'package:get/get.dart';
 
-import '../../../core/configs/colors.dart';
-
 class Snack {
   static void success(
     String message, {
@@ -10,8 +8,8 @@ class Snack {
     Get.snackbar(
       "Success".tr,
       message,
-      backgroundColor: kSuccessColor,
-      colorText: kOnSuccessColor,
+      // backgroundColor: kSuccessColor,
+      // colorText: kOnSuccessColor,
       snackPosition: snackPosition,
     );
   }
@@ -23,8 +21,8 @@ class Snack {
     Get.snackbar(
       "Error".tr,
       message,
-      backgroundColor: kErrorColor,
-      colorText: kOnErrorColor,
+      // backgroundColor: kErrorColor,
+      // colorText: kOnErrorColor,
       snackPosition: snackPosition,
     );
   }
