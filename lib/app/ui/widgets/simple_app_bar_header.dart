@@ -30,7 +30,7 @@ class SimpleAppBarHeader extends StatelessWidget {
               ),
               child: Icon(
                 icon ?? Icons.menu,
-                // color: kOnBackgroundColor,
+                color: Theme.of(context).colorScheme.onBackground,
               ),
             ),
             const SizedBox(width: kSizeBoxM),

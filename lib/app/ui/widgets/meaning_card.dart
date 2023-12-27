@@ -33,10 +33,10 @@ class MeaningCard extends StatelessWidget {
               softWrap: true,
               text: TextSpan(
                 text: meaning.meaning,
-                style: const TextStyle(
-                  // color: Theme.of(context).colorScheme.primary,
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onBackground,
                   fontWeight: FontWeight.bold,
-                  fontSize: kHeadingFontSize,
+                  // fontSize: kHeadingFontSize,
                   height: 1.5,
                 ),
                 children: <TextSpan>[
@@ -45,7 +45,7 @@ class MeaningCard extends StatelessWidget {
                     style: TextStyle(
                       //   color: kOnBackgroundColor,
                       fontWeight: FontWeight.normal,
-                      fontSize: kSubHeadingFontSize,
+                      //  fontSize: kSubHeadingFontSize,
                       height: 1.5,
                     ),
                   ),
@@ -54,7 +54,7 @@ class MeaningCard extends StatelessWidget {
                     style: const TextStyle(
                       //   color: kOnBackgroundColor,
                       fontWeight: FontWeight.normal,
-                      fontSize: kSubHeadingFontSize,
+                      //  fontSize: kSubHeadingFontSize,
                       height: 1.5,
                     ),
                   ),
@@ -63,7 +63,7 @@ class MeaningCard extends StatelessWidget {
                     style: TextStyle(
                       //   color: kOnBackgroundColor,
                       fontWeight: FontWeight.normal,
-                      fontSize: kSubHeadingFontSize,
+                      // fontSize: kSubHeadingFontSize,
                       height: 1.5,
                     ),
                   ),
@@ -95,18 +95,18 @@ class MeaningCard extends StatelessWidget {
           children: [
             Text(
               meaning.example!,
-              style: const TextStyle(
-                //    color: kGreyColor,
-                fontSize: kFooterFontSize,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.secondary,
+                //  fontSize: kFooterFontSize,
                 fontStyle: FontStyle.italic,
                 height: 1.5,
               ),
             ),
             Text(
               meaning.exampleTranslation!,
-              style: const TextStyle(
-                //   color: kAccentDarkColor,
-                fontSize: kFooterFontSize,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.error,
+                //  fontSize: kFooterFontSize,
                 fontStyle: FontStyle.italic,
                 height: 1.5,
               ),

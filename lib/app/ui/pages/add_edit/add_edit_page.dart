@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/meanings_controller.dart';
-import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
 import 'package:kitaabua/core/configs/utils.dart';
 
@@ -84,13 +83,19 @@ class AddEditPage extends StatelessWidget {
                           readOnly: !DictionaryService.to.canManageDictionary(),
 
                           maxLines: 2,
-                          //   cursorColor: kOnBackgroundColor,
+
                           decoration: InputDecoration(
                             hintText: 'Enter expression'.tr,
                             labelText: 'Expression'.tr,
                             alignLabelWithHint: true,
                             filled: true,
-                            // fillColor: kDarkBackgroundColor,
+                            fillColor: Theme.of(context)
+                                .colorScheme
+                                .onBackground
+                                .withOpacity(0.1),
+                            floatingLabelStyle: TextStyle(
+                                color:
+                                    Theme.of(context).colorScheme.onBackground),
                             focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.transparent),
                               borderRadius: BorderRadius.all(
@@ -108,9 +113,9 @@ class AddEditPage extends StatelessWidget {
                           textAlignVertical: TextAlignVertical.top,
                         );
                       }),
-                      if (MembersController.to.isLoggedIn)
+                      if (DictionaryService.to.canManageDictionary())
                         const SizedBox(height: kSizeBoxS),
-                      if (MembersController.to.isLoggedIn)
+                      if (DictionaryService.to.canManageDictionary())
                         SubtitleBlock(
                           title: "Similar Words".tr,
                           titleFontSize: kSummaryFontSize,
@@ -190,8 +195,8 @@ class AddEditPage extends StatelessWidget {
             : FloatingActionButton(
                 mini: true,
                 tooltip: "Add Meaning".tr,
-                //  backgroundColor: kDarkBackgroundColor,
-                //  foregroundColor: kOnBackgroundColor,
+                backgroundColor: Theme.of(context).colorScheme.onBackground,
+                foregroundColor: Theme.of(context).colorScheme.background,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(kBorderRadius),
                 ),

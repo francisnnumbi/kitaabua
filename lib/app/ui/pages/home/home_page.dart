@@ -41,7 +41,6 @@ class HomePage extends StatelessWidget {
               SubtitleBlock(
                 icon: Icons.history,
                 title: "Recent".tr,
-                // titleFontSize: kHeadingFontSize,
               ),
               const Expanded(child: RecentViews()),
             ],
@@ -51,8 +50,8 @@ class HomePage extends StatelessWidget {
       floatingActionButton: !DictionaryService.to.canManageDictionary()
           ? null
           : FloatingActionButton(
-              //   backgroundColor: kDarkBackgroundColor,
-              // foregroundColor: kOnBackgroundColor,
+              backgroundColor: Theme.of(context).colorScheme.onBackground,
+              foregroundColor: Theme.of(context).colorScheme.background,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(kBorderRadius),
               ),

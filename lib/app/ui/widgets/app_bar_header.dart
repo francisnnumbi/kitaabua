@@ -74,7 +74,7 @@ class AppBarHeader extends StatelessWidget {
               ),
               child: Icon(
                 icon ?? Icons.swap_horiz,
-                // color: kOnBackgroundColor,
+                color: Theme.of(context).colorScheme.onBackground,
               ),
             ),
           ),

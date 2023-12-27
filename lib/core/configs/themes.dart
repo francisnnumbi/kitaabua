@@ -6,10 +6,11 @@ import '../../main.dart';
 
 class _Colors {
   static const lightColors = {
-    'primary': Color(0xFF6200EE),
+    'primary': Colors.black,
     'primaryVariant': Color(0xFF3700B3),
-    'secondary': Color(0xFF03DAC6),
-    'secondaryVariant': Color(0xFF018786),
+    'secondary': Colors.teal,
+    // 'secondary': Color(0xFF03DAC6),
+    'secondaryVariant': Color(0xFF3700B3),
     'surface': Color(0xFFFFFFFF),
     'background': Color(0xFFEDEDED),
     'error': Color(0xFFB00020),
@@ -21,10 +22,10 @@ class _Colors {
     'tertiary': Color(0xFFEDEDED),
   };
   static const darkColors = {
-    'primary': Color(0xFF6200EE),
+    'primary': Colors.white,
     'primaryVariant': Color(0xFF3700B3),
-    'secondary': Color(0xFF03DAC6),
-    'secondaryVariant': Color(0xFF018786),
+    'secondary': Colors.teal,
+    'secondaryVariant': Color(0xFF3700B3),
     'surface': Color(0xFF121212),
     'background': Color(0xFF121212),
     'error': Color(0xFFCF6679),
