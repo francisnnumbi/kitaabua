@@ -92,8 +92,8 @@ class AudioController extends GetxController {
             expression.id, recordPath.value);
         expression.audioPath = downloadPath;
         await FirebaseApi.updateExpression(expression);
-        recordPath.value = '';
         await File(recordPath.value).delete();
+        recordPath.value = '';
         Get.back();
         Snack.success('Audio saved successfully'.tr);
       } else {
@@ -102,6 +102,19 @@ class AudioController extends GetxController {
     } catch (e) {
       Snack.error('Audio save failed'.tr);
       if (kDebugMode) print('Error Clear Record $e');
+    }
+  }
+
+  Future<void> playExpressionAudio(Expression expression) async {
+    try {
+      if (expression.hasAudio()) {
+        Source? source = UrlSource(expression.audioPath!);
+        await audioPlayer.play(source);
+        isPlaying.value = true;
+      }
+    } catch (e) {
+      isPlaying.value = false;
+      if (kDebugMode) print('Error Play Recording $e');
     }
   }
 

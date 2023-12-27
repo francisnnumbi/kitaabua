@@ -116,9 +116,27 @@ class AddEditPage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const IconButton(
-                              onPressed: null,
-                              icon: Icon(Icons.record_voice_over)),
+                          Obx(() {
+                            return IconButton(
+                              onPressed: DictionaryService
+                                              .to.expression.value !=
+                                          null &&
+                                      !DictionaryService.to.expression.value!
+                                          .hasAudio()
+                                  ? null
+                                  : () {
+                                      AudioController.to.playExpressionAudio(
+                                          DictionaryService
+                                              .to.expression.value!);
+                                    },
+                              icon: Icon(
+                                Icons.record_voice_over,
+                                color: AudioController.to.isPlaying.value
+                                    ? Theme.of(context).colorScheme.error
+                                    : null,
+                              ),
+                            );
+                          }),
                           if (DictionaryService.to.canManageDictionary())
                             IconButton(
                                 onPressed: () {
