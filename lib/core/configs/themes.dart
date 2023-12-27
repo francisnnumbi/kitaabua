@@ -1,10 +1,180 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../main.dart';
+
+class _Colors {
+  static const lightColors = {
+    'primary': Color(0xFF6200EE),
+    'primaryVariant': Color(0xFF3700B3),
+    'secondary': Color(0xFF03DAC6),
+    'secondaryVariant': Color(0xFF018786),
+    'surface': Color(0xFFFFFFFF),
+    'background': Color(0xFFEDEDED),
+    'error': Color(0xFFB00020),
+    'onPrimary': Color(0xFFFFFFFF),
+    'onSecondary': Color(0xFF000000),
+    'onSurface': Color(0xFF000000),
+    'onBackground': Color(0xFF000000),
+    'onError': Color(0xFFFFFFFF),
+    'tertiary': Color(0xFFEDEDED),
+  };
+  static const darkColors = {
+    'primary': Color(0xFF6200EE),
+    'primaryVariant': Color(0xFF3700B3),
+    'secondary': Color(0xFF03DAC6),
+    'secondaryVariant': Color(0xFF018786),
+    'surface': Color(0xFF121212),
+    'background': Color(0xFF121212),
+    'error': Color(0xFFCF6679),
+    'onPrimary': Color(0xFFFFFFFF),
+    'onSecondary': Color(0xFF000000),
+    'onSurface': Color(0xFFFFFFFF),
+    'onBackground': Color(0xFFFFFFFF),
+    'onError': Color(0xFF000000),
+    'tertiary': Color(0xFF121212),
+  };
+}
+
+class _ColorScheme extends ColorScheme {
+  const _ColorScheme({
+    required this.primary,
+    required this.primaryVariant,
+    required this.secondary,
+    required this.secondaryVariant,
+    required this.surface,
+    required this.background,
+    required this.error,
+    required this.onPrimary,
+    required this.onSecondary,
+    required this.onSurface,
+    required this.onBackground,
+    required this.onError,
+    required this.brightness,
+    this.tertiary = Colors.grey,
+  }) : super(
+          brightness: brightness,
+          primary: primary,
+          onPrimary: onPrimary,
+          secondary: secondary,
+          surface: surface,
+          background: background,
+          error: error,
+          onSecondary: onSecondary,
+          onSurface: onSurface,
+          onBackground: onBackground,
+          onError: onError,
+          tertiary: tertiary,
+        );
+
+  final Color primary;
+  final Color primaryVariant;
+  final Color secondary;
+  final Color secondaryVariant;
+  final Color tertiary;
+  final Color surface;
+  final Color background;
+  final Color error;
+  final Color onPrimary;
+  final Color onSecondary;
+  final Color onSurface;
+  final Color onBackground;
+  final Color onError;
+  final Brightness brightness;
+
+  static _ColorScheme fromSeed({
+    required Color seedColor,
+    bool dark = false,
+  }) {
+    return _ColorScheme(
+      primary: seedColor,
+      primaryVariant: seedColor,
+      secondary: seedColor,
+      secondaryVariant: seedColor,
+      surface: seedColor,
+      background: seedColor,
+      error: seedColor,
+      onPrimary: seedColor,
+      onSecondary: seedColor,
+      onSurface: seedColor,
+      onBackground: seedColor,
+      onError: seedColor,
+      tertiary: seedColor,
+      brightness: dark ? Brightness.light : Brightness.dark,
+    );
+  }
+
+  static _ColorScheme fromColors(
+    Map<String, Color> colors, {
+    required Brightness brightness,
+  }
+      /*{
+    required Color primary,
+    required Color primaryVariant,
+    required Color secondary,
+    required Color secondaryVariant,
+    required Color tertiary,
+    required Color surface,
+    required Color background,
+    required Color error,
+    required Color onPrimary,
+    required Color onSecondary,
+    required Color onSurface,
+    required Color onBackground,
+    required Color onError,
+    required Brightness brightness,
+  }*/
+      ) {
+    return _ColorScheme(
+      primary: colors['primary']!,
+      primaryVariant: colors['primaryVariant']!,
+      secondary: colors['secondary']!,
+      secondaryVariant: colors['secondaryVariant']!,
+      tertiary: colors['tertiary']!,
+      surface: colors['surface']!,
+      background: colors['background']!,
+      error: colors['error']!,
+      onPrimary: colors['onPrimary']!,
+      onSecondary: colors['onSecondary']!,
+      onSurface: colors['onSurface']!,
+      onBackground: colors['onBackground']!,
+      onError: colors['onError']!,
+      brightness: brightness,
+    );
+  }
+}
 
 class Themes {
   static const String LIGHT = 'light';
   static const String DARK = 'dark';
   static const String SYSTEM = 'system';
+
+  static get isDark => {
+        Themes.LIGHT: false,
+        Themes.DARK: true,
+        Themes.SYSTEM: Get.isPlatformDarkMode,
+      }[InnerStorage.read('themeMode') ?? Themes.LIGHT]!;
+
+/*  static _ColorScheme colorScheme = isDark
+      ? _ColorScheme.fromSeed(seedColor: Colors.black)
+      : _ColorScheme.fromSeed(seedColor: Colors.white);*/
+
+  /*_ColorScheme.fr(
+    primary: isDark ? Colors.white : const Color(0xFF6200EE),
+    primaryVariant: isDark ? Colors.white : const Color(0xFF3700B3),
+    secondary: isDark ? Colors.white : const Color(0xFF03DAC6),
+    secondaryVariant: isDark ? Colors.white : const Color(0xFF018786),
+    surface: isDark ? Colors.white : const Color(0xFFFFFFFF),
+    background: isDark ? Colors.white : const Color(0xFFEDEDED),
+    error: isDark ? Colors.white : const Color(0xFFB00020),
+    onPrimary: isDark ? Colors.white : const Color(0xFFFFFFFF),
+    onSecondary: isDark ? Colors.white : const Color(0xFF000000),
+    onSurface: isDark ? Colors.white : const Color(0xFF000000),
+    onBackground: isDark ? Colors.white : const Color(0xFF000000),
+    onError: isDark ? Colors.white : const Color(0xFFFFFFFF),
+    brightness: isDark ? Brightness.dark : Brightness.light,
+  );*/
 
   ///@param {double} seed - A smallest value to be used for generating different font sizes. if not provided, default value is 8.
   ///
@@ -79,7 +249,8 @@ class Themes {
     BuildContext context,
   ) {
     return ThemeData.light().copyWith(
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+      colorScheme: _ColorScheme.fromColors(_Colors.lightColors,
+          brightness: Brightness.light),
       textTheme: GoogleFonts.tekoTextTheme(
         Themes.customTextTheme(context, seed: 8, color: Colors.black),
       ),
@@ -111,7 +282,8 @@ class Themes {
     BuildContext context,
   ) {
     return ThemeData.dark().copyWith(
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
+      colorScheme: _ColorScheme.fromColors(_Colors.darkColors,
+          brightness: Brightness.dark),
       textTheme: GoogleFonts.tekoTextTheme(
         Themes.customTextTheme(context, seed: 8, color: Colors.white),
       ),

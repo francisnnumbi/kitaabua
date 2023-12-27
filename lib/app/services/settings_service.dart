@@ -13,11 +13,11 @@ class SettingsService extends GetxService {
 
   get isDark2 => InnerStorage.read('themeMode') == Themes.DARK;
 
-  get isDark => {
+/*  get isDark => {
         Themes.LIGHT: false,
         Themes.DARK: true,
         Themes.SYSTEM: Get.isPlatformDarkMode,
-      }[InnerStorage.read('themeMode') ?? Themes.LIGHT]!;
+      }[InnerStorage.read('themeMode') ?? Themes.LIGHT]!;*/
 
   static Future<void> init() async {
     await Get.putAsync<SettingsService>(() async => SettingsService());

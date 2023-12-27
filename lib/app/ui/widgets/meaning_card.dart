@@ -1,8 +1,6 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
-import 'package:kitaabua/app/services/settings_service.dart';
 import 'package:kitaabua/database/models/meaning.dart';
 
 import '../../../core/configs/sizes.dart';
@@ -19,10 +17,6 @@ class MeaningCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = SettingsService.to.isDark;
-    if (kDebugMode) {
-      //   print("isDark: $isDark");
-    }
     return ListTile(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -39,8 +33,8 @@ class MeaningCard extends StatelessWidget {
               softWrap: true,
               text: TextSpan(
                 text: meaning.meaning,
-                style: TextStyle(
-                  color: isDark ? Colors.red : Colors.black,
+                style: const TextStyle(
+                  // color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.bold,
                   fontSize: kHeadingFontSize,
                   height: 1.5,

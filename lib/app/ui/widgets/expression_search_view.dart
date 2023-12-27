@@ -28,7 +28,7 @@ class ExpressionSearchView extends StatelessWidget {
         Utils.hideKeyboard(context);
       },
       style: TextStyle(
-        color: Colors.black38,
+        // color: Colors.black38,
         fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
       ),
       decoration: InputDecoration(
@@ -37,8 +37,8 @@ class ExpressionSearchView extends StatelessWidget {
         ),
         hintText: '${'Search expression'.tr}...',
         hintStyle: const TextStyle(
-          color: Colors.grey,
-        ),
+            //color: Colors.grey,
+            ),
         prefixIcon: const Icon(
           Icons.search,
           // color: kGreyColor,
@@ -59,7 +59,7 @@ class ExpressionSearchView extends StatelessWidget {
           );
         }),
         filled: true,
-        //  fillColor: kDarkBackgroundColor,
+        fillColor: Theme.of(context).colorScheme.onBackground.withOpacity(0.2),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(kBorderRadius),
           borderSide: const BorderSide(color: Colors.transparent),

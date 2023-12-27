@@ -31,14 +31,14 @@ class SubtitleBlock extends StatelessWidget {
             ),
             child: Icon(
               icon,
-              color: Theme.of(context).colorScheme.background,
+              //  color: Theme.of(context).colorScheme.background,
             ),
           ),
         if (icon != null) const SizedBox(width: kSizeBoxS),
         Text(
           title ?? kAppName,
           style: TextStyle(
-            color: Theme.of(context).colorScheme.background,
+            //  color: Theme.of(context).colorScheme.background,
             fontSize: titleFontSize ??
                 Theme.of(context).textTheme.titleMedium!.fontSize,
             fontWeight: FontWeight.bold,
@@ -48,7 +48,7 @@ class SubtitleBlock extends StatelessWidget {
         Expanded(
           child: Container(
             height: 2,
-            color: Theme.of(context).colorScheme.background,
+            color: Theme.of(context).colorScheme.onBackground,
           ),
         ),
       ],
