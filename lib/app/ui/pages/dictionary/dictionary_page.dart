@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/widgets/expression_search_view.dart';
 import 'package:kitaabua/app/ui/widgets/searched_views.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
+import '../../../../core/configs/themes.dart';
 import '../../widgets/botto_nav_bar.dart';
 import '../../widgets/simple_app_bar_header.dart';
 
@@ -15,7 +17,15 @@ class DictionaryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness:
+            Themes.isDark ? Brightness.light : Brightness.dark,
+      ),
+    );
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
@@ -37,8 +47,8 @@ class DictionaryPage extends StatelessWidget {
       floatingActionButton: !DictionaryService.to.canManageDictionary()
           ? null
           : FloatingActionButton(
-              // backgroundColor: kDarkBackgroundColor,
-              // foregroundColor: kOnBackgroundColor,
+              backgroundColor: Theme.of(context).colorScheme.onBackground,
+              foregroundColor: Theme.of(context).colorScheme.background,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(kBorderRadius),
               ),

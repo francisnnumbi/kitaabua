@@ -39,7 +39,10 @@ class SearchedCard extends StatelessWidget {
                 Icons.bookmark_add,
                 color: expression.isBookmarked!
                     ? Theme.of(context).colorScheme.error
-                    : Theme.of(context).colorScheme.primary,
+                    : Theme.of(context)
+                        .colorScheme
+                        .onBackground
+                        .withOpacity(0.3),
               ),
             ),
     );

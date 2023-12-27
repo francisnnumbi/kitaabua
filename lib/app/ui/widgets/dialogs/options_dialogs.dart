@@ -70,7 +70,7 @@ openAboutDialog() {
       //  color: kOnBackgroundColor,
       fontSize: kTitleFontSize,
     ),
-    // backgroundColor: kOnSurfaceColor,
+    backgroundColor: Theme.of(Get.context!).colorScheme.background,
     contentPadding: const EdgeInsets.all(16),
     content: Column(
       children: [

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
@@ -6,6 +7,7 @@ import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
 import 'package:kitaabua/core/configs/utils.dart';
 
 import '../../../../core/configs/sizes.dart';
+import '../../../../core/configs/themes.dart';
 import '../../../../database/models/meaning.dart';
 import '../../../services/dictionary_service.dart';
 import '../../widgets/app_bar_header.dart';
@@ -21,13 +23,22 @@ class AddEditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness:
+            Themes.isDark ? Brightness.light : Brightness.dark,
+      ),
+    );
     return PopScope(
       onPopInvoked: (value) async {
         Utils.hideKeyboard(context);
         DictionaryService.to.expression.value = null;
         DictionaryService.to.wordEC.text = "";
+        //if (kDebugMode) print("onPopInvoked");
       },
       child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),

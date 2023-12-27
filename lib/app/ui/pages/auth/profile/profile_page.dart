@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/auth_service.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
+import '../../../../../core/configs/themes.dart';
 import '../../../widgets/app_bar_header.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -13,8 +15,15 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness:
+            Themes.isDark ? Brightness.light : Brightness.dark,
+      ),
+    );
     return Scaffold(
-      //backgroundColor: kBackgroundColor,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),

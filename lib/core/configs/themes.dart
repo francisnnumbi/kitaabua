@@ -156,26 +156,6 @@ class Themes {
         Themes.SYSTEM: Get.isPlatformDarkMode,
       }[InnerStorage.read('themeMode') ?? Themes.LIGHT]!;
 
-/*  static _ColorScheme colorScheme = isDark
-      ? _ColorScheme.fromSeed(seedColor: Colors.black)
-      : _ColorScheme.fromSeed(seedColor: Colors.white);*/
-
-  /*_ColorScheme.fr(
-    primary: isDark ? Colors.white : const Color(0xFF6200EE),
-    primaryVariant: isDark ? Colors.white : const Color(0xFF3700B3),
-    secondary: isDark ? Colors.white : const Color(0xFF03DAC6),
-    secondaryVariant: isDark ? Colors.white : const Color(0xFF018786),
-    surface: isDark ? Colors.white : const Color(0xFFFFFFFF),
-    background: isDark ? Colors.white : const Color(0xFFEDEDED),
-    error: isDark ? Colors.white : const Color(0xFFB00020),
-    onPrimary: isDark ? Colors.white : const Color(0xFFFFFFFF),
-    onSecondary: isDark ? Colors.white : const Color(0xFF000000),
-    onSurface: isDark ? Colors.white : const Color(0xFF000000),
-    onBackground: isDark ? Colors.white : const Color(0xFF000000),
-    onError: isDark ? Colors.white : const Color(0xFFFFFFFF),
-    brightness: isDark ? Brightness.dark : Brightness.light,
-  );*/
-
   ///@param {double} seed - A smallest value to be used for generating different font sizes. if not provided, default value is 8.
   ///
   static TextTheme customTextTheme(BuildContext context,
@@ -250,12 +230,12 @@ class Themes {
   ) {
     return ThemeData.light().copyWith(
       colorScheme: _ColorScheme.fromColors(_Colors.lightColors,
-          brightness: Brightness.light),
+          brightness: Brightness.dark),
       textTheme: GoogleFonts.tekoTextTheme(
         Themes.customTextTheme(context, seed: 8, color: Colors.black),
       ),
       listTileTheme: Theme.of(context).listTileTheme.copyWith(
-            tileColor: Colors.grey.shade300,
+            tileColor: Colors.grey.shade100,
             titleTextStyle: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
@@ -283,13 +263,13 @@ class Themes {
   ) {
     return ThemeData.dark().copyWith(
       colorScheme: _ColorScheme.fromColors(_Colors.darkColors,
-          brightness: Brightness.dark),
+          brightness: Brightness.light),
       textTheme: GoogleFonts.tekoTextTheme(
         Themes.customTextTheme(context, seed: 8, color: Colors.white),
       ),
       listTileTheme: Theme.of(context).listTileTheme.copyWith(
             iconColor: Colors.grey,
-            tileColor: Colors.grey.shade800,
+            tileColor: Colors.grey.shade900,
             titleTextStyle: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,

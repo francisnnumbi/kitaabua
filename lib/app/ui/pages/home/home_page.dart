@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/widgets/expression_search_view.dart';
 import 'package:kitaabua/app/ui/widgets/subtitle_block.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
+import '../../../../core/configs/themes.dart';
 import '../../widgets/app_bar_header.dart';
 import '../../widgets/botto_nav_bar.dart';
 import '../../widgets/recent_views.dart';
@@ -16,6 +18,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness:
+            Themes.isDark ? Brightness.light : Brightness.dark,
+      ),
+    );
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: SafeArea(
