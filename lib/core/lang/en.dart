@@ -122,4 +122,13 @@ get en => {
       'Select Theme Mode': 'Select Theme Mode',
       'Light': 'Light',
       'Dark': 'Dark',
+      'Save': 'Save',
+      'Start': 'Start',
+      'Stop': 'Stop',
+      'Record': 'Record',
+      'Press the button to start recording':
+          'Press the button to start recording',
+      'Choose from gallery': 'Choose from gallery',
+      'Play': 'Play',
+      'Recording in Progress': 'Recording in Progress',
     };

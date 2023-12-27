@@ -1,7 +1,9 @@
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:kitaabua/app/controllers/audio_controller.dart';
 import 'package:kitaabua/app/controllers/bookmarks_controller.dart';
 import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
@@ -46,6 +48,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await FirebaseAppCheck.instance.activate();
   await initServices();
   runApp(MainApp());
 }
@@ -60,6 +63,7 @@ Future<void> _initControllers() async {
   await MembersController.init();
   await MeaningsController.init();
   await BookmarksController.init();
+  await AudioController.init();
 }
 
 class MainApp extends StatelessWidget {

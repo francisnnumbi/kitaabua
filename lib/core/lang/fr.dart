@@ -123,4 +123,13 @@ get fr => {
       'Select Theme Mode': 'Sélectionnez le mode thème',
       'Light': 'Lumière',
       'Dark': 'Sombre',
+      'Save': 'Sauvegarder',
+      'Start': 'Démarrer',
+      'Stop': 'Arrêter',
+      'Record': 'Enregistrer',
+      'Press the button to start recording':
+          'Appuyez sur le bouton pour commencer l\'enregistrement',
+      'Choose from gallery': 'Choisir dans la galerie',
+      'Play': 'Jouer',
+      'Recording in Progress': 'Enregistrement en cours',
     };

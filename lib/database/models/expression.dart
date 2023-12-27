@@ -10,6 +10,7 @@ class Expression {
   final DateTime addedOn;
   late DateTime? updatedOn;
   late String? updatedBy;
+  late String? audioPath;
   late bool? state = true;
   late List<Meaning>? meanings;
   late bool? isBookmarked = false;
@@ -22,6 +23,7 @@ class Expression {
     this.updatedOn,
     this.updatedBy,
     this.state,
+    this.audioPath,
     this.meanings,
   });
 
@@ -32,6 +34,7 @@ class Expression {
         addedOn = Utils.toDateTime(json['addedOn'])!,
         updatedOn = Utils.toDateTime(json['updatedOn'])!,
         updatedBy = json['updatedBy'],
+        audioPath = json['audioPath'],
         state = json['state'];
 
   Map<String, dynamic> toJson() => {
@@ -41,6 +44,7 @@ class Expression {
         'addedOn': Utils.fromDateTimeToJson(addedOn),
         'updatedOn': Utils.fromDateTimeToJson(updatedOn!),
         'updatedBy': updatedBy,
+        'audioPath': audioPath,
         'state': state,
       };
 
@@ -48,9 +52,12 @@ class Expression {
     meanings = await FirebaseApi.futureReadMeanings(id);
   }
 
+  bool hasAudio() {
+    return audioPath != null && audioPath!.isNotEmpty;
+  }
+
   @override
   String toString() {
-    // TODO: implement toString
-    return 'Expression{id: $id, word: $word, addedBy: $addedBy, addedOn: $addedOn, updatedOn: $updatedOn, updatedBy: $updatedBy, state: $state, meanings: $meanings}';
+    return 'Expression{id: $id, word: $word, addedBy: $addedBy, addedOn: $addedOn, updatedOn: $updatedOn, updatedBy: $updatedBy, state: $state, audioPath:$audioPath, meanings: $meanings}';
   }
 }
