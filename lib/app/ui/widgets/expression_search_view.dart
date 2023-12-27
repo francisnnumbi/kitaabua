@@ -28,7 +28,7 @@ class ExpressionSearchView extends StatelessWidget {
         Utils.hideKeyboard(context);
       },
       style: TextStyle(
-        // color: kOnBackgroundColor,
+        color: Colors.black38,
         fontSize: Theme.of(context).textTheme.bodyLarge!.fontSize,
       ),
       decoration: InputDecoration(
@@ -37,8 +37,8 @@ class ExpressionSearchView extends StatelessWidget {
         ),
         hintText: '${'Search expression'.tr}...',
         hintStyle: const TextStyle(
-            //color: kGreyColor,
-            ),
+          color: Colors.grey,
+        ),
         prefixIcon: const Icon(
           Icons.search,
           // color: kGreyColor,
