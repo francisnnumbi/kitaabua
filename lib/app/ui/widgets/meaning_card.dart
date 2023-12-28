@@ -97,7 +97,7 @@ class MeaningCard extends StatelessWidget {
               meaning.example!,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.secondary,
-                //  fontSize: kFooterFontSize,
+                  fontSize: kSummaryFontSize,
                 fontStyle: FontStyle.italic,
                 height: 1.5,
               ),
@@ -106,7 +106,7 @@ class MeaningCard extends StatelessWidget {
               meaning.exampleTranslation!,
               style: TextStyle(
                 color: Theme.of(context).colorScheme.error,
-                //  fontSize: kFooterFontSize,
+                  fontSize: kSummaryFontSize,
                 fontStyle: FontStyle.italic,
                 height: 1.5,
               ),

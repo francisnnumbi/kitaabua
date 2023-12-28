@@ -82,6 +82,11 @@ class AddEditPage extends StatelessWidget {
                             }
                             return null;
                           },
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onBackground,
+                            fontWeight: FontWeight.bold,
+                            fontSize: kHeadingFontSize,
+                          ),
                           readOnly: !DictionaryService.to.canManageDictionary(),
                           maxLines: 2,
                           decoration: InputDecoration(
