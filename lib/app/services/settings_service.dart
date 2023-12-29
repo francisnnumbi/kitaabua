@@ -37,8 +37,8 @@ class SettingsService extends GetxService {
     Snack.success("Language changed to".trParams({'lang': lang['name']!}));
   }
 
-  void setThemeMode(String themeMode, {bool? canBack = false}) {
-    InnerStorage.write('themeMode', themeMode);
+  void setThemeMode(String themeMode, {bool? canBack = false}) async{
+
     switch (themeMode) {
       case Themes.LIGHT:
         Get.changeThemeMode(ThemeMode.light);
@@ -49,7 +49,9 @@ class SettingsService extends GetxService {
       default:
         Get.changeThemeMode(ThemeMode.light);
     }
-    if (canBack == true) Get.back();
+  await  InnerStorage.write('themeMode', themeMode);
+    2.delay();
+  if (canBack == true) 1.delay(() => Get.back());
   }
 
   void openThemeSelectDialog() {
@@ -83,7 +85,7 @@ class SettingsService extends GetxService {
   }
 
   String getThemeMode() {
-    return InnerStorage.read('themeMode') ?? Themes.LIGHT;
+    return  InnerStorage.read('themeMode') ?? Themes.LIGHT;
   }
 
   @override

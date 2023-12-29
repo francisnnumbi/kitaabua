@@ -47,11 +47,9 @@ class OptionsPage extends StatelessWidget {
                     title: Text(
                       "${SettingsService.to.getThemeMode().capitalizeFirst} Mode"
                           .tr,
-                      // style: const TextStyle(color: kOnBackgroundColor),
                     ),
                     subtitle: Text(
                       "Manage your theme mode".tr,
-                      //  style: const TextStyle(color: kGreyColor),
                     ),
                     leading: Icon(
                       SettingsService.to.getThemeMode() == Themes.LIGHT
@@ -59,7 +57,6 @@ class OptionsPage extends StatelessWidget {
                           : SettingsService.to.getThemeMode() == Themes.DARK
                               ? Icons.dark_mode
                               : Icons.phone_android,
-                      //  color: kGreyColor,
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
@@ -78,14 +75,12 @@ class OptionsPage extends StatelessWidget {
                           const TextSpan(
                             text: " ( ",
                             style: TextStyle(
-                              //   color: kGreyColor,
                               fontSize: kSummaryFontSize,
                             ),
                           ),
                           TextSpan(
                             text: "${SettingsService.to.locale.value!['name']}",
                             style: const TextStyle(
-                              //   color: kGreyColor,
                               fontSize: kSummaryFontSize,
                               fontStyle: FontStyle.italic,
                             ),
@@ -98,12 +93,10 @@ class OptionsPage extends StatelessWidget {
                             ),
                           ),
                         ],
-                        // style: const TextStyle(color: kOnBackgroundColor),
                       ),
                     ),
                     subtitle: Text(
                       "Manage your language".tr,
-                      //style: const TextStyle(color: kGreyColor),
                     ),
                     leading: const Icon(
                       Icons.language,
