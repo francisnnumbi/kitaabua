@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kitaabua/database/models/bookmark.dart';
+import 'package:kitaabua/database/models/expression.dart';
 
 import '../../../core/configs/sizes.dart';
 import '../../controllers/bookmarks_controller.dart';
@@ -11,7 +11,7 @@ class BookmarkedCard extends StatelessWidget {
     required this.bookmark,
   });
 
-  final Bookmark bookmark;
+  final Expression bookmark;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class BookmarkedCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       title: Text(
-        bookmark.expression!.word,
+        bookmark.word ?? '',
         overflow: TextOverflow.ellipsis,
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingS),
@@ -28,8 +28,7 @@ class BookmarkedCard extends StatelessWidget {
           ? null
           : IconButton(
               onPressed: () {
-                BookmarksController.to
-                    .toggleBookmark(expression: bookmark.expression!);
+                BookmarksController.to.toggleBookmark(expression: bookmark);
               },
               icon: Icon(Icons.bookmark_add,
                   color: Theme.of(context).colorScheme.error),

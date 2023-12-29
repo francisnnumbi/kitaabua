@@ -6,22 +6,21 @@ import 'package:kitaabua/database/models/expression.dart';
 import 'package:kitaabua/main.dart';
 
 import '../../core/configs/utils.dart';
-import '../models/bookmark.dart';
 import '../models/meaning.dart';
 import '../models/member.dart';
 
 class FirebaseApi {
-  static CollectionReference<Map<String, dynamic>> get dbCollection
-  {
-    final dict = InnerStorage.read('dictionary')??Dictionaries.KITAABUA;
-  return FirebaseFirestore.instance.collection(dict);
-}
+  static CollectionReference<Map<String, dynamic>> get dbCollection {
+    final dict = InnerStorage.read('dictionary') ?? Dictionaries.KITAABUA;
+    return FirebaseFirestore.instance.collection(dict);
+  }
 
   static CollectionReference<Map<String, dynamic>> get memberCollection =>
       FirebaseFirestore.instance.collection("members");
 
-  static CollectionReference<Map<String, dynamic>> get bookmarkCollection =>
-      FirebaseFirestore.instance.collection("bookmarks");
+  static CollectionReference<Map<String, dynamic>> bookmarkCollection(
+          String documentId) =>
+      dbCollection.doc(documentId).collection("bookmarks");
 
   static Stream<List<Expression>> readExpressions() => dbCollection
       .orderBy('word', descending: false)
@@ -50,7 +49,7 @@ class FirebaseApi {
 
   static Future<Expression?> getExpression(String expressionId) async {
     final dd = await dbCollection.doc(expressionId).get();
-    return dd.data() == null?null: Expression.fromJson(dd.data()!);
+    return dd.data() == null ? null : Expression.fromJson(dd.data()!);
   }
 
   static Future updateExpression(Expression expression) async {
@@ -175,41 +174,41 @@ class FirebaseApi {
   }
 
 // Handle bookmarks
-  static Stream<List<Bookmark>> readBookmarks() => bookmarkCollection
-      .where('memberId',
-          isEqualTo: MembersController.to.currentMember.value?.id)
-      .snapshots()
-      .transform(Utils.transformer(Bookmark.fromJson));
+/*  static Stream<List<Bookmark>> readBookmarks() {
+    if (kDebugMode) {
+      print('READ BOOKMARK :: ${dbCollection.doc().path}');
+    }
+    var db = dbCollection
+        .doc()
+        .collection('bookmarks')
+        //   .where('memberId',
+        //      isEqualTo: MembersController.to.currentMember.value?.id)
+        .snapshots()
+        .transform(
+          Utils.transformer(Bookmark.fromJson),
+        );
 
-  static Future<String> createBookmark({
+    return db;
+  }*/
+
+  static Future<String> _createBookmark({
     required String expressionId,
   }) async {
-    final docBookmark = bookmarkCollection.doc();
+    final docBookmark = bookmarkCollection(expressionId).doc();
 
-    final bookmark = Bookmark(
-      id: docBookmark.id,
-      expressionId: expressionId,
-      memberId: MembersController.to.currentMember.value!.id,
-    );
+    final bookmark = {
+      'id': docBookmark.id,
+      'expressionId': expressionId,
+      'memberId': MembersController.to.currentMember.value!.id,
+    };
 
-    await docBookmark.set(bookmark.toJson());
+    await docBookmark.set(bookmark);
 
     return docBookmark.id;
   }
 
-  static Future updateBookmark(Bookmark bookmark) async {
-    final docBookmark = bookmarkCollection.doc(bookmark.id);
-    await docBookmark.update(bookmark.toJson());
-  }
-
-  static Future deleteBookmark(Bookmark bookmark) async {
-    final docBookmark = bookmarkCollection.doc(bookmark.id);
-
-    await docBookmark.delete();
-  }
-
   static Future toggleBookmark(Expression expression) async {
-    final docBookmark = (await bookmarkCollection
+    final docBookmark = (await bookmarkCollection(expression.id)
             .where('expressionId', isEqualTo: expression.id)
             .where('memberId',
                 isEqualTo: MembersController.to.currentMember.value!.id)
@@ -220,12 +219,12 @@ class FirebaseApi {
     if (docBookmark != null && docBookmark.exists) {
       await docBookmark.reference.delete();
     } else {
-      await createBookmark(expressionId: expression.id);
+      await _createBookmark(expressionId: expression.id);
     }
   }
 
   static Future isBookmarked(Expression expression) async {
-    final docBookmark = (await bookmarkCollection
+    final docBookmark = (await bookmarkCollection(expression.id)
             .where('expressionId', isEqualTo: expression.id)
             .where('memberId',
                 isEqualTo: MembersController.to.currentMember.value?.id)

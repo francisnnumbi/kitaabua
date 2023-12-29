@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/ui/widgets/expression_search_view.dart';
 import 'package:kitaabua/app/ui/widgets/searched_views.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
 import '../../../../core/configs/themes.dart';
+import '../../../../core/configs/utils.dart';
 import '../../widgets/botto_nav_bar.dart';
 import '../../widgets/simple_app_bar_header.dart';
 
@@ -33,8 +33,8 @@ class DictionaryPage extends StatelessWidget {
             children: [
               SimpleAppBarHeader(
                 icon: Icons.menu_book_outlined,
-                title: "Dictionary".tr,
-                titleFontSize: kSubTitleFontSize,
+                title: Utils.getCurrentDictionaryTitle(),
+                titleFontSize: kHeadingFontSize,
               ),
               const SizedBox(height: kSizeBoxM),
               ExpressionSearchView(),

@@ -3,14 +3,27 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:kitaabua/database/models/bookmark.dart';
+import 'package:get/get.dart';
+import 'package:kitaabua/core/configs/dictionaries.dart';
 import 'package:kitaabua/database/models/expression.dart';
 
 import '../../database/api/firebase_api.dart';
+import '../../main.dart';
 
 class Utils {
   static void consoleLog(Object? object) {
     if (kDebugMode) print(object);
+  }
+
+  static String getCurrentDictionaryTitle() {
+    final dict = InnerStorage.read('dictionary') ?? Dictionaries.KITAABUA;
+    if (dict == Dictionaries.KITAABUA) {
+      return "${Dictionaries.KITAABUA.tr} - ${Dictionaries.FRENCH.tr}";
+    } else if (dict == Dictionaries.FRENCH) {
+      return "${Dictionaries.FRENCH.tr} - ${Dictionaries.KITAABUA.tr}";
+    } else {
+      return '';
+    }
   }
 
   /// Hide the soft keyboard.
@@ -53,13 +66,8 @@ class Utils {
                   .toList();
               for (T obj in objects) {
                 if (obj is Expression) {
-
                   obj.meanings = await FirebaseApi.futureReadMeanings(obj.id);
                   obj.isBookmarked = await FirebaseApi.isBookmarked(obj);
-                }
-                if (obj is Bookmark) {
-                  obj.expression =
-                      await FirebaseApi.getExpression(obj.expressionId);
                 }
               }
 

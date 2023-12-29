@@ -48,10 +48,11 @@ class AddEditPage extends StatelessWidget {
               children: [
                 AppBarHeader(
                   hasBackButton: true,
-                  title: DictionaryService.to.expression.value == null
+                  title: Utils.getCurrentDictionaryTitle(),
+                  /*title: DictionaryService.to.expression.value == null
                       ? "New".tr
-                      : "Expression".tr,
-                  titleFontSize: kSubTitleFontSize,
+                      : "Expression".tr,*/
+                  titleFontSize: kHeadingFontSize,
                   icon: Icons.save,
                   onPressed: () {
                     if (!_addEditFormKey.currentState!.validate()) {

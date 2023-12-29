@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
-import 'package:kitaabua/app/ui/widgets/snack.dart';
 
 import '../../database/api/firebase_api.dart';
-import '../../database/models/bookmark.dart';
 import '../../database/models/expression.dart';
 
 class BookmarksController extends GetxController {
@@ -16,10 +14,10 @@ class BookmarksController extends GetxController {
 
 // ------- ./static methods ------- //
 
-  final RxList<Bookmark> bookmarks = <Bookmark>[].obs;
-  final Rxn<Bookmark> bookmark = Rxn<Bookmark>();
+  final RxList<Expression> bookmarks = <Expression>[].obs;
+  final Rxn<Expression> bookmark = Rxn<Expression>();
 
-  void selectBookmark(Bookmark bookmark) {
+  void selectBookmark(Expression bookmark) {
     this.bookmark.value = bookmark;
   }
 
@@ -32,7 +30,7 @@ class BookmarksController extends GetxController {
     });
   }
 
-  void addBookmark({
+  /* void addBookmark({
     required String expressionId,
   }) {
     FirebaseApi.createBookmark(
@@ -42,23 +40,29 @@ class BookmarksController extends GetxController {
     }).catchError((onError) {
       Snack.error(onError.toString());
     });
-  }
+  }*/
 
-  void deleteBookmark(Bookmark bookmark) {
-    FirebaseApi.deleteBookmark(bookmark).then((value) async {
+/*  void deleteBookmark(Expression bookmark) {
+    FirebaseApi.deleteBookmark(bookmark, bookmark.id)
+        .then((value) async {
       Snack.success('Bookmark deleted successfully'.tr);
     }).catchError((onError) {
       Snack.error(onError.toString());
     });
-  }
+  }*/
 
   Future<void> initializeBindings() async {
-    bookmarks.bindStream(FirebaseApi.readBookmarks());
+    //bookmarks.bindStream(FirebaseApi.readBookmarks());
+    DictionaryService.to.expressions.listen((expressions) {
+      bookmarks.value =
+          expressions.where((element) => element.isBookmarked == true).toList();
+    });
   }
 
   @override
   void onReady() {
     super.onReady();
     initializeBindings();
+    //FirebaseApi.readBookmarks();
   }
 }
