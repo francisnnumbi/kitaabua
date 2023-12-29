@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/ui/widgets/snack.dart';
+import 'package:kitaabua/core/configs/dictionaries.dart';
 import 'package:kitaabua/core/configs/themes.dart';
 import 'package:kitaabua/main.dart';
 
@@ -87,6 +88,41 @@ class SettingsService extends GetxService {
   String getThemeMode() {
     return  InnerStorage.read('themeMode') ?? Themes.LIGHT;
   }
+
+  Future<void> setDictionary(String dictionary) async {
+    InnerStorage.write('dictionary', dictionary);
+    Get.back();
+    Snack.success("Dictionary changed to".trParams({'dict': dictionary}));
+  }
+
+  Future<void> selectDictionaryDialog() async {
+    await Get.defaultDialog(
+      title: "Select Dictionary".tr,
+      content: Column(
+        children: [
+          ListTile(
+            title: Text(Dictionaries.FRENCH.tr),
+            leading: const Icon(Icons.language),
+            onTap: () {
+              setDictionary(Dictionaries.FRENCH);
+            },
+            selected: InnerStorage.read('dictionary') == Dictionaries.FRENCH,
+          ),
+          const SizedBox(height: kSizeBoxS),
+          ListTile(
+            title: Text(Dictionaries.KITAABUA.tr),
+            leading: const Icon(Icons.language),
+            onTap: () {
+              setDictionary(Dictionaries.KITAABUA);
+            },
+            selected: InnerStorage.read('dictionary') == Dictionaries.KITAABUA,
+          ),
+
+        ],
+      ),
+    );
+  }
+
 
   @override
   void onInit() {

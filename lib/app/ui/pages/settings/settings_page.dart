@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:kitaabua/app/services/dictionary_service.dart';
+import 'package:kitaabua/app/services/settings_service.dart';
 import 'package:kitaabua/app/ui/pages/auth/profile/profile_page.dart';
 import 'package:kitaabua/app/ui/pages/settings/options_page.dart';
 import 'package:kitaabua/app/ui/widgets/dialogs/options_dialogs.dart';
@@ -59,6 +61,27 @@ class SettingsPage extends StatelessWidget {
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
                       Get.toNamed(ProfilePage.route);
+                    },
+                  ),
+                  const SizedBox(height: kSizeBoxS),
+                  ListTile(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    title: Text(
+                      "Dictionaries".tr,
+                      //   style: const TextStyle(color: kOnBackgroundColor),
+                    ),
+                    subtitle: Text(
+                      "Manage your dictionaries".tr,
+                      //   style: const TextStyle(color: kGreyColor),
+                    ),
+                    leading: const Icon(
+                      Icons.menu_book,
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () {
+                      SettingsService.to.selectDictionaryDialog();
                     },
                   ),
                   const SizedBox(height: kSizeBoxS),

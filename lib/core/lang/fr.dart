@@ -132,4 +132,7 @@ get fr => {
       'Choose from gallery': 'Choisir dans la galerie',
       'Play': 'Jouer',
       'Recording in Progress': 'Enregistrement en cours',
+      'Select Dictionary': 'Sélectionner le dictionnaire',
+      'french': 'Français',
+      'kitaabua': 'Kitaabua',
     };

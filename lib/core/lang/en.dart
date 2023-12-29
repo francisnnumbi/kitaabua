@@ -131,4 +131,7 @@ get en => {
       'Choose from gallery': 'Choose from gallery',
       'Play': 'Play',
       'Recording in Progress': 'Recording in Progress',
+      'Select Dictionary': 'Select Dictionary',
+      'french': 'French',
+      'kitaabua': 'Kitaabua',
     };

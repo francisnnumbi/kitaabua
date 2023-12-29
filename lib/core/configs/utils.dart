@@ -53,6 +53,7 @@ class Utils {
                   .toList();
               for (T obj in objects) {
                 if (obj is Expression) {
+
                   obj.meanings = await FirebaseApi.futureReadMeanings(obj.id);
                   obj.isBookmarked = await FirebaseApi.isBookmarked(obj);
                 }

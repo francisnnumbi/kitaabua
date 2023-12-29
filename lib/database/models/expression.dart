@@ -7,7 +7,7 @@ class Expression {
   final String id;
   final String word;
   final String addedBy;
-  final DateTime addedOn;
+  final DateTime? addedOn;
   late DateTime? updatedOn;
   late String? updatedBy;
   late String? audioPath;
@@ -19,7 +19,7 @@ class Expression {
     required this.id,
     required this.word,
     required this.addedBy,
-    required this.addedOn,
+     this.addedOn,
     this.updatedOn,
     this.updatedBy,
     this.state,
@@ -28,13 +28,13 @@ class Expression {
   });
 
   Expression.fromJson(Map<String, dynamic> json)
-      : id = json['id'],
-        word = json['word'],
-        addedBy = json['addedBy'],
-        addedOn = Utils.toDateTime(json['addedOn'])!,
-        updatedOn = Utils.toDateTime(json['updatedOn'])!,
-        updatedBy = json['updatedBy'],
-        audioPath = json['audioPath'],
+      : id = json['id']??'',
+        word = json['word']??'',
+        addedBy = json['addedBy']??'',
+        addedOn = Utils.toDateTime(json['addedOn']),
+        updatedOn = Utils.toDateTime(json['updatedOn']),
+        updatedBy = json['updatedBy']??'',
+        audioPath = json['audioPath']??'',
         state = json['state'];
 
   Map<String, dynamic> toJson() => {

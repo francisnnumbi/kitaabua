@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
+import 'package:kitaabua/core/configs/dictionaries.dart';
 import 'package:kitaabua/database/api/auth.dart';
 import 'package:kitaabua/database/models/expression.dart';
+import 'package:kitaabua/main.dart';
 
 import '../../core/configs/utils.dart';
 import '../models/bookmark.dart';
@@ -9,8 +11,11 @@ import '../models/meaning.dart';
 import '../models/member.dart';
 
 class FirebaseApi {
-  static CollectionReference<Map<String, dynamic>> get dbCollection =>
-      FirebaseFirestore.instance.collection("kitaabua");
+  static CollectionReference<Map<String, dynamic>> get dbCollection
+  {
+    final dict = InnerStorage.read('dictionary')??Dictionaries.KITAABUA;
+  return FirebaseFirestore.instance.collection(dict);
+}
 
   static CollectionReference<Map<String, dynamic>> get memberCollection =>
       FirebaseFirestore.instance.collection("members");
@@ -43,9 +48,9 @@ class FirebaseApi {
     return docExpression.id;
   }
 
-  static Future<Expression> getExpression(String expressionId) async {
+  static Future<Expression?> getExpression(String expressionId) async {
     final dd = await dbCollection.doc(expressionId).get();
-    return Expression.fromJson(dd.data()!);
+    return dd.data() == null?null: Expression.fromJson(dd.data()!);
   }
 
   static Future updateExpression(Expression expression) async {

@@ -4,7 +4,10 @@ import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/auth_service.dart';
 import 'package:kitaabua/app/ui/widgets/snack.dart';
 import 'package:kitaabua/database/models/expression.dart';
+import 'package:kitaabua/main.dart';
 
+import '../../core/configs/dictionaries.dart';
+import '../../core/configs/sizes.dart';
 import '../../database/api/firebase_api.dart';
 import '../ui/pages/add_edit/add_edit_page.dart';
 
@@ -92,9 +95,9 @@ class DictionaryService extends GetxService {
     }
   }
 
-  void addExpression({
+  Future<void> addExpression({
     required String word,
-  }) {
+  }) async {
     if (expression.value != null) {
       Expression express = Expression(
         id: expression.value!.id,
@@ -117,6 +120,8 @@ class DictionaryService extends GetxService {
         Snack.error('Expression add failed'.tr);
       });
     }
+
+    //expressions.value = await FirebaseApi.readExpressions();
   }
 
   Future<void> initializeBindings() async {
@@ -132,11 +137,22 @@ class DictionaryService extends GetxService {
     await Get.delete<DictionaryService>(force: true);
   }
 
+
   @override
   void onReady() {
     // TODO: implement onReady
     super.onReady();
     initializeBindings();
+    InnerStorage.listenKey('dictionary', (value) {
+      clearBindings();
+      if (value == Dictionaries.FRENCH) {
+        expressions.bindStream(FirebaseApi.readExpressions());
+      } else if (value == Dictionaries.KITAABUA) {
+        expressions.bindStream(FirebaseApi.readExpressions());
+      }
+    });
+
+
     expressions.listen((p0) {
       if (p0.isNotEmpty) {
         p0.sort((a, b) {
