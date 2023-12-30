@@ -12,10 +12,10 @@ class SearchedViews extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() {
       return DictionaryService.to.filteredExpressions.isEmpty
-          ? const Center(
+          ? Center(
               child: Text(
-                'No expressions found, please search again !',
-                style: TextStyle(
+                'No expressions found, please search again !'.tr,
+                style: const TextStyle(
                   fontSize: kHeadingFontSize,
                   fontWeight: FontWeight.bold,
                 ),

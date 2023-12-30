@@ -11,20 +11,31 @@ class RecentViews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return ListView.builder(
-        padding: const EdgeInsets.all(0),
-        physics: const BouncingScrollPhysics(),
-        itemCount: DictionaryService.to.recentExpressions.length,
-        itemBuilder: (context, index) {
-          Expression expression = DictionaryService.to.recentExpressions[index];
-          return Padding(
-            padding: const EdgeInsets.only(bottom: kPaddingS),
-            child: ViewCard(
-              expression: expression,
-            ),
-          );
-        },
-      );
+      return DictionaryService.to.recentExpressions.isEmpty
+          ? Center(
+              child: Text(
+                'No recent expressions found !'.tr,
+                style: const TextStyle(
+                  fontSize: kHeadingFontSize,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          : ListView.builder(
+              padding: const EdgeInsets.all(0),
+              physics: const BouncingScrollPhysics(),
+              itemCount: DictionaryService.to.recentExpressions.length,
+              itemBuilder: (context, index) {
+                Expression expression =
+                    DictionaryService.to.recentExpressions[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: kPaddingS),
+                  child: ViewCard(
+                    expression: expression,
+                  ),
+                );
+              },
+            );
     });
   }
 }

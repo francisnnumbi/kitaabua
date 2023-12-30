@@ -11,20 +11,30 @@ class BookmarkedViews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return ListView.builder(
-        padding: const EdgeInsets.all(0),
-        physics: const BouncingScrollPhysics(),
-        itemCount: BookmarksController.to.bookmarks.length,
-        itemBuilder: (context, index) {
-          Expression bookmark = BookmarksController.to.bookmarks[index];
-          return Padding(
-            padding: const EdgeInsets.only(bottom: kPaddingS),
-            child: BookmarkedCard(
-              bookmark: bookmark,
-            ),
-          );
-        },
-      );
+      return BookmarksController.to.bookmarks.isEmpty
+          ? Center(
+              child: Text(
+                'No bookmarks found!'.tr,
+                style: const TextStyle(
+                  fontSize: kHeadingFontSize,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          : ListView.builder(
+              padding: const EdgeInsets.all(0),
+              physics: const BouncingScrollPhysics(),
+              itemCount: BookmarksController.to.bookmarks.length,
+              itemBuilder: (context, index) {
+                Expression bookmark = BookmarksController.to.bookmarks[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: kPaddingS),
+                  child: BookmarkedCard(
+                    bookmark: bookmark,
+                  ),
+                );
+              },
+            );
     });
   }
 }
