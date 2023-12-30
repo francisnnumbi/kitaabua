@@ -380,6 +380,12 @@ class MeaningsController extends GetxController {
     );
   }
 
+  clearBindings() {
+    expression.value = null;
+    meaning.value = null;
+    meanings.clear();
+  }
+
   @override
   void onReady() {
     super.onReady();
@@ -387,6 +393,9 @@ class MeaningsController extends GetxController {
       if (p0 != null) {
         expression.value = p0;
         meanings.bindStream(FirebaseApi.readMeanings(p0.id));
+      } else {
+        expression.value = null;
+        meanings.clear();
       }
     });
   }

@@ -17,7 +17,10 @@ import '../../widgets/meaning_card.dart';
 
 class AddEditPage extends StatelessWidget {
   AddEditPage({super.key}) {
-    // wordEC.text = DictionaryService.to.expression.value?.word ?? "";
+    if (DictionaryService.to.expression.value != null) {
+      DictionaryService.to
+          .fetchSimilarExpressions(DictionaryService.to.expression.value!.word);
+    }
   }
 
   static const String route = "/expressions/add-edit";
@@ -40,260 +43,308 @@ class AddEditPage extends StatelessWidget {
         AudioController.to.clearRecord();
         //if (kDebugMode) print("onPopInvoked");
       },
-      child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                AppBarHeader(
-                  hasBackButton: true,
-                  title: Utils.getCurrentDictionaryTitle(),
-                  /*title: DictionaryService.to.expression.value == null
+      child: Obx(() {
+        return Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.background,
+          body: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  AppBarHeader(
+                    hasBackButton: true,
+                    title: Utils.getCurrentDictionaryTitle(),
+                    /*title: DictionaryService.to.expression.value == null
                       ? "New".tr
                       : "Expression".tr,*/
-                  titleFontSize: kHeadingFontSize,
-                  icon: Icons.save,
-                  onPressed: () {
-                    if (!_addEditFormKey.currentState!.validate()) {
-                      return;
-                    }
-                    _addEditFormKey.currentState!.save();
+                    titleFontSize: kHeadingFontSize,
+                    icon: Icons.save,
+                    onPressed: () {
+                      if (!_addEditFormKey.currentState!.validate()) {
+                        return;
+                      }
+                      _addEditFormKey.currentState!.save();
 
-                    DictionaryService.to
-                        .addExpression(word: DictionaryService.to.wordEC.text);
-                  },
-                ),
-                const SizedBox(height: kSizeBoxL),
-                Form(
-                  key: _addEditFormKey,
-                  child: Column(
-                    children: [
-                      Obx(() {
-                        return TextFormField(
-                          controller: DictionaryService.to.wordEC,
-                          onChanged: (value) {
-                            DictionaryService.to.fetchSimilarExpressions(value);
-                          },
-                          validator: (va) {
-                            if (va!.isEmpty) {
-                              return "Title must not be empty".tr;
-                            } else if (DictionaryService.to.wordExists(va)) {
-                              return "This word already exists".tr;
-                            }
-                            return null;
-                          },
-                          style: TextStyle(
-                            color: Theme.of(context).colorScheme.onBackground,
-                            fontWeight: FontWeight.bold,
-                            fontSize: kHeadingFontSize,
-                          ),
-                          readOnly: !DictionaryService.to.canManageDictionary(),
-                          maxLines: 2,
-                          decoration: InputDecoration(
-                            hintText: 'Enter expression'.tr,
-                            labelText: 'Expression'.tr,
-                            alignLabelWithHint: true,
-                            filled: true,
-                            fillColor: Theme.of(context)
-                                .colorScheme
-                                .onBackground
-                                .withOpacity(0.1),
-                            floatingLabelStyle: TextStyle(
-                                color:
-                                    Theme.of(context).colorScheme.onBackground),
-                            focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.transparent),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(kBorderRadiusS),
+                      DictionaryService.to.addExpression(
+                          word: DictionaryService.to.wordEC.text);
+                    },
+                  ),
+                  const SizedBox(height: kSizeBoxL),
+                  Form(
+                    key: _addEditFormKey,
+                    child: Column(
+                      children: [
+                        if (DictionaryService.to.expression.value?.word !=
+                            DictionaryService.to.wordEC.text)
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .onBackground
+                                    .withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(
+                                  kBorderRadiusS,
+                                ),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: kPaddingS,
+                              ),
+                              child: Text(
+                                DictionaryService.to.expression.value?.word ??
+                                    "",
+                                style: TextStyle(
+                                  color: Theme.of(context).colorScheme.error,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: kSubHeadingFontSize,
+                                ),
                               ),
                             ),
-                            enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.transparent),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(kBorderRadiusS),
+                          ).marginOnly(bottom: kPaddingM),
+                        Obx(() {
+                          return TextFormField(
+                            controller: DictionaryService.to.wordEC,
+                            onChanged: (value) {
+                              DictionaryService.to
+                                  .fetchSimilarExpressions(value);
+                            },
+
+                            validator: (va) {
+                              if (va!.isEmpty) {
+                                return "Title must not be empty".tr;
+                              } else if (DictionaryService.to.wordExists(va)) {
+                                return "This word already exists".tr;
+                              }
+                              return null;
+                            },
+                            style: TextStyle(
+                              color: Theme.of(context).colorScheme.onBackground,
+                              fontWeight: FontWeight.bold,
+                              fontSize: kHeadingFontSize,
+                            ),
+                            readOnly:
+                                !DictionaryService.to.canManageDictionary(),
+                            maxLines: 2,
+                            decoration: InputDecoration(
+                              hintText: 'Enter expression'.tr,
+                              labelText: 'Expression'.tr,
+                              alignLabelWithHint: true,
+                              filled: true,
+                              fillColor: Theme.of(context)
+                                  .colorScheme
+                                  .onBackground
+                                  .withOpacity(0.1),
+                              floatingLabelStyle: TextStyle(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
+                              focusedBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.transparent),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(kBorderRadiusS),
+                                ),
+                              ),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.transparent),
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(kBorderRadiusS),
+                                ),
                               ),
                             ),
-                          ),
-                          //autofocus: true,
-                          textAlignVertical: TextAlignVertical.top,
-                        );
-                      }),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Obx(() {
-                            return IconButton(
-                              onPressed: DictionaryService
-                                              .to.expression.value !=
-                                          null &&
-                                      !DictionaryService.to.expression.value!
-                                          .hasAudio()
-                                  ? null
-                                  : () {
-                                      AudioController.to.playExpressionAudio(
-                                          DictionaryService
-                                              .to.expression.value!);
-                                    },
-                              icon: Icon(
-                                Icons.record_voice_over,
-                                color: AudioController.to.isPlaying.value
-                                    ? Theme.of(context).colorScheme.error
-                                    : null,
-                              ),
-                            );
-                          }),
-                          if (MembersController.to.isLoggedIn)
+                            //autofocus: true,
+                            textAlignVertical: TextAlignVertical.top,
+                          );
+                        }),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
                             Obx(() {
-                              return BookmarksController.to.isBookmarking.value
-                                  ? SizedBox(
-                                      width: 20,
-                                      height: 20,
-                                      child: CircularProgressIndicator(
-                                        color:
-                                            Theme.of(context).colorScheme.error,
-                                      ),
-                                    )
-                                  : IconButton(
-                                      onPressed: () {
-                                        BookmarksController.to.toggleBookmark(
-                                            expression: DictionaryService
+                              return IconButton(
+                                onPressed: DictionaryService
+                                                .to.expression.value !=
+                                            null &&
+                                        !DictionaryService.to.expression.value!
+                                            .hasAudio()
+                                    ? null
+                                    : () {
+                                        AudioController.to.playExpressionAudio(
+                                            DictionaryService
                                                 .to.expression.value!);
                                       },
-                                      icon: Icon(
-                                        Icons.bookmark_add,
-                                        color: DictionaryService
-                                                        .to.expression.value !=
-                                                    null &&
-                                                DictionaryService.to.expression
-                                                    .value!.isBookmarked!
-                                            ? Theme.of(context)
-                                                .colorScheme
-                                                .error
-                                            : Theme.of(context)
-                                                .colorScheme
-                                                .onBackground
-                                                .withOpacity(0.3),
-                                      ),
-                                    );
+                                icon: Icon(
+                                  Icons.record_voice_over,
+                                  color: AudioController.to.isPlaying.value
+                                      ? Theme.of(context).colorScheme.error
+                                      : null,
+                                ),
+                              );
                             }),
-                          if (DictionaryService.to.canManageDictionary())
-                            IconButton(
-                                onPressed: () {
-                                  openSoundRecorder(context);
-                                },
-                                icon: const Icon(Icons.mic)),
-                        ],
-                      ),
-                      if (DictionaryService.to.canManageDictionary())
-                        const SizedBox(height: kSizeBoxS),
-                      if (DictionaryService.to.canManageDictionary())
-                        SubtitleBlock(
-                          title: "Similar Words".tr,
-                          titleFontSize: kSummaryFontSize,
+                            if (MembersController.to.isLoggedIn)
+                              Obx(() {
+                                return BookmarksController
+                                        .to.isBookmarking.value
+                                    ? SizedBox(
+                                        width: 20,
+                                        height: 20,
+                                        child: CircularProgressIndicator(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .error,
+                                        ),
+                                      )
+                                    : IconButton(
+                                        onPressed: () {
+                                          BookmarksController.to.toggleBookmark(
+                                              expression: DictionaryService
+                                                  .to.expression.value!);
+                                        },
+                                        icon: Icon(
+                                          Icons.bookmark_add,
+                                          color: DictionaryService.to.expression
+                                                          .value !=
+                                                      null &&
+                                                  DictionaryService
+                                                      .to
+                                                      .expression
+                                                      .value!
+                                                      .isBookmarked!
+                                              ? Theme.of(context)
+                                                  .colorScheme
+                                                  .error
+                                              : Theme.of(context)
+                                                  .colorScheme
+                                                  .onBackground
+                                                  .withOpacity(0.3),
+                                        ),
+                                      );
+                              }),
+                            if (DictionaryService.to.canManageDictionary() &&
+                                DictionaryService.to.expression.value != null)
+                              IconButton(
+                                  onPressed: () {
+                                    openSoundRecorder(context);
+                                  },
+                                  icon: const Icon(Icons.mic)),
+                          ],
                         ),
-                      const SizedBox(height: kSizeBoxS),
-                      Obx(() {
-                        return Align(
-                          alignment: Alignment.centerLeft,
-                          child: Wrap(
-                            children: DictionaryService.to
-                                .similarExpressions()
-                                .map(
-                                  (e) => Padding(
-                                    padding: const EdgeInsets.all(
-                                      2,
-                                    ),
-                                    child: InkWell(
-                                      onTap: () {
-                                        DictionaryService.to.openExpression(
-                                            expression: e, off: true);
-                                      },
-                                      child: Badge(
-                                        //     backgroundColor: kSurfaceColor,
-                                        //isLabelVisible: false,
-                                        label: Text(
-                                          e.word,
-                                          style: const TextStyle(
-                                              //      color: kOnSurfaceColor,
-                                              ),
+                        if (DictionaryService.to.canManageDictionary() &&
+                            DictionaryService.to.similarExpressions.isNotEmpty)
+                          const SizedBox(height: kSizeBoxS),
+                        if (DictionaryService.to.canManageDictionary() &&
+                            DictionaryService.to.similarExpressions.isNotEmpty)
+                          SubtitleBlock(
+                            title: "Similar Words".tr,
+                            titleFontSize: kSummaryFontSize,
+                          ),
+                        const SizedBox(height: kSizeBoxS),
+                        Obx(() {
+                          return Align(
+                            alignment: Alignment.centerLeft,
+                            child: Wrap(
+                              children: DictionaryService.to
+                                  .similarExpressions()
+                                  .map(
+                                    (e) => Padding(
+                                      padding: const EdgeInsets.all(
+                                        2,
+                                      ),
+                                      child: InkWell(
+                                        onTap: () {
+                                          DictionaryService.to.openExpression(
+                                              expression: e, off: true);
+                                        },
+                                        child: Badge(
+                                          //     backgroundColor: kSurfaceColor,
+                                          //isLabelVisible: false,
+                                          label: Text(
+                                            e.word,
+                                            style: const TextStyle(
+                                                //      color: kOnSurfaceColor,
+                                                ),
+                                          ),
                                         ),
                                       ),
                                     ),
+                                  )
+                                  .toList(
+                                    growable: false,
                                   ),
-                                )
-                                .toList(
-                                  growable: false,
-                                ),
-                          ),
-                        );
-                      }),
-                    ],
+                            ),
+                          );
+                        }),
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: kSizeBoxL),
-                SubtitleBlock(
-                  title: "Meanings".tr,
-                  titleFontSize: kSubHeadingFontSize,
-                  icon: Icons.menu_book,
-                ),
-                Expanded(
-                  child: Obx(() {
-                    return ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      padding: const EdgeInsets.only(top: kPaddingS),
-                      itemCount: MeaningsController.to.meanings.length,
-                      itemBuilder: (context, index) {
-                        Meaning meaning = MeaningsController.to.meanings[index];
+                  const SizedBox(height: kSizeBoxL),
+                  SubtitleBlock(
+                    title: "Meanings".tr,
+                    titleFontSize: kSubHeadingFontSize,
+                    icon: Icons.menu_book,
+                  ),
+                  Expanded(
+                    child: Obx(() {
+                      return ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        padding: const EdgeInsets.only(top: kPaddingS),
+                        itemCount: MeaningsController.to.meanings.length,
+                        itemBuilder: (context, index) {
+                          Meaning meaning =
+                              MeaningsController.to.meanings[index];
 
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: kPaddingS),
-                          child: MeaningCard(
-                            expressionId:
-                                MeaningsController.to.expression.value!.id,
-                            meaning: meaning,
-                          ),
-                        );
-                      },
-                    );
-                  }),
-                ),
-              ],
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: kPaddingS),
+                            child: MeaningCard(
+                              expressionId:
+                                  MeaningsController.to.expression.value!.id,
+                              meaning: meaning,
+                            ),
+                          );
+                        },
+                      );
+                    }),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-        floatingActionButton: !DictionaryService.to.canManageDictionary()
-            ? null
-            : FloatingActionButton(
-                mini: true,
-                tooltip: "Add Meaning".tr,
-                backgroundColor: Theme.of(context).colorScheme.onBackground,
-                foregroundColor: Theme.of(context).colorScheme.background,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(kBorderRadius),
-                ),
-                elevation: 10,
-                onPressed: DictionaryService.to.expression.value == null
-                    ? null
-                    : () {
-                        MeaningsController.to.addMeaningDialog(
-                          expressionId:
-                              DictionaryService.to.expression.value!.id,
-                          onAdd: () async {
-                            DictionaryService.to.refreshExpressions();
-                            await DictionaryService.to.expression.value!
-                                .reloadMeanings();
-                          },
-                        );
-                      },
-                child: const Icon(
-                  Icons.add,
-                  size: kSizeBoxXL,
-                ),
-              ),
-      ),
+          floatingActionButton: !DictionaryService.to.canManageDictionary()
+              ? null
+              : DictionaryService.to.expression.value == null
+                  ? null
+                  : FloatingActionButton(
+                      mini: true,
+                      tooltip: "Add Meaning".tr,
+                      backgroundColor:
+                          Theme.of(context).colorScheme.onBackground,
+                      foregroundColor: Theme.of(context).colorScheme.background,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(kBorderRadius),
+                      ),
+                      elevation: 10,
+                      onPressed: DictionaryService.to.expression.value == null
+                          ? null
+                          : () {
+                              MeaningsController.to.addMeaningDialog(
+                                expressionId:
+                                    DictionaryService.to.expression.value!.id,
+                                onAdd: () async {
+                                  DictionaryService.to.refreshExpressions();
+                                  await DictionaryService.to.expression.value!
+                                      .reloadMeanings();
+                                },
+                              );
+                            },
+                      child: const Icon(
+                        Icons.add,
+                        size: kSizeBoxXL,
+                      ),
+                    ),
+        );
+      }),
     );
   }
 

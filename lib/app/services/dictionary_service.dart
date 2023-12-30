@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kitaabua/app/controllers/meanings_controller.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/auth_service.dart';
 import 'package:kitaabua/app/ui/widgets/snack.dart';
@@ -61,7 +62,7 @@ class DictionaryService extends GetxService {
             .where(
               (element) => element.word.toLowerCase().startsWith(
                     keyword.toLowerCase(),
-                  ),
+                  ) && element.word.toLowerCase() != expression.value?.word.toLowerCase(),
             )
             .toList();
   }
@@ -82,10 +83,15 @@ class DictionaryService extends GetxService {
 
   openExpression({Expression? expression, bool off = false}) async {
     this.expression.value = expression;
+    similarExpressions.clear();
+    similarWords.clear();
     if (expression != null) {
       wordEC.text = expression.word;
     } else {
       wordEC.text = "";
+      similarExpressions.clear();
+      similarWords.clear();
+      MeaningsController.to.clearBindings();
     }
     if (off) {
       Get.offNamed(AddEditPage.route);
@@ -105,15 +111,16 @@ class DictionaryService extends GetxService {
         addedOn: expression.value!.addedOn,
         state: expression.value!.state,
       );
-      FirebaseApi.updateExpression(express).then((value) {
+      FirebaseApi.updateExpression(express).then((value) async {
         //Get.back();
+        expression.value = await FirebaseApi.getExpression(express.id);
         Snack.success('Expression updated successfully'.tr);
       }).catchError((onError) {
         Snack.error('Expression update failed'.tr);
       });
     } else {
-      FirebaseApi.createExpression(word: word).then((value) {
-        //  Get.back();
+      FirebaseApi.createExpression(word: word).then((value) async {
+        expression.value = await FirebaseApi.getExpression(value);
         Snack.success('Expression added successfully'.tr);
       }).catchError((onError) {
         Snack.error('Expression add failed'.tr);
