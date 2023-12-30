@@ -16,40 +16,26 @@ class BookmarksController extends GetxController {
 
   final RxList<Expression> bookmarks = <Expression>[].obs;
   final Rxn<Expression> bookmark = Rxn<Expression>();
+  final RxBool isBookmarking = false.obs;
 
   void selectBookmark(Expression bookmark) {
     this.bookmark.value = bookmark;
   }
 
   void toggleBookmark({required Expression expression}) {
+    bookmark.value = expression;
+    isBookmarking.value = true;
     FirebaseApi.toggleBookmark(expression).then((value) async {
       DictionaryService.to.refreshExpressions();
-      // Get.snackbar('Success', 'Bookmark toggled successfully');
+      Get.snackbar('Success', 'Bookmark toggled successfully');
     }).catchError((onError) {
-      // Get.snackbar('Error', onError.toString());
-    });
+      Get.snackbar('Error', onError.toString());
+    }).whenComplete(
+      () {
+        isBookmarking.value = false;
+      },
+    );
   }
-
-  /* void addBookmark({
-    required String expressionId,
-  }) {
-    FirebaseApi.createBookmark(
-      expressionId: expressionId,
-    ).then((value) async {
-      Snack.success('Bookmark added successfully'.tr);
-    }).catchError((onError) {
-      Snack.error(onError.toString());
-    });
-  }*/
-
-/*  void deleteBookmark(Expression bookmark) {
-    FirebaseApi.deleteBookmark(bookmark, bookmark.id)
-        .then((value) async {
-      Snack.success('Bookmark deleted successfully'.tr);
-    }).catchError((onError) {
-      Snack.error(onError.toString());
-    });
-  }*/
 
   Future<void> initializeBindings() async {
     //bookmarks.bindStream(FirebaseApi.readBookmarks());

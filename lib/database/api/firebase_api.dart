@@ -217,9 +217,9 @@ class FirebaseApi {
         .firstOrNull;
 
     if (docBookmark != null && docBookmark.exists) {
-      await docBookmark.reference.delete();
+      return await docBookmark.reference.delete();
     } else {
-      await _createBookmark(expressionId: expression.id);
+      return await _createBookmark(expressionId: expression.id);
     }
   }
 

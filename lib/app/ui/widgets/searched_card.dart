@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/bookmarks_controller.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/dictionary_service.dart';
@@ -31,20 +32,32 @@ class SearchedCard extends StatelessWidget {
       contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingS),
       trailing: !MembersController.to.isLoggedIn
           ? null
-          : IconButton(
-              onPressed: () {
-                BookmarksController.to.toggleBookmark(expression: expression);
-              },
-              icon: Icon(
-                Icons.bookmark_add,
-                color: expression.isBookmarked!
-                    ? Theme.of(context).colorScheme.error
-                    : Theme.of(context)
-                        .colorScheme
-                        .onBackground
-                        .withOpacity(0.3),
-              ),
-            ),
+          : Obx(() {
+              return BookmarksController.to.isBookmarking.value &&
+                      BookmarksController.to.bookmark.value!.id == expression.id
+                  ? SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(
+                        color: Theme.of(context).colorScheme.error,
+                      ),
+                    )
+                  : IconButton(
+                      onPressed: () {
+                        BookmarksController.to
+                            .toggleBookmark(expression: expression);
+                      },
+                      icon: Icon(
+                        Icons.bookmark_add,
+                        color: expression.isBookmarked!
+                            ? Theme.of(context).colorScheme.error
+                            : Theme.of(context)
+                                .colorScheme
+                                .onBackground
+                                .withOpacity(0.3),
+                      ),
+                    );
+            }),
     );
   }
 }
