@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/auth_service.dart';
+import 'package:kitaabua/app/ui/pages/auth/logins/principal_login_page.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
 import '../../../../../core/configs/themes.dart';
@@ -105,17 +106,18 @@ class ProfilePage extends StatelessWidget {
                           if (!AuthService.to.isLoggedIn.value)
                             ElevatedButton(
                               onPressed: () {
-                                AuthService.to.loginDialog();
+                                Get.toNamed(PrincipalLoginPage.route);
+                                // AuthService.to.loginDialog();
                               },
                               child: Text("Sign in".tr),
                             ),
-                          if (!AuthService.to.isLoggedIn.value)
+                          /*   if (!AuthService.to.isLoggedIn.value)
                             ElevatedButton(
                               onPressed: () {
                                 AuthService.to.registerDialog();
                               },
                               child: Text("Register".tr),
-                            ),
+                            ),*/
                           if (AuthService.to.isLoggedIn.value)
                             ElevatedButton(
                               onPressed: () {

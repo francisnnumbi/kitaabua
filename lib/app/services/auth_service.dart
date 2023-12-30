@@ -19,6 +19,7 @@ class AuthService extends GetxService {
 
   final RxBool isLoggedIn = false.obs;
   final RxString uid = ''.obs;
+  final RxBool isLogging = false.obs;
 
   User? get currentUser => Auth().currentUser;
 
@@ -96,6 +97,7 @@ class AuthService extends GetxService {
       actions: [
         TextButton(
           onPressed: () {
+            isLogging.value = false;
             Get.back();
           },
           child: Text(
@@ -103,26 +105,38 @@ class AuthService extends GetxService {
             //     style: const TextStyle(color: kGreyColor),
           ),
         ),
-        TextButton(
-          onPressed: () {
-            Auth()
-                .signInWithEmailAndPassword(
-              email: emailController.text,
-              password: passwordController.text,
-            )
-                .then((value) {
-              Get.back();
-              Snack.success("Login success".tr);
-            }).catchError((onError) {
-              Snack.error(onError.toString());
-            });
-            // Get.back();
-          },
-          child: Text(
-            "Login".tr,
-            //         style: TextStyle(color: kBackgroundColor),
+        if (isLogging.value)
+          const SizedBox(
+            width: 20,
+            height: 20,
+            child: CircularProgressIndicator(
+                //  color: kBackgroundColor,
+                ),
           ),
-        ),
+        if (!isLogging.value)
+          TextButton(
+            onPressed: () {
+              isLogging.value = true;
+              Auth()
+                  .signInWithEmailAndPassword(
+                email: emailController.text,
+                password: passwordController.text,
+              )
+                  .then((value) {
+                Get.back();
+                Snack.success("Login success".tr);
+              }).catchError((onError) {
+                Snack.error(onError.toString());
+              }).whenComplete(() {
+                isLogging.value = false;
+              });
+              // Get.back();
+            },
+            child: Text(
+              "Login".tr,
+              //         style: TextStyle(color: kBackgroundColor),
+            ),
+          ),
       ],
     );
   }
