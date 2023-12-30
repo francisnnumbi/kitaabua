@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:kitaabua/app/services/auth_service.dart';
 
 import '../../../../../core/configs/sizes.dart';
 import '../../../../../core/configs/themes.dart';
-import '../../../../../database/api/auth.dart';
+import '../../../../../main.dart';
 import '../../../../controllers/members_controller.dart';
 import '../../../widgets/snack.dart';
 
-class PrincipalLoginPage extends StatelessWidget {
-  PrincipalLoginPage({super.key}) {
-    if (MembersController.to.currentMember.value != null) {
-      emailController.text = MembersController.to.currentMember.value!.email;
-    }
-  }
+class GuestLoginPage extends StatelessWidget {
+  GuestLoginPage({super.key});
 
-  static const String route = "/auth/login/principal";
+  static const String route = "/auth/login/guest";
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -40,11 +35,11 @@ class PrincipalLoginPage extends StatelessWidget {
             children: [
               Center(
                 child: Text(
-                  "Main Login".tr,
+                  "Guest Login".tr,
                   style: TextStyle(
                     fontSize: kTitleFontSize,
                     fontWeight: FontWeight.bold,
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).colorScheme.error,
                   ),
                 ),
               ),
@@ -56,12 +51,16 @@ class PrincipalLoginPage extends StatelessWidget {
                   fontSize: kSearchFontSize,
                 ),
                 decoration: InputDecoration(
-                  labelText: "Email".tr,
+                  labelText: 'Email'.tr,
+                  hintText: 'Enter email'.tr,
                   labelStyle: const TextStyle(
-                      //      color: kGreyColor,
+                      // color: kGreyColor,
+                      ),
+                  hintStyle: const TextStyle(
+                      // color: kGreyColor,
                       ),
                   filled: true,
-                  //    fillColor: kBackgroundColor,
+                  // fillColor: kBackgroundColor,
                   focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
                     borderRadius: BorderRadius.all(
@@ -80,16 +79,20 @@ class PrincipalLoginPage extends StatelessWidget {
               TextField(
                 controller: passwordController,
                 style: const TextStyle(
-                  //    color: kOnBackgroundColor,
+                  // color: kOnBackgroundColor,
                   fontSize: kSearchFontSize,
                 ),
                 decoration: InputDecoration(
-                  labelText: "Password".tr,
+                  labelText: 'Password'.tr,
+                  hintText: 'Enter password'.tr,
                   labelStyle: const TextStyle(
-                      //       color: kGreyColor,
+                      // color: kGreyColor,
+                      ),
+                  hintStyle: const TextStyle(
+                      // color: kGreyColor,
                       ),
                   filled: true,
-                  //  fillColor: kBackgroundColor,
+                  // fillColor: kBackgroundColor,
                   focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.transparent),
                     borderRadius: BorderRadius.all(
@@ -121,36 +124,43 @@ class PrincipalLoginPage extends StatelessWidget {
                       ),
                     ),
                     // const Spacer(),
-                    if (AuthService.to.isLogging.value)
+                    if (MembersController.to.isLogging.value)
                       SizedBox(
                         // width: 20,
                         // height: 20,
                         child: CircularProgressIndicator(
-                          color: Theme.of(context).colorScheme.secondary,
+                          color: Theme.of(context).colorScheme.error,
                         ),
                       ),
-                    if (!AuthService.to.isLogging.value)
+                    if (!MembersController.to.isLogging.value)
                       OutlinedButton(
-                        onPressed: () {
-                          AuthService.to.isLogging.value = true;
-                          Auth()
-                              .signInWithEmailAndPassword(
-                            email: emailController.text,
-                            password: passwordController.text,
-                          )
-                              .then((value) {
-                            Get.back();
-                            Snack.success("Login success".tr);
-                          }).catchError((onError) {
-                            Snack.error(onError.toString());
-                          }).whenComplete(() {
-                            AuthService.to.isLogging.value = false;
-                          });
-                          // Get.back();
+                        onPressed: () async {
+                          MembersController.to.isLogging.value = true;
+                          await 0.5.delay();
+                          for (final member in MembersController.to.members) {
+                            if (member.email == emailController.text &&
+                                member.password == passwordController.text &&
+                                member.state == true) {
+                              MembersController.to.currentMember.value = member;
+                              InnerStorage.write(
+                                'currentMember',
+                                MembersController.to.currentMember.value!
+                                    .toStringJson(),
+                              );
+                              MembersController.to.isLogging.value = false;
+                              Get.back();
+                              Snack.success('Guest logged in successfully'.tr);
+                              return;
+                            }
+                          }
+                          if (MembersController.to.currentMember.value ==
+                              null) {
+                            Snack.error('Guest not found'.tr);
+                          }
+                          MembersController.to.isLogging.value = false;
                         },
                         style: OutlinedButton.styleFrom(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.secondary,
+                          backgroundColor: Theme.of(context).colorScheme.error,
                           side: BorderSide(
                             color: Theme.of(context).colorScheme.background,
                           ),
@@ -158,7 +168,7 @@ class PrincipalLoginPage extends StatelessWidget {
                         child: Text(
                           "Login".tr,
                           style: TextStyle(
-                              color: Theme.of(context).colorScheme.onSecondary),
+                              color: Theme.of(context).colorScheme.onError),
                         ),
                       ),
                   ],

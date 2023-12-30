@@ -20,6 +20,7 @@ class MembersController extends GetxController {
 
   final RxList<Member> members = <Member>[].obs;
   final Rxn<Member> currentMember = Rxn<Member>();
+  final RxBool isLogging = false.obs;
 
 /*
   openExpression({Expression? expression}) async {

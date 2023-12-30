@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/auth_service.dart';
+import 'package:kitaabua/app/ui/pages/auth/logins/guest_login_page.dart';
 import 'package:kitaabua/app/ui/pages/auth/logins/principal_login_page.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
@@ -137,7 +138,8 @@ class ProfilePage extends StatelessWidget {
                           if (MembersController.to.currentMember.value == null)
                             ElevatedButton(
                               onPressed: () {
-                                MembersController.to.loginMemberDialog();
+                                // MembersController.to.loginMemberDialog();
+                                Get.toNamed(GuestLoginPage.route);
                               },
                               child: Text("Login".tr),
                             ),
