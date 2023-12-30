@@ -11,21 +11,31 @@ class SearchedViews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      return ListView.builder(
-        padding: const EdgeInsets.all(0),
-        physics: const BouncingScrollPhysics(),
-        itemCount: DictionaryService.to.filteredExpressions.length,
-        itemBuilder: (context, index) {
-          Expression expression =
-              DictionaryService.to.filteredExpressions[index];
-          return Padding(
-            padding: const EdgeInsets.only(bottom: kPaddingS),
-            child: SearchedCard(
-              expression: expression,
-            ),
-          );
-        },
-      );
+      return DictionaryService.to.filteredExpressions.isEmpty
+          ? const Center(
+              child: Text(
+                'No expressions found, please search again !',
+                style: TextStyle(
+                  fontSize: kHeadingFontSize,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            )
+          : ListView.builder(
+              padding: const EdgeInsets.all(0),
+              physics: const BouncingScrollPhysics(),
+              itemCount: DictionaryService.to.filteredExpressions.length,
+              itemBuilder: (context, index) {
+                Expression expression =
+                    DictionaryService.to.filteredExpressions[index];
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: kPaddingS),
+                  child: SearchedCard(
+                    expression: expression,
+                  ),
+                );
+              },
+            );
     });
   }
 }
