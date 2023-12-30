@@ -5,6 +5,7 @@ import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/app/services/auth_service.dart';
 import 'package:kitaabua/app/ui/pages/auth/logins/guest_login_page.dart';
 import 'package:kitaabua/app/ui/pages/auth/logins/principal_login_page.dart';
+import 'package:kitaabua/app/ui/pages/auth/registers/guest_register_page.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
 import '../../../../../core/configs/themes.dart';
@@ -94,73 +95,12 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: kSizeBoxM),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Text(
-                            'Logged in as Principal'.tr,
-                          ),
-                          if (!AuthService.to.isLoggedIn.value)
-                            ElevatedButton(
-                              onPressed: () {
-                                Get.toNamed(PrincipalLoginPage.route);
-                                // AuthService.to.loginDialog();
-                              },
-                              child: Text("Sign in".tr),
-                            ),
-                          /*   if (!AuthService.to.isLoggedIn.value)
-                            ElevatedButton(
-                              onPressed: () {
-                                AuthService.to.registerDialog();
-                              },
-                              child: Text("Register".tr),
-                            ),*/
-                          if (AuthService.to.isLoggedIn.value)
-                            ElevatedButton(
-                              onPressed: () {
-                                AuthService.to.logoutDialog();
-                              },
-                              child: Text("Sign out".tr),
-                            ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Text(
-                            'Logged in as Guest'.tr,
-                          ),
-                          if (MembersController.to.currentMember.value == null)
-                            ElevatedButton(
-                              onPressed: () {
-                                // MembersController.to.loginMemberDialog();
-                                Get.toNamed(GuestLoginPage.route);
-                              },
-                              child: Text("Login".tr),
-                            ),
-                          if (MembersController.to.currentMember.value == null)
-                            ElevatedButton(
-                              onPressed: () {
-                                MembersController.to.addMemberDialog();
-                              },
-                              child: Text("Register".tr),
-                            ),
-                          if (MembersController.to.currentMember.value != null)
-                            ElevatedButton(
-                              onPressed: () {
-                                MembersController.to.logoutMemberDialog();
-                              },
-                              child: Text("Logout".tr),
-                            ),
-                        ],
-                      ),
-                    )
-                  ],
+                Center(
+                  child: OutlinedButton(
+                      onPressed: () {
+                        _manageAccount();
+                      },
+                      child: Text('Manage Account'.tr)),
                 ),
                 const SizedBox(height: kSizeBoxL),
               ],
@@ -168,6 +108,102 @@ class ProfilePage extends StatelessWidget {
           }),
         ),
       ),
+    );
+  }
+
+  _manageAccount() {
+    Get.bottomSheet(
+      Wrap(
+        children: [
+          Container(
+            //  height: 200,
+            margin: const EdgeInsets.all(16),
+            // color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Logged in as Principal'.tr,
+                      ),
+                      if (!AuthService.to.isLoggedIn.value)
+                        ElevatedButton(
+                          onPressed: () {
+                            Get.back();
+                            Get.toNamed(PrincipalLoginPage.route);
+                            // AuthService.to.loginDialog();
+                          },
+                          child: Text("Sign in".tr),
+                        ),
+                      /*   if (!AuthService.to.isLoggedIn.value)
+                            ElevatedButton(
+                              onPressed: () {
+                                AuthService.to.registerDialog();
+                              },
+                              child: Text("Register".tr),
+                            ),*/
+                      if (AuthService.to.isLoggedIn.value)
+                        ElevatedButton(
+                          onPressed: () {
+                            Get.back();
+                            AuthService.to.logoutDialog();
+                          },
+                          child: Text("Sign out".tr),
+                        ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Column(
+                    children: [
+                      Text(
+                        'Logged in as Guest'.tr,
+                      ),
+                      if (MembersController.to.currentMember.value == null)
+                        ElevatedButton(
+                          onPressed: () {
+                            // MembersController.to.loginMemberDialog();
+                            Get.back();
+                            Get.toNamed(GuestLoginPage.route);
+                          },
+                          child: Text("Login".tr),
+                        ),
+                      if (MembersController.to.currentMember.value == null)
+                        ElevatedButton(
+                          onPressed: () {
+                            // MembersController.to.addMemberDialog();
+                            Get.back();
+                            Get.toNamed(GuestRegisterPage.route);
+                          },
+                          child: Text("Register".tr),
+                        ),
+                      if (MembersController.to.currentMember.value != null)
+                        ElevatedButton(
+                          onPressed: () {
+                            Get.back();
+                            MembersController.to.logoutMemberDialog();
+                          },
+                          child: Text("Logout".tr),
+                        ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ), //this right here
+      isScrollControlled: true,
     );
   }
 }

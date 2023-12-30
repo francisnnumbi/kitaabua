@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:kitaabua/app/ui/pages/add_edit/add_edit_page.dart';
 import 'package:kitaabua/app/ui/pages/auth/logins/principal_login_page.dart';
 import 'package:kitaabua/app/ui/pages/auth/profile/profile_page.dart';
+import 'package:kitaabua/app/ui/pages/auth/registers/guest_register_page.dart';
 import 'package:kitaabua/app/ui/pages/bookmarks/bookmarks_page.dart';
 import 'package:kitaabua/app/ui/pages/dictionary/dictionary_page.dart';
 import 'package:kitaabua/app/ui/pages/home/home_page.dart';
@@ -89,6 +90,15 @@ class Routes {
       //transitionDuration: const Duration(seconds: 1),
       transition: Transition.fadeIn,
       page: () => GuestLoginPage(),
+      /* middlewares: [
+  AuthMiddleware(priority: -1),
+  ],*/
+    ),
+    GetPage(
+      name: GuestRegisterPage.route,
+      //transitionDuration: const Duration(seconds: 1),
+      transition: Transition.fadeIn,
+      page: () => GuestRegisterPage(),
       /* middlewares: [
   AuthMiddleware(priority: -1),
   ],*/

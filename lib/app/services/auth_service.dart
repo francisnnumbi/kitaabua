@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:kitaabua/app/controllers/members_controller.dart';
 import 'package:kitaabua/database/api/auth.dart';
 
 import '../../core/configs/sizes.dart';
@@ -25,120 +24,6 @@ class AuthService extends GetxService {
 
   void login() {
     isLoggedIn.value = true;
-  }
-
-  void loginDialog() {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    if (MembersController.to.currentMember.value != null) {
-      emailController.text = MembersController.to.currentMember.value!.email;
-    }
-    Get.defaultDialog(
-      title: "Login".tr,
-      content: Column(
-        children: [
-          TextField(
-            controller: emailController,
-            style: const TextStyle(
-              // color: kOnBackgroundColor,
-              fontSize: kSearchFontSize,
-            ),
-            decoration: InputDecoration(
-              labelText: "Email".tr,
-              labelStyle: const TextStyle(
-                  //      color: kGreyColor,
-                  ),
-              filled: true,
-              //    fillColor: kBackgroundColor,
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(kBorderRadiusS),
-                ),
-              ),
-              enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(kBorderRadiusS),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(height: kSizeBoxM),
-          TextField(
-            controller: passwordController,
-            style: const TextStyle(
-              //    color: kOnBackgroundColor,
-              fontSize: kSearchFontSize,
-            ),
-            decoration: InputDecoration(
-              labelText: "Password".tr,
-              labelStyle: const TextStyle(
-                  //       color: kGreyColor,
-                  ),
-              filled: true,
-              //  fillColor: kBackgroundColor,
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(kBorderRadiusS),
-                ),
-              ),
-              enabledBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.transparent),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(kBorderRadiusS),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            isLogging.value = false;
-            Get.back();
-          },
-          child: Text(
-            "Cancel".tr,
-            //     style: const TextStyle(color: kGreyColor),
-          ),
-        ),
-        if (isLogging.value)
-          const SizedBox(
-            width: 20,
-            height: 20,
-            child: CircularProgressIndicator(
-                //  color: kBackgroundColor,
-                ),
-          ),
-        if (!isLogging.value)
-          TextButton(
-            onPressed: () {
-              isLogging.value = true;
-              Auth()
-                  .signInWithEmailAndPassword(
-                email: emailController.text,
-                password: passwordController.text,
-              )
-                  .then((value) {
-                Get.back();
-                Snack.success("Login success".tr);
-              }).catchError((onError) {
-                Snack.error(onError.toString());
-              }).whenComplete(() {
-                isLogging.value = false;
-              });
-              // Get.back();
-            },
-            child: Text(
-              "Login".tr,
-              //         style: TextStyle(color: kBackgroundColor),
-            ),
-          ),
-      ],
-    );
   }
 
   void registerDialog() {
