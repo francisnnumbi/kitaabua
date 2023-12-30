@@ -7,7 +7,6 @@ import 'package:kitaabua/database/models/expression.dart';
 import 'package:kitaabua/main.dart';
 
 import '../../core/configs/dictionaries.dart';
-import '../../core/configs/sizes.dart';
 import '../../database/api/firebase_api.dart';
 import '../ui/pages/add_edit/add_edit_page.dart';
 
@@ -126,6 +125,10 @@ class DictionaryService extends GetxService {
 
   Future<void> initializeBindings() async {
     expressions.bindStream(FirebaseApi.readExpressions());
+    if (expression.value != null) {
+      expression.value = expressions
+          .firstWhereOrNull((element) => element.id == expression.value!.id);
+    }
   }
 
   Future<void> clearBindings() async {
@@ -136,7 +139,6 @@ class DictionaryService extends GetxService {
     await clearBindings();
     await Get.delete<DictionaryService>(force: true);
   }
-
 
   @override
   void onReady() {
@@ -152,7 +154,6 @@ class DictionaryService extends GetxService {
       }
     });
 
-
     expressions.listen((p0) {
       if (p0.isNotEmpty) {
         p0.sort((a, b) {
@@ -160,6 +161,10 @@ class DictionaryService extends GetxService {
         });
         for (int i = 0; i < p0.length; i++) {
           wordExpressions.add(p0[i].word);
+        }
+        if (expression.value != null) {
+          expression.value = p0.firstWhereOrNull(
+              (element) => element.id == expression.value!.id);
         }
         // if (kDebugMode) print(wordExpressions);
         recentExpressions.value = p0.reversed.take(5).toList();

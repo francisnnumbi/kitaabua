@@ -5,6 +5,7 @@ import 'package:kitaabua/database/models/expression.dart';
 import '../../../core/configs/sizes.dart';
 import '../../controllers/bookmarks_controller.dart';
 import '../../controllers/members_controller.dart';
+import '../../services/dictionary_service.dart';
 
 class BookmarkedCard extends StatelessWidget {
   const BookmarkedCard({
@@ -17,6 +18,9 @@ class BookmarkedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {
+        DictionaryService.to.openExpression(expression: bookmark);
+      },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),

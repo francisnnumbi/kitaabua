@@ -9,6 +9,8 @@ import 'package:kitaabua/core/configs/utils.dart';
 import '../../../../core/configs/sizes.dart';
 import '../../../../core/configs/themes.dart';
 import '../../../../database/models/meaning.dart';
+import '../../../controllers/bookmarks_controller.dart';
+import '../../../controllers/members_controller.dart';
 import '../../../services/dictionary_service.dart';
 import '../../widgets/app_bar_header.dart';
 import '../../widgets/meaning_card.dart';
@@ -143,6 +145,40 @@ class AddEditPage extends StatelessWidget {
                               ),
                             );
                           }),
+                          if (MembersController.to.isLoggedIn)
+                            Obx(() {
+                              return BookmarksController.to.isBookmarking.value
+                                  ? SizedBox(
+                                      width: 20,
+                                      height: 20,
+                                      child: CircularProgressIndicator(
+                                        color:
+                                            Theme.of(context).colorScheme.error,
+                                      ),
+                                    )
+                                  : IconButton(
+                                      onPressed: () {
+                                        BookmarksController.to.toggleBookmark(
+                                            expression: DictionaryService
+                                                .to.expression.value!);
+                                      },
+                                      icon: Icon(
+                                        Icons.bookmark_add,
+                                        color: DictionaryService
+                                                        .to.expression.value !=
+                                                    null &&
+                                                DictionaryService.to.expression
+                                                    .value!.isBookmarked!
+                                            ? Theme.of(context)
+                                                .colorScheme
+                                                .error
+                                            : Theme.of(context)
+                                                .colorScheme
+                                                .onBackground
+                                                .withOpacity(0.3),
+                                      ),
+                                    );
+                            }),
                           if (DictionaryService.to.canManageDictionary())
                             IconButton(
                                 onPressed: () {

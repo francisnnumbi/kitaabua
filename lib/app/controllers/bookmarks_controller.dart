@@ -24,6 +24,7 @@ class BookmarksController extends GetxController {
 
   void toggleBookmark({required Expression expression}) {
     bookmark.value = expression;
+    //DictionaryService.to.expression.value = expression;
     isBookmarking.value = true;
     FirebaseApi.toggleBookmark(expression).then((value) async {
       DictionaryService.to.refreshExpressions();
