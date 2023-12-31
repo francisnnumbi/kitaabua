@@ -1,3 +1,4 @@
+import 'package:app_popup_menu/app_popup_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -69,6 +70,53 @@ class AddEditPage extends StatelessWidget {
                       DictionaryService.to.addExpression(
                           word: DictionaryService.to.wordEC.text);
                     },
+                    actions: [
+                      /* const InkWell(
+                        onTap: null,
+                        child: Icon(CupertinoIcons.ellipsis_vertical),
+                      ),*/
+                      AppPopupMenu(
+                        offset: const Offset(0, 25),
+                        menuItems: [
+                          PopupMenuItem(
+                            value: "delete",
+                            child: TextButton.icon(
+                              onPressed: null,
+                              icon: const Icon(Icons.delete),
+                              label: Text("Delete".tr),
+                            ),
+                          ),
+                          PopupMenuItem(
+                            value: "meanings",
+                            child: TextButton.icon(
+                              onPressed:
+                                  !DictionaryService.to.canManageDictionary()
+                                      ? null
+                                      : DictionaryService.to.expression.value ==
+                                              null
+                                          ? null
+                                          : () {
+                                              MeaningsController.to
+                                                  .addMeaningDialog(
+                                                expressionId: DictionaryService
+                                                    .to.expression.value!.id,
+                                                onAdd: () async {
+                                                  DictionaryService.to
+                                                      .refreshExpressions();
+                                                  await DictionaryService
+                                                      .to.expression.value!
+                                                      .reloadMeanings();
+                                                },
+                                              );
+                                            },
+                              icon: const Icon(Icons.menu_book),
+                              label: Text("Meanings".tr),
+                            ),
+                          ),
+                        ],
+                        child: const Icon(Icons.more_vert),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: kSizeBoxL),
                   Form(
@@ -226,7 +274,7 @@ class AddEditPage extends StatelessWidget {
                                 DictionaryService.to.expression.value != null)
                               IconButton(
                                   onPressed: () {
-                                    openSoundRecorder(context);
+                                    recordSoundDialog(context);
                                   },
                                   icon: const Icon(Icons.mic)),
                           ],
@@ -311,7 +359,7 @@ class AddEditPage extends StatelessWidget {
               ),
             ),
           ),
-          floatingActionButton: !DictionaryService.to.canManageDictionary()
+          /* floatingActionButton: !DictionaryService.to.canManageDictionary()
               ? null
               : DictionaryService.to.expression.value == null
                   ? null
@@ -342,48 +390,9 @@ class AddEditPage extends StatelessWidget {
                         Icons.add,
                         size: kSizeBoxXL,
                       ),
-                    ),
+                    ),*/
         );
       }),
-    );
-  }
-
-  void openSoundRecorder(BuildContext context) {
-    Get.bottomSheet(
-      Wrap(
-        children: [
-          Container(
-            // height: 120,
-            //color: Colors.white,
-            child: Column(
-              children: [
-                ListTile(
-                  leading: const Icon(Icons.mic),
-                  title: Text("Record".tr),
-                  onTap: () {
-                    Get.back();
-                    recordSoundDialog(context);
-                  },
-                ),
-                ListTile(
-                  leading: const Icon(Icons.file_open),
-                  title: Text("Choose from gallery".tr),
-                  onTap: () {
-                    Get.back();
-                  },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      backgroundColor: Theme.of(context).colorScheme.secondary,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-      ),
     );
   }
 
@@ -449,12 +458,12 @@ class AddEditPage extends StatelessWidget {
       textCancel: "Cancel".tr,
       confirmTextColor: Theme.of(context).colorScheme.onSecondary,
       cancelTextColor: Theme.of(context).colorScheme.onSecondary,
-      onConfirm: () {
-        // AudioController.to.stopRecording();
-        // AudioController.to.stopPlaying();
-        AudioController.to
-            .saveRecordToExpression(DictionaryService.to.expression.value!);
-      },
+      onConfirm: AudioController.to.isRecording.value
+          ? null
+          : () {
+              AudioController.to.saveRecordToExpression(
+                  DictionaryService.to.expression.value!);
+            },
       onCancel: () {
         AudioController.to.stopRecording();
         AudioController.to.stopPlaying();

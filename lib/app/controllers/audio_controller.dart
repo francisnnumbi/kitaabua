@@ -20,6 +20,7 @@ class AudioController extends GetxController {
   }
 
 // ------- ./static methods ------- //
+
   late AudioRecorder audioRecorder;
   late AudioPlayer audioPlayer;
   final RxBool isRecording = false.obs;
@@ -35,6 +36,7 @@ class AudioController extends GetxController {
 
         final path = '${tempDir.path}/audio/audio.m4a';
         await audioRecorder.start(const RecordConfig(), path: path);
+
         isRecording.value = true;
       }
     } catch (e) {
@@ -87,7 +89,7 @@ class AudioController extends GetxController {
 
   Future<void> saveRecordToExpression(Expression expression) async {
     try {
-      if (recordPath.value.isNotEmpty) {
+      if (recordPath.value.isNotEmpty && isRecording.value == false) {
         String downloadPath = await FirebaseStorageApi.uploadExpressionAudio(
             expression.id, recordPath.value);
         expression.audioPath = downloadPath;

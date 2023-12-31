@@ -13,6 +13,7 @@ class AppBarHeader extends StatelessWidget {
     this.titleFontSize,
     this.icon,
     this.onPressed,
+    this.actions,
   });
 
   final bool hasBackButton;
@@ -20,64 +21,74 @@ class AppBarHeader extends StatelessWidget {
   final double? titleFontSize;
   final IconData? icon;
   final VoidCallback? onPressed;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        Expanded(
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              if (hasBackButton)
+                IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  padding: const EdgeInsets.all(0),
+                  icon: Container(
+                    width: 40,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      //  color: kDarkBackgroundColor,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: const Icon(
+                      Icons.arrow_back,
+                      //    color: kOnBackgroundColor,
+                    ),
+                  ),
+                ),
+              if (hasBackButton) const SizedBox(width: kSizeBoxS),
+              Text(
+                title ?? kAppName,
+                overflow: TextOverflow.ellipsis,
+                softWrap: true,
+                style: TextStyle(
+                  // color: kOnBackgroundColor,
+                  fontSize: titleFontSize ??
+                      Theme.of(context).textTheme.titleLarge!.fontSize,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
         Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            if (hasBackButton)
+            if (onPressed != null && DictionaryService.to.canManageDictionary())
               IconButton(
-                onPressed: () {
-                  Get.back();
-                },
+                onPressed: onPressed,
                 padding: const EdgeInsets.all(0),
                 icon: Container(
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    //  color: kDarkBackgroundColor,
+                    //color: kDarkBackgroundColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: const Icon(
-                    Icons.arrow_back,
-                    //    color: kOnBackgroundColor,
+                  child: Icon(
+                    icon ?? Icons.swap_horiz,
+                    color: Theme.of(context).colorScheme.onBackground,
                   ),
                 ),
               ),
-            if (hasBackButton) const SizedBox(width: kSizeBoxS),
-            Text(
-              title ?? kAppName,
-              overflow: TextOverflow.ellipsis,
-              softWrap: true,
-              style: TextStyle(
-                // color: kOnBackgroundColor,
-                fontSize: titleFontSize ??
-                    Theme.of(context).textTheme.titleLarge!.fontSize,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            if (actions != null) ...actions!,
           ],
         ),
-        if (onPressed != null && DictionaryService.to.canManageDictionary())
-          IconButton(
-            onPressed: onPressed,
-            padding: const EdgeInsets.all(0),
-            icon: Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                //color: kDarkBackgroundColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(
-                icon ?? Icons.swap_horiz,
-                color: Theme.of(context).colorScheme.onBackground,
-              ),
-            ),
-          ),
       ],
     );
   }

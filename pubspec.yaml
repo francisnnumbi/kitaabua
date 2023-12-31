@@ -13,7 +13,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # popup menu
+  app_popup_menu: ^1.0.0
   cupertino_icons: ^1.0.6
+  icons_plus: ^5.0.0
 
   path_provider: ^2.1.1
   get: ^4.6.6

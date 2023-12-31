@@ -27,9 +27,11 @@ class BookmarksController extends GetxController {
     //DictionaryService.to.expression.value = expression;
     isBookmarking.value = true;
     FirebaseApi.toggleBookmark(expression).then((value) async {
+      isBookmarking.value = false;
       DictionaryService.to.refreshExpressions();
       Get.snackbar('Success', 'Bookmark toggled successfully');
     }).catchError((onError) {
+      isBookmarking.value = false;
       Get.snackbar('Error', onError.toString());
     }).whenComplete(
       () {
