@@ -9,11 +9,13 @@ class SimpleAppBarHeader extends StatelessWidget {
     this.icon,
     this.title,
     this.titleFontSize,
+    this.actions,
   });
 
   final IconData? icon;
   final String? title;
   final double? titleFontSize;
+  final List<Widget>? actions;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class SimpleAppBarHeader extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
               width: 40,
@@ -46,6 +49,7 @@ class SimpleAppBarHeader extends StatelessWidget {
             ),
           ],
         ),
+        if (actions != null) ...actions!,
       ],
     );
   }

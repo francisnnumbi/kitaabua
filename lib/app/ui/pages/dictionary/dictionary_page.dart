@@ -35,6 +35,17 @@ class DictionaryPage extends StatelessWidget {
                 icon: Icons.menu_book_outlined,
                 title: Utils.getCurrentDictionaryTitle(),
                 titleFontSize: kHeadingFontSize,
+                actions: [
+                  IconButton(
+                    onPressed: !DictionaryService.to.canManageDictionary()
+                        ? null
+                        : () {
+                            DictionaryService.to
+                                .openExpression(expression: null);
+                          },
+                    icon: const Icon(Icons.add),
+                  ),
+                ],
               ),
               const SizedBox(height: kSizeBoxM),
               ExpressionSearchView(),
@@ -44,7 +55,7 @@ class DictionaryPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: !DictionaryService.to.canManageDictionary()
+      /*    floatingActionButton: !DictionaryService.to.canManageDictionary()
           ? null
           : FloatingActionButton(
               backgroundColor: Theme.of(context).colorScheme.onBackground,
@@ -60,7 +71,7 @@ class DictionaryPage extends StatelessWidget {
                 Icons.add,
                 size: kSizeBoxXL,
               ),
-            ),
+            ),*/
       bottomNavigationBar: const BottomNavBar(),
     );
   }

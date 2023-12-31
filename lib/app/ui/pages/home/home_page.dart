@@ -46,6 +46,17 @@ class HomePage extends StatelessWidget {
             children: [
               AppBarHeader(
                 title: 'Dictionary'.tr,
+                actions: [
+                  IconButton(
+                    onPressed: !DictionaryService.to.canManageDictionary()
+                        ? null
+                        : () {
+                            DictionaryService.to
+                                .openExpression(expression: null);
+                          },
+                    icon: const Icon(Icons.add),
+                  ),
+                ],
               ),
               const SizedBox(height: kSizeBoxM),
               ExpressionSearchView(
@@ -61,7 +72,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: !DictionaryService.to.canManageDictionary()
+      /*    floatingActionButton: !DictionaryService.to.canManageDictionary()
           ? null
           : FloatingActionButton(
               backgroundColor: Theme.of(context).colorScheme.onBackground,
@@ -77,7 +88,7 @@ class HomePage extends StatelessWidget {
                 Icons.add,
                 size: kSizeBoxXL,
               ),
-            ),
+            ),*/
       bottomNavigationBar: const BottomNavBar(),
     );
   }
