@@ -30,8 +30,8 @@ openLanguageSettingsDialog() {
           onChanged: (lang) {
             SettingsService.to.setLocale(lang!);
           },
-          style: const TextStyle(
-            //    color: kOnSurfaceColor,
+          style: TextStyle(
+            color: Theme.of(Get.context!).colorScheme.onSurface,
             fontSize: kSearchFontSize,
           ),
           decoration: InputDecoration(
