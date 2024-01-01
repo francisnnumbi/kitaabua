@@ -1,4 +1,9 @@
-Ce dictionnaire fait partie d'une enième tentative de conserver et promouvoir de la langue Taabua. C'est un dictionnaire de participation communautaire, où tout le monde peut contribuer à son enrichissement.
+Ce dictionnaire fait partie d'une enième tentative de conservation et de promotion de la langue Taabua. C'est un dictionnaire de participation communautaire, où tout le monde peut contribuer à son enrichissement.
+
+Les contributeurs seront choisis parmi les locuteurs natifs de la langue Taabua. Les contributeurs seront formés sur la manière de contribuer à l'enrichissement du dictionnaire. Et leurs comptes seront créés par l'administrateur du dictionnaire.
+
+Le dictionnaire est bilangue, c'est-à-dire qu'il contient des mots et expressions en Taabua et leur traduction en Français, et vice-versa. Il contient également des exemples d'usage des mots et expressions.
+
 Les fonctionnalités de l'application sont :
 •	Voir les mots et expressions, leur signification, leur traduction et des exemples d'usage.
 •	Ecouter leur prononciation.
