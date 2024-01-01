@@ -141,7 +141,7 @@ class SettingsPage extends StatelessWidget {
                       Get.toNamed(PrivacyStatementPage.route);
                     },
                   ),
-                  const SizedBox(height: kSizeBoxS),
+                  /* const SizedBox(height: kSizeBoxS),
                   ListTile(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -157,7 +157,7 @@ class SettingsPage extends StatelessWidget {
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {},
-                  ),
+                  ),*/
                   const SizedBox(height: kSizeBoxS),
                   ListTile(
                     shape: RoundedRectangleBorder(
