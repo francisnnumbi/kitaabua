@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:get/get.dart';
 import 'package:kitaabua/app/ui/widgets/snack.dart';
 import 'package:kitaabua/core/configs/dictionaries.dart';
@@ -7,6 +8,7 @@ import 'package:kitaabua/main.dart';
 
 import '../../core/configs/sizes.dart';
 import '../../core/lang/locales.dart';
+import '../../generated/assets.dart';
 
 class SettingsService extends GetxService {
   // ------- static methods ------- //
@@ -27,6 +29,12 @@ class SettingsService extends GetxService {
   final Rxn<Map<String, String>> locale = Rxn<Map<String, String>>();
   final Rxn<List<Map<String, String>>> locales =
       Rxn<List<Map<String, String>>>();
+  final Rxn<String> privacyStatement = Rxn<String>();
+
+  loadPrivacyStatement() async {
+    privacyStatement.value =
+        await rootBundle.loadString(Assets.textsPrivacyStatement);
+  }
 
   // ------- public methods ------- //
   void setLocale(Map<String, String> lang) {
@@ -38,8 +46,7 @@ class SettingsService extends GetxService {
     Snack.success("Language changed to".trParams({'lang': lang['name']!}));
   }
 
-  void setThemeMode(String themeMode, {bool? canBack = false}) async{
-
+  void setThemeMode(String themeMode, {bool? canBack = false}) async {
     switch (themeMode) {
       case Themes.LIGHT:
         Get.changeThemeMode(ThemeMode.light);
@@ -50,9 +57,9 @@ class SettingsService extends GetxService {
       default:
         Get.changeThemeMode(ThemeMode.light);
     }
-  await  InnerStorage.write('themeMode', themeMode);
+    await InnerStorage.write('themeMode', themeMode);
     2.delay();
-  if (canBack == true) 1.delay(() => Get.back());
+    if (canBack == true) 1.delay(() => Get.back());
   }
 
   void openThemeSelectDialog() {
@@ -86,7 +93,7 @@ class SettingsService extends GetxService {
   }
 
   String getThemeMode() {
-    return  InnerStorage.read('themeMode') ?? Themes.LIGHT;
+    return InnerStorage.read('themeMode') ?? Themes.LIGHT;
   }
 
   Future<void> setDictionary(String dictionary) async {
@@ -117,17 +124,16 @@ class SettingsService extends GetxService {
             },
             selected: InnerStorage.read('dictionary') == Dictionaries.KITAABUA,
           ),
-
         ],
       ),
     );
   }
 
-
   @override
   void onInit() {
     // TODO: implement onInit
     super.onInit();
+    loadPrivacyStatement();
     locales.value = Locales()
         .labels
         .entries

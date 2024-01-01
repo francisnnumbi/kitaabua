@@ -3,4 +3,6 @@ class Assets {
   Assets._();
 
   static const String logosLogo = 'assets/logos/logo.png';
+  static const String textsPrivacyStatement =
+      'assets/texts/privacy_statement.txt';
 }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:kitaabua/app/services/dictionary_service.dart';
 import 'package:kitaabua/app/services/settings_service.dart';
 import 'package:kitaabua/app/ui/pages/auth/profile/profile_page.dart';
 import 'package:kitaabua/app/ui/pages/settings/options_page.dart';
+import 'package:kitaabua/app/ui/pages/settings/privacy_statement_page.dart';
 import 'package:kitaabua/app/ui/widgets/dialogs/options_dialogs.dart';
 import 'package:kitaabua/core/configs/sizes.dart';
 
@@ -137,7 +137,9 @@ class SettingsPage extends StatelessWidget {
                       Icons.privacy_tip,
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(PrivacyStatementPage.route);
+                    },
                   ),
                   const SizedBox(height: kSizeBoxS),
                   ListTile(

@@ -22,6 +22,12 @@ class FirebaseApi {
           String documentId) =>
       dbCollection.doc(documentId).collection("bookmarks");
 
+/*
+  static Stream<QuerySnapshot<Map<String, dynamic>>>
+      expressionsNotificationStream =
+      dbCollection.orderBy('updatedOn', descending: true).snapshots();
+*/
+
   static Stream<List<Expression>> readExpressions() => dbCollection
       .orderBy('word', descending: false)
       .snapshots()

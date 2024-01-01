@@ -45,7 +45,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
   flutter_launcher_icons: ^0.13.1
 
 flutter_launcher_icons:
@@ -63,3 +63,5 @@ flutter:
 
   assets:
     - assets/logos/
+    - assets/
+    - assets/texts/

@@ -60,9 +60,12 @@ class DictionaryService extends GetxService {
         ? []
         : expressions
             .where(
-              (element) => element.word.toLowerCase().startsWith(
-                    keyword.toLowerCase(),
-                  ) && element.word.toLowerCase() != expression.value?.word.toLowerCase(),
+              (element) =>
+                  element.word.toLowerCase().startsWith(
+                        keyword.toLowerCase(),
+                      ) &&
+                  element.word.toLowerCase() !=
+                      expression.value?.word.toLowerCase(),
             )
             .toList();
   }
@@ -177,5 +180,25 @@ class DictionaryService extends GetxService {
         recentExpressions.value = p0.reversed.take(5).toList();
       }
     });
+
+    /* FirebaseApi.expressionsNotificationStream.listen((event) {
+      for (var element in event.docChanges) {
+        if (element.type == DocumentChangeType.added) {
+          if (element.doc.data() != null) {
+            print('EXPRESSIONS ADDED :: ${element.doc.data()}');
+          }
+        }
+        if (element.type == DocumentChangeType.modified) {
+          if (element.doc.data() != null) {
+            print('EXPRESSIONS MODIFIED :: ${element.doc.data()}');
+          }
+        }
+        if (element.type == DocumentChangeType.removed) {
+          if (element.doc.data() != null) {
+            print('EXPRESSIONS REMOVED :: ${element.doc.data()}');
+          }
+        }
+      }
+    });*/
   }
 }
